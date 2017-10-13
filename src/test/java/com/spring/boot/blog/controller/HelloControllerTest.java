@@ -25,7 +25,7 @@ public class HelloControllerTest {
 	
 	@Test
 	public void testHello() throws Exception {
-		
+		system.out.println(111);
 		mockMvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().string(equalTo("hello world")));
