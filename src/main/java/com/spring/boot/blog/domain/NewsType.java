@@ -26,7 +26,7 @@ import com.github.rjeschke.txtmark.Processor;
  * @since 1.0.0 2017年9月29日
  */
 @Entity // 实体
-public class News_Type implements Serializable {
+public class NewsType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id // 主键
