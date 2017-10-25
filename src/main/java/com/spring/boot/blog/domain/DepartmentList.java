@@ -28,6 +28,18 @@ import com.github.rjeschke.txtmark.Processor;
  */
 @Entity // 实体
 public class DepartmentList implements Serializable {
+	public DepartmentList(Long id, String code, String department) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.department = department;
+	}
+
+	public DepartmentList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id // 主键

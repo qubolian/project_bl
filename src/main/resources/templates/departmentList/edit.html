@@ -1,0 +1,20 @@
+<div class="container">
+ 
+<form th:action="@{/super/}" method="post" th:object="${departmentListModel.departmentList}" id="departmentListForm">
+	<input type="hidden" name="id" th:value="*{id}">
+	
+	<div class="form-group ">
+		<label for="code" class="col-form-label">代码</label>
+		<input type="text" class="form-control" id="code" name="code"  th:value="*{code}" maxlength="16" placeholder="请输入信息类别，至少3个字符，至多16个">
+	</div>
+	
+	<div class="form-group ">
+		<label for="department" class="col-form-label">发布单位</label>
+		<input type="text" class="form-control" id="department" name="department"  th:value="*{department}" maxlength="32" placeholder="请输入信息类别，至少3个字符，至多32个">
+	</div>
+	
+	
+</form>
+</div>
+
+ 

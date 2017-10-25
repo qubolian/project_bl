@@ -1,0 +1,39 @@
+<div class="container">
+ 
+<form th:action="@{/super/}" method="post" th:object="${whatsNewModel.whatsNew}" id="whatsNewForm">
+	<input type="hidden" name="id" th:value="*{id}">
+	
+	 <div class="form-group ">
+		<label for="startTime" class="col-form-label">曝光开始时间</label>
+		<input type="text" class="form-control" id="startTime" name="startTime"  th:value="*{startTime}" maxlength="16" placeholder="请输曝光开始时间">
+	</div>
+	
+	<div class="form-group ">
+		<label for="endTime" class="col-form-label">曝光结束时间</label>
+		<input type="text" class="form-control" id="endTime" name="endTime"  th:value="*{endTime}" maxlength="32" placeholder="请输曝光结束时间">
+	</div>
+	
+	 <div class="form-group ">
+		<label for="departmentList" class="col-form-label">发布单位</label>
+		<input type="text" class="form-control" id="department" name="department"   maxlength="32" placeholder="请输发布单位">
+	</div> 
+	
+	<div class="form-group ">
+		<label for="type" class="col-form-label">信息类别</label>
+		<input type="text" class="form-control" id="type" name="type"   maxlength="32" placeholder="请输信息类别">
+	</div>
+	
+	<div class="form-group ">
+		<label for="events" class="col-form-label">公告标题</label>
+		<input type="text" class="form-control" id="events" name="events"  th:value="*{events}" maxlength="32" placeholder="请输公告标题">
+	</div>
+	
+	<div class="form-group ">
+		<label for="note" class="col-form-label">内容说明</label>
+		<input type="text" class="form-control" id="note" name="note"  th:value="*{note}" maxlength="32" placeholder="请输内容说明">
+	</div> 
+</form>
+ 
+</div>
+<!-- /.container -->
+ 

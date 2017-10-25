@@ -1,24 +1,19 @@
 package com.spring.boot.blog.domain;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
-
-import com.github.rjeschke.txtmark.Processor;
 
 /**
  * 消息类型
@@ -29,6 +24,16 @@ import com.github.rjeschke.txtmark.Processor;
 public class NewsType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	public NewsType() {
+		super();
+	}
+
+	public NewsType(Long id, String messageType) {
+		super();
+		this.id = id;
+		this.messageType = messageType;
+	}
+
 	@Id // 主键
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
 	private Long id; // 用户的唯一标识
@@ -38,6 +43,10 @@ public class NewsType implements Serializable {
 	@Column(nullable = false, length = 64) // 映射为字段，值不能为空
 	private String messageType;
 	
+	
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+	private List<WhatsNew> whatsNews;
 	
 
 	public String getMessageType() {

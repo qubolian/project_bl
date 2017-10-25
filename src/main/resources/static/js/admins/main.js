@@ -21,6 +21,7 @@ $(function() {
 		 $.ajax({ 
 			 url: url, 
 			 success: function(data){
+				
 				 $("#rightContainer").html(data);
 		 },
 		 error : function() {

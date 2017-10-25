@@ -31,9 +31,10 @@ public class MenuController {
 	public ModelAndView listUsers(Model model) {
 		List<Menu> superList = new ArrayList<>();
 		superList.add(new Menu("编辑宗旨","/super/misson"));
-		
-		
-		
+		superList.add(new Menu("信息类别","/super/newsTypeList"));
+		superList.add(new Menu("发布单位","/super/departmentListList"));
+		superList.add(new Menu("最新消息","/super/whatsNewList"));
+		superList.add(new Menu("组队方法","/super/howtoTeamUpList"));
 		model.addAttribute("superList", superList);
 		
 		return new ModelAndView("menu/index", "model", model);
