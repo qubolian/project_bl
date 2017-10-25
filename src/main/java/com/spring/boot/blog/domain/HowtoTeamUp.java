@@ -16,6 +16,20 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class HowtoTeamUp  implements Serializable {
+	
+	public HowtoTeamUp(Long id, String gradeId, String teamUpStage, String seekAdvisorStage, String projectConductionStage) {
+		super();
+		this.id = id;
+		this.gradeId = gradeId;
+		this.teamUpStage = teamUpStage;
+		this.seekAdvisorStage = seekAdvisorStage;
+		this.projectConductionStage = projectConductionStage;
+	}
+
+	public HowtoTeamUp() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	private static final long serialVersionUID = 1L;
 

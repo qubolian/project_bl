@@ -1,18 +1,67 @@
 <div class="container">
  
-<form th:action="@{/super/}" method="post" th:object="${departmentListModel.departmentList}" id="departmentListForm">
+<form th:action="@{/super/}" method="post" th:object="${whatsNewModel.whatsNew}" id="whatsNewForm">
 	<input type="hidden" name="id" th:value="*{id}">
 	
-	<div class="form-group ">
-		<label for="code" class="col-form-label">代码</label>
-		<input type="text" class="form-control" id="code" name="code"  th:value="*{code}" maxlength="16" placeholder="请输入信息类别，至少3个字符，至多16个">
+	 <div class="form-group ">
+		<label for="startTime" class="col-form-label">曝光开始时间</label>
+		<input type="text" class="form-control" id="startTime" name="startTime"  th:value="*{startTime}" maxlength="16" placeholder="请输曝光开始时间">
 	</div>
 	
 	<div class="form-group ">
-		<label for="department" class="col-form-label">发布单位</label>
-		<input type="text" class="form-control" id="department" name="department"  th:value="*{department}" maxlength="32" placeholder="请输入信息类别，至少3个字符，至多32个">
+		<label for="endTime" class="col-form-label">曝光结束时间</label>
+		<input type="text" class="form-control" id="endTime" name="endTime"  th:value="*{endTime}" maxlength="32" placeholder="请输曝光结束时间">
 	</div>
 	
+	 <div class="form-group ">
+		<label for="departmentList" class="col-form-label">发布单位</label>
+		 
+		<select id="department" name="department" class="form-control" placeholder="请输发布单位">  
+			<option value="11111">11111</option>  
+			<option value="11111">11111</option>  
+			<option value="11111">11111</option>  
+			<!--
+			<c:forEach var="value" items="${L}">  
+				<option value="${value}">  
+				${value}  
+				</option>  
+			</c:forEach>  
+			 -->
+        </select>  
+		
+<!-- 		<input type="text" class="form-control" id="department" name="department" th:value="*{department}"  maxlength="32" placeholder="请输发布单位">
+ -->		
+	</div> 
+	
+	<div class="form-group ">
+		<label for="type" class="col-form-label">信息类别</label>
+		
+		 <select id="type" name="type" class="form-control" placeholder="请输信息类别">  
+			<option value="11111">11111</option>  
+			<option value="11111">11111</option>  
+			<option value="11111">11111</option>  
+			<!--
+			<c:forEach var="value" items="${L}">  
+				<option value="${value}">  
+				${value}  
+				</option>  
+			</c:forEach>  
+			  -->
+        </select>  
+        
+<!-- 		<input type="text" class="form-control" id="type" name="type" th:value="*{type}"  maxlength="32" placeholder="请输信息类别">
+ -->		 
+	</div>
+	
+	<div class="form-group ">
+		<label for="events" class="col-form-label">公告标题</label>
+		<input type="text" class="form-control" id="events" name="events"  th:value="*{events}" maxlength="32" placeholder="请输公告标题">
+	</div>
+	
+	<div class="form-group ">
+		<label for="note" class="col-form-label">内容说明</label>
+		<textarea type="text" rows="3" cols="20" class="form-control" id="note" name="note"  th:value="*{note}" maxlength="32" placeholder="请输内容说明"/>
+	</div> 
 </form>
 </div>
 

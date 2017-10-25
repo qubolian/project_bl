@@ -15,12 +15,28 @@
 	
 	 <div class="form-group ">
 		<label for="departmentList" class="col-form-label">发布单位</label>
-		<input type="text" class="form-control" id="department" name="department"   maxlength="32" placeholder="请输发布单位">
+		
+		<!-- <select id="department" name="department" class="form-control"  th:each="departmentList:${whatsNewModel.departmentLists}">  
+			<option th:value="*{department}" >   
+				<div th:text="${departmentList.department}"></div>
+			</option>  
+        </select> --> 
+		
+<!-- 		<input type="text" class="form-control" id="department" name="department"   maxlength="32" placeholder="请输发布单位">
+ -->		
 	</div> 
 	
 	<div class="form-group ">
 		<label for="type" class="col-form-label">信息类别</label>
-		<input type="text" class="form-control" id="type" name="type"   maxlength="32" placeholder="请输信息类别">
+		
+		<!-- <select id="type" name="type" class="form-control" placeholder="请输信息类别" th:each="whatsNew : ${whatsNewModel.newsTypes}">  
+			<option th:value="*{type}" th:text="${type}">   
+				${type}
+			</option>  
+        </select>  -->
+        
+<!-- 		<input type="text" class="form-control" id="type" name="type"   maxlength="32" placeholder="请输信息类别">
+ -->		 
 	</div>
 	
 	<div class="form-group ">
@@ -30,7 +46,7 @@
 	
 	<div class="form-group ">
 		<label for="note" class="col-form-label">内容说明</label>
-		<input type="text" class="form-control" id="note" name="note"  th:value="*{note}" maxlength="32" placeholder="请输内容说明">
+		<textarea type="text" rows="3" cols="20" class="form-control" id="note" name="note"  th:value="*{note}" maxlength="32" placeholder="请输内容说明"/>
 	</div> 
 </form>
  

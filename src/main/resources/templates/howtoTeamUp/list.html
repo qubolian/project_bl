@@ -5,12 +5,12 @@
 	<div class="input-group col-md-7 col-xl-6">
 
 		<input type="text" class="form-control" id="searchName"
-			placeholder="输入公告标题称进行搜索"> <span class="input-group-btn">
+			placeholder="输入年级进行搜索"> <span class="input-group-btn">
 			<button class="btn btn-secondary" type="button" id="searchNameBtn">
 				<i class="fa fa-search" aria-hidden="true"></i>
 			</button>
 		</span> <a class="btn btn-primary" data-toggle="modal"
-			data-target="#flipFlop" role="button" id="addWhatsNew"><i
+			data-target="#flipFlop" role="button" id="addHowtoTeamUp"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
 
 	</div>
@@ -21,30 +21,28 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th data-field="id">曝光开始时间</th>
-					<th data-field="code">曝光结束时间</th>
-				    <th data-field="departmentList">发布单位</th> 
-				 	<th data-field="operation">信息类别</th>
-					<th data-field="operation">公告标题</th>
-					<th data-field="operation">操作</th>
+					<th data-field="gradeId">年级</th>
+					<th data-field="teamUpStage">组队期</th>
+				    <th data-field="seekAdvisorStage">寻找指导老师期</th> 
+				 	<th data-field="projectConductionStage">专题执行期</th>
+				 	<th data-field="operation">操作</th>
 				</tr>
 			</thead>
 			<tbody>
 
-				<tr th:each="whatsNew : ${whatsNewModel.whatsNewList}">
-					<td th:text="${whatsNew.startTime}">编号</td>
-					<td th:text="${whatsNew.endTime}">代码</td>
-				    <td th:text="${whatsNew.departmentList.department}">发布单位</td>
-					<td th:text="${whatsNew.newsType.messageType}">信息类别</td> 
-					<td th:text="${whatsNew.events}">公告标题</td>
+				<tr th:each="howtoTeamUp : ${howtoTeamUpModel.howtoTeamUpList}">
+					<td th:text="${howtoTeamUp.gradeId}">年级</td>
+					<td th:text="${howtoTeamUp.teamUpStage}">组队期</td>
+				    <td th:text="${howtoTeamUp.seekAdvisorStage}">寻找指导老师期</td>
+					<td th:text="${howtoTeamUp.projectConductionStage}">专题执行期</td> 
 					<td>
 						<div>
-							<a class="super-edit-whatsNewList" data-toggle="modal"
+							<a class="super-edit-howtoTeamUp" data-toggle="modal"
 								data-target="#flipFlop" role="button"
-								data-th-attr="whatsNewId=${whatsNew.id}"> <i
+								data-th-attr="howtoTeamUpId=${howtoTeamUp.id}"> <i
 								class="fa fa-pencil-square-o" aria-hidden="true"></i>
-							</a> <a class="super-delete-departmentList" role="button"
-								data-th-attr="whatsNewId=${whatsNew.id}"> <i class="fa fa-times"
+							</a> <a class="super-delete-howtoTeamUp" role="button"
+								data-th-attr="howtoTeamUpId=${howtoTeamUp.id}"> <i class="fa fa-times"
 								aria-hidden="true"></i>
 							</a>
 						</div>
@@ -81,5 +79,5 @@
 </div>
 
 <!-- JavaScript -->
-<script src="../../js/super/whatsNew.js" th:src="@{/js/super/whatsNew.js}"></script>
+<script src="../../js/super/howtoTeamUp.js" th:src="@{/js/super/howtoTeamUp.js}"></script>
 

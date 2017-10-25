@@ -1,16 +1,26 @@
 <div class="container">
  
-<form th:action="@{/super/}" method="post" th:object="${departmentListModel.departmentList}" id="departmentListForm">
+<form th:action="@{/super/}" method="post" th:object="${howtoTeamUpModel.howtoTeamUp}" id="howtoTeamUpForm">
 	<input type="hidden" name="id" th:value="*{id}">
 	
-	<div class="form-group ">
-		<label for="code" class="col-form-label">代码</label>
-		<input type="text" class="form-control" id="code" name="code"  th:value="*{code}" maxlength="16" placeholder="请输入信息类别，至少3个字符，至多16个">
+ 	<div class="form-group ">
+		<label for="gradeId" class="col-form-label">年级</label>
+		<input type="text" class="form-control" id="gradeId" name="gradeId"  th:value="*{gradeId}" maxlength="256" placeholder="请输年级">
 	</div>
 	
 	<div class="form-group ">
-		<label for="department" class="col-form-label">发布单位</label>
-		<input type="text" class="form-control" id="department" name="department"  th:value="*{department}" maxlength="32" placeholder="请输入信息类别，至少3个字符，至多32个">
+		<label for="teamUpStage" class="col-form-label">组队期</label>
+		<input type="text" class="form-control" id="teamUpStage" name="teamUpStage"  th:value="*{teamUpStage}" maxlength="32" placeholder="请输组队期">
+	</div>
+	
+	 <div class="form-group ">
+		<label for="seekAdvisorStage" class="col-form-label">寻找指导老师期</label>
+		<input type="text" class="form-control" id="seekAdvisorStage" name="seekAdvisorStage" th:value="*{seekAdvisorStage}" maxlength="32" placeholder="请输寻找指导老师期">
+	</div> 
+	
+	<div class="form-group ">
+		<label for="projectConductionStage" class="col-form-label">专题执行期</label>
+		<input type="text" class="form-control" id="projectConductionStage" name="projectConductionStage" th:value="*{projectConductionStage}" maxlength="16" placeholder="请输专题执行期">
 	</div>
 	
 </form>

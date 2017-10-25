@@ -35,6 +35,7 @@ public class MenuController {
 		superList.add(new Menu("发布单位","/super/departmentListList"));
 		superList.add(new Menu("最新消息","/super/whatsNewList"));
 		superList.add(new Menu("组队方法","/super/howtoTeamUpList"));
+		superList.add(new Menu("组长&组员责任","/super/leaderMemberResponsibilityList"));
 		model.addAttribute("superList", superList);
 		
 		return new ModelAndView("menu/index", "model", model);

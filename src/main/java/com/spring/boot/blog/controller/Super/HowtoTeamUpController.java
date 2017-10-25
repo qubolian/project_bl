@@ -20,12 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.boot.blog.domain.DepartmentList;
+import com.spring.boot.blog.domain.HowtoTeamUp;
 import com.spring.boot.blog.domain.NewsType;
-import com.spring.boot.blog.domain.WhatsNew;
-import com.spring.boot.blog.service.DepartmentListService;
-import com.spring.boot.blog.service.NewsTypeService;
-import com.spring.boot.blog.service.WhatsNewService;
+import com.spring.boot.blog.service.HowtoTeamUpService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
 
@@ -36,84 +33,69 @@ import com.spring.boot.blog.vo.Response;
  */
 @RestController
 @RequestMapping("/super")
-public class WhatsNewController {
+public class HowtoTeamUpController {
  
 
 	
 	@Autowired
-	private WhatsNewService whatsNewService;
-	
-	@Autowired
-	private DepartmentListService departmentListService;
-	
-	@Autowired
-	private NewsTypeService newsTypeService;
-	
+	private HowtoTeamUpService howtoTeamUpService;
 	
 	/**
-	 * 查询所有最新消息
+	 * 查询所有信息类别
 	 * @return
 	 */
-	@GetMapping("/whatsNewList")
-	public ModelAndView listNewsType(@RequestParam(value="async",required=false) boolean async,
+	@GetMapping("/howtoTeamUpList")
+	public ModelAndView listhowtoTeamUp(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
 			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
-			@RequestParam(value="department",required=false,defaultValue="") String events,
+			@RequestParam(value="gradeId",required=false,defaultValue="") String gradeId,
 			Model model) {
 	 
 		Pageable pageable = new PageRequest(pageIndex, pageSize);
-		Page<WhatsNew> page = whatsNewService.listWhatsNewsByEventsLike(events, pageable);
-		List<WhatsNew> list = page.getContent();	// 当前所在页面数据列表
+		Page<HowtoTeamUp> page = howtoTeamUpService.listHowtoTeamUpByGradeIdLike(gradeId, pageable);
+		List<HowtoTeamUp> list = page.getContent();	// 当前所在页面数据列表
 		
 		model.addAttribute("page", page);
-		model.addAttribute("whatsNewList", list);
-		return new ModelAndView(async==true?"whatsNew/list :: #mainContainerRepleace":"whatsNew/list", "whatsNewModel", model);
+		model.addAttribute("howtoTeamUpList", list);
+		return new ModelAndView(async==true?"howtoTeamUp/list :: #mainContainerRepleace":"howtoTeamUp/list", "howtoTeamUpModel", model);
 	}
 	
-	@GetMapping("/addWhatsNew")
+	@GetMapping("/addHowtoTeamUp")
 	public ModelAndView createForm(Model model) {
-		model.addAttribute("whatsNew", new WhatsNew());
-		List<DepartmentList> departmentLists = departmentListService.listDepartmentLists();
-		List<NewsType> newsTypes = newsTypeService.listNewsTypes();
-		
-		model.addAttribute("departmentLists", departmentLists);
-		model.addAttribute("newsTypes", newsTypes);
-		
-		
-		return new ModelAndView("whatsNew/add", "whatsNewModel", model);
+		model.addAttribute("howtoTeamUp", new HowtoTeamUp(0L,null,null,null,null));
+		return new ModelAndView("howtoTeamUp/add", "howtoTeamUpModel", model);
 	}
 	
 	
-	@PostMapping("/addWhatsNew")
-	public ResponseEntity<Response> saveOrUpdate(WhatsNew whatsNew) {
+	@PostMapping("/addHowtoTeamUp")
+	public ResponseEntity<Response> saveOrUpdate(HowtoTeamUp howtoTeamUp) {
 		try {
-			
-			whatsNewService.saveWhatsNew(whatsNew);
+			howtoTeamUpService.saveHowtoTeamUp(howtoTeamUp);
 		}  catch (ConstraintViolationException e)  {
 			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
 		}
-		return ResponseEntity.ok().body(new Response(true, "处理成功", whatsNew));
+		return ResponseEntity.ok().body(new Response(true, "处理成功", howtoTeamUp));
 	}
 	
 
-	@GetMapping(value = "editWhatsNew/{id}")
+	@GetMapping(value = "editHowtoTeamUp/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
-		WhatsNew whatsNew= whatsNewService.getWhatsNewById(id);
-		model.addAttribute("whatsNew", whatsNew);
-		return new ModelAndView("whatsNew/edit", "whatsNewModel", model);
+		HowtoTeamUp howtoTeamUp= howtoTeamUpService.getHowtoTeamUpById(id);
+		model.addAttribute("howtoTeamUp", howtoTeamUp);
+		return new ModelAndView("howtoTeamUp/edit", "howtoTeamUpModel", model);
 	}
 	
 	
 	/**
-	 * 删除最新消息
+	 * 删除信息类别
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/whatsNew/{id}")
+	@DeleteMapping(value = "/howtoTeamUp/{id}")
     public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
 		try {
-			if(whatsNewService.getWhatsNewById(id)!=null){
-				whatsNewService.removeWhatsNew(id);
+			if(howtoTeamUpService.getHowtoTeamUpById(id)!=null){
+				howtoTeamUpService.removeHowtoTeamUp(id);
 			}
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));

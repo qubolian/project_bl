@@ -1,0 +1,63 @@
+<div>
+
+	<!-- 标题 -->
+	<div class="card-header bg-dark font-white">
+	<tr>
+		<td width="48px">组长责任</td>
+		
+		<td>组员责任</td>
+	</tr>
+	</div>
+	<!-- 文本输入框 -->
+	<div id="mainContainer" class="container">
+		<br/>
+		<textarea rows="22px" cols="48px" id="leader" style="resize:none;" >
+		[[${model.lmr.LeaderResponsibility}]]
+		
+		</textarea> 
+
+		<textarea rows="22px" cols="48px" id="member" style="resize:none;" >
+		[[${model.lmr.MemberResponsibility}]]
+		
+		</textarea> 
+		<div class="clear"></div>
+	
+	</div>
+	
+	<!-- 按钮 -->
+	<div class="card-footer bg-dark font-white">
+		<tr>
+		<td width="48px">
+		<a class="btn btn-primary" 
+				 role="button" id="leftUpdate"><i
+				class="fa fa-edit" aria-hidden="true">修改</i></a>
+				
+		<a class="btn btn-info" 
+				role="button" id="leftReload"><i
+				class="fa fa-refresh" aria-hidden="true">重置</i></a>
+				</td>
+
+				<td>
+		<a class="btn btn-primary" 
+				 role="button" id="rightUpdate"><i
+				class="fa fa-edit" aria-hidden="true">修改</i></a>
+				
+		<a class="btn btn-info" 
+				role="button" id="rightReload"><i
+				class="fa fa-refresh" aria-hidden="true">重置</i></a>	
+		</td>
+	</div>
+	
+</div>
+
+
+
+
+
+
+<!-- JavaScript -->
+
+<!--  <!-- 配置文件 -->
+   
+ <script src="../../js/super/leaderMemberResponsibility.js" th:src="@{/js/super/leaderMemberResponsibility.js}"></script>
+
