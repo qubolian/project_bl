@@ -79,6 +79,9 @@
 					<div sec:authorize="hasRole('ROLE_SUPER')">
 						<a class=" dropdown-item" href="/menu" th:href="@{~/menu}">院办管理</a> 
 					</div>
+					<div sec:authorize="hasRole('ROLE_DIRECTOR')">
+						<a class=" dropdown-item" href="/director/menu" th:href="@{~/director/menu}">系部管理</a> 
+					</div>
 					    <a class=" dropdown-item" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}">个人管理</a>
 						<a class="dropdown-item" href="/u/waylau/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >课程设置</a>
 					</div>

@@ -107,6 +107,7 @@ public class WhatsNewController {
 		model.addAttribute("newsTypes", newsTypes);
 		
 		model.addAttribute("whatsNew", whatsNew);
+		
 		return new ModelAndView("whatsNew/edit", "whatsNewModel", model);
 	}
 	

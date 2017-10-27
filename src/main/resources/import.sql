@@ -6,11 +6,12 @@ INSERT INTO authority (id, name,mark) VALUES (6, 'ROLE_USER','辅导员');
 INSERT INTO authority (id, name,mark) VALUES (3, 'ROLE_TEACHER','教师');
 INSERT INTO authority (id, name,mark) VALUES (2, 'ROLE_SUPER','院办管理员');
 INSERT INTO authority (id, name,mark) VALUES (4, 'ROLE_STUDENT','学生');
-INSERT INTO authority (id, name,mark) VALUES (5, 'ROLE_EXPERT','校外专家');
+INSERT INTO authority (id, name,mark) VALUES (5, 'ROLE_DIRECTOR','系主任');
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2);
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 2);
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 3);
+INSERT INTO user_authority (user_id, authority_id) VALUES (1, 5);
 
 
 INSERT INTO project_mission (id, mark,misson) VALUES (1, '这是个宗旨的内容','测试一下');
