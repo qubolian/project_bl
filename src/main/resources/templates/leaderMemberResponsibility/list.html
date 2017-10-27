@@ -1,27 +1,33 @@
-<div>
+
 
 	<!-- 标题 -->
 	<div class="card-header bg-dark font-white">
-	<table align="center">
-	<tr>
-		<td width="400px">组长责任</td>
-		
-		<td>组员责任</td>
-	</tr>
+
+	<table align="center" width="100%">
+		<tr>
+			<td width="50%" align="center"><strong>组长责任</strong></td>
+			
+			<td width="50%" align="center"><strong>组员责任</strong></td>
+		</tr>
+
 	</table>
 	</div>
 	<!-- 文本输入框 -->
 	<div id="mainContainer" class="container">
-		<br/>
-		<textarea rows="22px" cols="48px" id="leader" style="resize:none;" >
-		[[${model.lmr.LeaderResponsibility}]]
-		
-		</textarea> 
-
-		<textarea rows="22px" cols="48px" id="member" style="resize:none;" >
-		[[${model.lmr.MemberResponsibility}]]
-		
-		</textarea> 
+		<br>
+		<table align="center" width="100%">
+			<tr width="100%">
+			
+				<td width="50%">
+					<textarea rows="22px" cols="47px" id="leader" style="resize:none;" >[[${model.lmr.LeaderResponsibility}]]</textarea> 
+				</td>
+				
+				<td width="50%">
+					<textarea rows="22px" cols="47px" id="member" style="resize:none;" >[[${model.lmr.MemberResponsibility}]]</textarea> 
+				</td>
+				
+			</tr>
+		</table>
 		<div class="clear"></div>
 	
 	</div>
@@ -30,30 +36,32 @@
 	<div class="card-footer bg-dark font-white">
 	<table align="center">
 		<tr>
-		<td width="400px">
+
+		<td>
+
 		<a class="btn btn-primary" 
-				 role="button" id="leftUpdate"><i
+				 role="button" id="Update"><i
 				class="fa fa-edit" aria-hidden="true">修改</i></a>
 				
 		<a class="btn btn-info" 
-				role="button" id="leftReload"><i
+				role="button" id="Reload"><i
 				class="fa fa-refresh" aria-hidden="true">重置</i></a>
-				</td>
 
-				<td>
-		<a class="btn btn-primary" 
+<!-- 		<a class="btn btn-primary" 
 				 role="button" id="rightUpdate"><i
 				class="fa fa-edit" aria-hidden="true">修改</i></a>
 				
 		<a class="btn btn-info" 
 				role="button" id="rightReload"><i
-				class="fa fa-refresh" aria-hidden="true">重置</i></a>	
+				class="fa fa-refresh" aria-hidden="true">重置</i></a> -->	
 		</td>
 		</tr>
-		</table>
+
+	</table>
+
 	</div>
 	
-</div>
+
 
 
 

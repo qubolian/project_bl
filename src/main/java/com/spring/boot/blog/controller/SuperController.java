@@ -71,9 +71,9 @@ public class SuperController {
 		
 		
 		ProjectMission pm = new  ProjectMission();
-		/*pm.setId(1L);
+		pm.setId(1L);
 		pm.setMisson("123");
-		pm.setMark(mark);*/
+		pm.setMark(mark);
 		try {
 			pm = projectMissionService.saveProjectMission(pm);
 		}  catch (ConstraintViolationException e)  {

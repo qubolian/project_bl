@@ -16,27 +16,25 @@
 	 <div class="form-group ">
 		<label for="departmentList" class="col-form-label">发布单位</label>
 		
-		<!-- <select id="department" name="department" class="form-control"  th:each="departmentList:${whatsNewModel.departmentLists}">  
-			<option th:value="*{department}" >   
-				<div th:text="${departmentList.department}"></div>
-			</option>  
-        </select> --> 
+	 	  <br>
+		<select id="departmentId" name="departmentList.id"  th:remove="all-but-first" class="form-control">  
 		
-<!-- 		<input type="text" class="form-control" id="department" name="department"   maxlength="32" placeholder="请输发布单位">
- -->		
+			<option th:each="dept : ${whatsNewModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}">
+		
+			</option>   
+        </select>  
 	</div> 
 	
 	<div class="form-group ">
 		<label for="type" class="col-form-label">信息类别</label>
 		
-		<!-- <select id="type" name="type" class="form-control" placeholder="请输信息类别" th:each="whatsNew : ${whatsNewModel.newsTypes}">  
-			<option th:value="*{type}" th:text="${type}">   
-				${type}
-			</option>  
-        </select>  -->
-        
-<!-- 		<input type="text" class="form-control" id="type" name="type"   maxlength="32" placeholder="请输信息类别">
- -->		 
+		<br>
+		<select id="newsTypeId" name="newsType.id"  th:remove="all-but-first" class="form-control">  
+		
+			<option th:each="type : ${whatsNewModel.newsTypes}"  th:value="${type.id}" th:text="${type.messageType}">
+		
+			</option>   
+        </select> 
 	</div>
 	
 	<div class="form-group ">

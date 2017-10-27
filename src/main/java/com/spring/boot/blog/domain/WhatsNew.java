@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -39,14 +40,16 @@ public class WhatsNew  implements Serializable {
 	private List<Authority> authorities;*/
 	
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},fetch = FetchType.EAGER)
+
+	
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "departmentId")
-	@NotEmpty(message = "必须选择发布单位")
+	@NotNull(message = "必须选择发布单位")
 	private DepartmentList departmentList;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "newsTypeId")
-	@NotEmpty(message = "必须选择信息类别")
+	@NotNull(message = "必须选择信息类别")
 	private NewsType newsType;
 	
 	

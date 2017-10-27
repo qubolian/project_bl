@@ -11,51 +11,53 @@
 $(function() {
 	
 	// 提交变更后，清空表单
-	$("#leftUpdate").click(function() {
+	$("#Update").click(function() {
 		$.ajax({ 
-			 url: "/super/LeaderResponsibilityEdit", 
+			 url: "/super/leaderMemberResponsibilityEdit", 
 			 data:{
-				 "leader":$("#leader").val()
+				 "leader":$("#leader").val(),
+				 "member":$("#member").val()
 			 },
 			 success: function(data){
-				
-				 
+
 				 if (data.success) {
 					 // 更新内容
 					 toastr.info("更新成功");
-					 getLeaderResponsibility();
+					 getLeaderMemberResponsibility();
 				 } else {
 					 toastr.error("更新失败");
-					 getLeaderResponsibility();
+					 getLeaderMemberResponsibility();
 				 }
 
 		     },
 		     error : function() {
 		    	 toastr.error("更新失败!");
-		    	 getLeaderResponsibility();
+		    	 getLeaderMemberResponsibility();
 		     }
 		 });
 	});
 	
 	
-	$("#leftReload").click(function() {
-		getLeaderResponsibility();
+	$("#Reload").click(function() {
+		getLeaderMemberResponsibility();
 	});
 	
 	
 	
 	
-	function getLeaderResponsibility() {
+	function getLeaderMemberResponsibility() {
 		 $.ajax({ 
-			 url: "/super/LeaderResponsibilityList", 
+			 url: "/super/leaderMemberResponsibilityList", 
 			
 			 contentType : 'application/json',
 			 
 			 data:{
-				 "leader":$("#leader").val()
+				 /*"leader":$("#leader").val(),
+				 "member":$("#member").val()*/
 			 },
 			 success: function(data){
-				 $("#leader").val(data.body.leader);
+				 $("#leader").val(data.body.leaderResponsibility);
+				 $("#member").val(data.body.memberResponsibility);
 		     },
 		     error : function() {
 		    	 toastr.error("error!");
@@ -64,7 +66,7 @@ $(function() {
 	}
 	
 	
-	// 提交变更后，清空表单
+/*	// 提交变更后，清空表单
 	$("#rightUpdate").click(function() {
 		$.ajax({ 
 			 url: "/super/MemberResponsibilityEdit", 
@@ -112,7 +114,7 @@ $(function() {
 		    	 toastr.error("error!");
 		     }
 		 });
-	}
+	}*/
 	
 	
 	

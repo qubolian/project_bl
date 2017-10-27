@@ -81,9 +81,10 @@ $(function() {
 		$.ajax({ 
 			 url: "/super/addWhatsNew", 
 			 type: 'POST',
-			 data:$('#WhatsNewForm').serialize(),
+			 data:$('#whatsNewForm').serialize(),
 			 success: function(data){
-				 $('#WhatsNewForm')[0].reset();  
+				 console.log($('#whatsNewForm'));
+				 $('#whatsNewForm')[0].reset();  
 				 
 				 if (data.success) {
 					 // 从新刷新主界面

@@ -33,7 +33,7 @@ public class LeaderMemberResponsibilityController {
 	 * 获取后台管理主页面
 	 * @return
 	 */
-	@GetMapping("/leaderMemberResponsibilityList")
+	@GetMapping("/leaderMemberResponsibility")
 	public ModelAndView leaderMemberResponsibilityShow(Model model) {
 		LeaderMemberResponsibility lmr = leaderMemberResponsibilityService.getLeaderMemberResponsibilityById(1L);
 		model.addAttribute("lmr", lmr);
@@ -41,7 +41,7 @@ public class LeaderMemberResponsibilityController {
 	}
 	
 	
-	@GetMapping("/LeaderResponsibilityList")
+	@GetMapping("/leaderMemberResponsibilityList")
 	public ResponseEntity<Response> LeaderResponsibilityShow() {
 		LeaderMemberResponsibility lmr ;
 		try {
@@ -52,14 +52,13 @@ public class LeaderMemberResponsibilityController {
 		return ResponseEntity.ok().body(new Response(true, "显示成功", lmr));
 	}
 	
-	@GetMapping("/LeaderResponsibilityEdit")
-	public ResponseEntity<Response> LeaderResponsibilityEdit(String leader) {
-		
+	@GetMapping("/leaderMemberResponsibilityEdit")
+	public ResponseEntity<Response> LeaderResponsibilityEdit(String leader,String member){
 		
 		LeaderMemberResponsibility lmr = new  LeaderMemberResponsibility();
-		/*lmr.setId(1L);
-		lmr.setMisson("123");
-		lmr.setMark(mark);*/
+		lmr.setId(1L);
+		lmr.setLeaderResponsibility(leader);
+		lmr.setMemberResponsibility(member);
 		try {
 			lmr = leaderMemberResponsibilityService.saveLeaderMemberResponsibility(lmr);
 		}  catch (ConstraintViolationException e)  {
@@ -67,7 +66,7 @@ public class LeaderMemberResponsibilityController {
 		}
 		return ResponseEntity.ok().body(new Response(true, "更新成功", lmr));
 	}
-	
+	/*
 	@GetMapping("/MemberResponsibilityList")
 	public ResponseEntity<Response> MemberResponsibilityShow() {
 		LeaderMemberResponsibility lmr ;
@@ -84,16 +83,16 @@ public class LeaderMemberResponsibilityController {
 		
 		
 		LeaderMemberResponsibility lmr = new  LeaderMemberResponsibility();
-		/*lmr.setId(1L);
+		lmr.setId(1L);
 		lmr.setMisson("123");
-		lmr.setMark(mark);*/
+		lmr.setMark(mark);
 		try {
 			lmr = leaderMemberResponsibilityService.saveLeaderMemberResponsibility(lmr);
 		}  catch (ConstraintViolationException e)  {
 			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
 		}
 		return ResponseEntity.ok().body(new Response(true, "更新成功", lmr));
-	}
+	}*/
 	
 	 
 }
