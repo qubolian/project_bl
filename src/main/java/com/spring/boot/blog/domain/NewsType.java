@@ -44,9 +44,7 @@ public class NewsType implements Serializable {
 	private String messageType;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-	private List<WhatsNew> whatsNews;
+
 	
 
 	public String getMessageType() {
