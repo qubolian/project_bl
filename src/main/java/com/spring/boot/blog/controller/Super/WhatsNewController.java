@@ -89,6 +89,7 @@ public class WhatsNewController {
 		try {
 			
 			whatsNewService.saveWhatsNew(whatsNew);
+			
 		}  catch (ConstraintViolationException e)  {
 			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
 		}
@@ -99,6 +100,12 @@ public class WhatsNewController {
 	@GetMapping(value = "editWhatsNew/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
 		WhatsNew whatsNew= whatsNewService.getWhatsNewById(id);
+		
+		List<DepartmentList> departmentLists = departmentListService.listDepartmentLists();
+		List<NewsType> newsTypes = newsTypeService.listNewsTypes();
+		model.addAttribute("departmentLists", departmentLists);
+		model.addAttribute("newsTypes", newsTypes);
+		
 		model.addAttribute("whatsNew", whatsNew);
 		return new ModelAndView("whatsNew/edit", "whatsNewModel", model);
 	}
