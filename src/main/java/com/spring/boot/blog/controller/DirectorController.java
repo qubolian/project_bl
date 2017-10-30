@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.boot.blog.domain.ProjectMission;
-import com.spring.boot.blog.service.NewsTypeService;
-import com.spring.boot.blog.service.ProjectMissionService;
+
 import com.spring.boot.blog.util.Menu;
 
 /**
@@ -23,7 +21,7 @@ import com.spring.boot.blog.util.Menu;
  * @date 2017年2月26日
  */
 @Controller
-@RequestMapping("/director")
+@RequestMapping("/director/menu")
 public class DirectorController {
  
 
@@ -31,28 +29,20 @@ public class DirectorController {
 	 * 获取后台管理主页面
 	 * @return
 	 */
-	@GetMapping("/menu")
+	@GetMapping
 	public ModelAndView listUsers(Model model) {
-		List<Menu> superList = new ArrayList<>();
+		List<Menu> directorList = new ArrayList<>();
 		
-		superList.add(new Menu("编辑宗旨","/director/misson"));
-		model.addAttribute("superList", superList);
+		directorList.add(new Menu("课程管理","/director/courseList"));
+/*		directorList.add(new Menu("教师信息","/director/teacherList"));
+*/		
+		
+		model.addAttribute("directorList", directorList);
 		
 		return new ModelAndView("director/menu/index", "model", model);
 	}
+
 	
-	@Autowired
-	private ProjectMissionService projectMissionService;
-	
-	/**
-	 * 获取后台管理主页面
-	 * @return
-	 */
-	@GetMapping("/misson")
-	public ModelAndView missionShow(Model model) {
-		ProjectMission pm = projectMissionService.getProjectMissionById(1L);
-		model.addAttribute("pm", pm);
-		return new ModelAndView("director/menu/list", "model", model);
-	}
+
 	 
 }
