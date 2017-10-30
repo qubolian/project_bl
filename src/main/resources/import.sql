@@ -44,20 +44,22 @@ INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_C
 insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibility) values('专题档案管理&规划，开会讨论题目，定期问题讨论及询问进度，制定时间&缴交作业，分工管理，成本计算，与老师的沟通&组员','将档案整理好给组长，提出有兴趣的题目，向组长回报问题与进度，在时间内缴交作业，执行被指派的任务，提出所需的物品&价格，良好的沟通行为');
 
 
-
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (1, '英语', '大一上', '2', '计算机网络');
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (2, '数学', '大二上', '4', '计算机多媒体');
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (3, '软件开发', '大三上', '3', '计算机软件');
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (4, '界面制作', '大一下', '1', '机电');
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (5, '语文', '大二下', '2', '会计');
-
+INSERT INTO Teacher (id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (1, '赵钱孙李', '计算器科学与技术系', '62555555', 0);
+INSERT INTO Teacher (id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (2, '周吴郑王', '计算器科学与技术系', '62555555', 1);
+INSERT INTO Teacher (id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (3, '斯蒂芬', '计算器科学与技术系', '62555555', 1);
+INSERT INTO Teacher (id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (4, '阿斯顿', '计算器科学与技术系', '62555555', 0);
+INSERT INTO Teacher (id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (5, '周星驰', '计算器科学与技术系', '62555555', 1);
 
 
-INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (1, 1, '赵钱孙李', '计算器科学与技术系', '62555555', 0);
-INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (2, 2, '周吴郑王', '计算器科学与技术系', '62555555', 1);
-INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (3, 3, '斯蒂芬', '计算器科学与技术系', '62555555', 1);
-INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (4, 4, '阿斯顿', '计算器科学与技术系', '62555555', 0);
-INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (5, 5, '周星驰', '计算器科学与技术系', '62555555', 1);
+INSERT INTO Course(id, teacher_Id, credit, grade, major, name) VALUES (1, '1', '2', '大一上', '计算机网络', '英语');
+INSERT INTO Course(id, teacher_Id, credit, grade, major, name) VALUES (2, '1', '4', '大二上', '计算机多媒体', '数学');
+INSERT INTO Course(id, teacher_Id, credit, grade, major, name) VALUES (3, '1', '3', '大三上', '计算机软件', '软件开发');
+INSERT INTO Course(id, teacher_Id, credit, grade, major, name) VALUES (4, '1', '1', '大一下', '机电', '界面制作');
+INSERT INTO Course(id, teacher_Id, credit, grade, major, name) VALUES (5, '1', '2', '大二下', '会计', '语文');
+
+
+
+
 
 
 
