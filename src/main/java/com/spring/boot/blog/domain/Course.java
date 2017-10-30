@@ -1,14 +1,21 @@
 package com.spring.boot.blog.domain;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,15 +31,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Course implements Serializable {
 	
 
-
-	public Course(Long id, String name, String grade, String credit, String major) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.grade = grade;
-		this.credit = credit;
-		this.major = major;
-	}
 
 	public Course() {
 		super();
@@ -64,6 +62,22 @@ public class Course implements Serializable {
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String grade;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teacherId")
+	@NotNull(message = "必须选择教师")
+	private Teacher teacher;
+	
+	
+	
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
 
 	public Long getId() {
 		return id;

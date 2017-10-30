@@ -37,10 +37,6 @@ public class Teacher implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
 	private Long id; // 用户的唯一标识
 	
-	@NotEmpty(message = "教师编号不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private int TeacherId;
 
 	@NotEmpty(message = "教师名称不能为空")
 	@Size(min=2, max=32)
@@ -94,16 +90,6 @@ public class Teacher implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-
-	public int getTeacherId() {
-		return TeacherId;
-	}
-
-
-	public void setTeacherId(int teacherId) {
-		TeacherId = teacherId;
 	}
 
 
