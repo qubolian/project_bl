@@ -27,8 +27,8 @@ $(function() {
 	        if(role.trim()=='ROLE_STUDENT'){
 	        	$("#ROLE_STUDENT").attr('checked', true);
 	        }       
-	        if(role.trim()=='ROLE_EXPERT'){
-	        	$("#ROLE_EXPERT").attr('checked', true);
+	        if(role.trim()=='ROLE_DIRECTOR'){
+	        	$("#ROLE_DIRECTOR").attr('checked', true);
 	        }       
 	        if(role.trim()=='ROLE_USER'){
 	        	$("#ROLE_USER").attr('checked', true);
