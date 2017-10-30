@@ -1,0 +1,29 @@
+<div class="container">
+ 
+<form th:action="@{/director/}" method="post" th:object="${courseModel.course}" id="courseForm">
+	<input type="hidden" name="id" th:value="*{id}">
+	
+ 	<div class="form-group ">
+		<label for="name" class="col-form-label">课程名称</label>
+		<input type="text" class="form-control" id="name" name="name"  th:value="*{name}" maxlength="32" placeholder="请输课程名称">
+	</div>
+	
+	<div class="form-group ">
+		<label for="grade" class="col-form-label">年级</label>
+		<input type="text" class="form-control" id="grade" name="grade"  th:value="*{grade}" maxlength="32" placeholder="请输年级">
+	</div>
+	
+	 <div class="form-group ">
+		<label for="credit" class="col-form-label">学分</label>
+		<input type="text" class="form-control" id="credit" name="credit" th:value="*{credit}" maxlength="32" placeholder="请输学分">
+	</div> 
+	
+	<div class="form-group ">
+		<label for="major" class="col-form-label">专业</label>
+		<input type="text" class="form-control" id="major" name="major" th:value="*{major}" maxlength="32" placeholder="请输专业">
+	</div>
+	
+</form>
+</div>
+
+ 

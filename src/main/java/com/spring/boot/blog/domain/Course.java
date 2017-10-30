@@ -1,24 +1,18 @@
 package com.spring.boot.blog.domain;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.github.rjeschke.txtmark.Processor;
 
 /**
  * 发布单位
@@ -51,23 +45,23 @@ public class Course implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
 	private Long id; // 用户的唯一标识
 
-	@NotEmpty(message = "名称代码不能为空")
+	@NotEmpty(message = "名称不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String name;
 
 	@NotEmpty(message = "年级不能为空")
-	@Size(min=2, max=16)
+	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String major;
 
 	@NotEmpty(message = "学分不能为空")
-	@Size(min=2, max=16)
+	@Size(min=1, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String credit;
 
 	@NotEmpty(message = "专业不能为空")
-	@Size(min=2, max=16)
+	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String grade;
 

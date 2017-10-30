@@ -1,0 +1,84 @@
+
+
+<div class="card-header bg-dark font-white">
+
+	<div class="input-group col-md-7 col-xl-6">
+
+		<input type="text" class="form-control" id="searchName"
+			placeholder="输入课程名称称进行搜索"> <span class="input-group-btn">
+			<button class="btn btn-secondary" type="button" id="searchNameBtn">
+				<i class="fa fa-search" aria-hidden="true"></i>
+			</button>
+		</span> <a class="btn btn-primary" data-toggle="modal"
+			data-target="#flipFlop" role="button" id="addCourse"><i
+			class="fa fa-plus" aria-hidden="true"></i></a>
+
+	</div>
+</div>
+
+<div id="mainContainer" class="container">
+	<div id="mainContainerRepleace" class="row">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th data-field="name">课程名称</th>
+					<th data-field="grade">年级</th>
+				    <th data-field="credit">学分</th> 
+				 	<th data-field="major">专业</th>
+
+					<th data-field="operation">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr th:each="course : ${courseModel.courseList}">
+					<td th:text="${course.name}">课程名称</td>
+					<td th:text="${course.grade}">年级</td>
+				    <td th:text="${course.credit}">学分</td>
+					<td th:text="${course.major}">专业</td> 
+					<td>
+						<div>
+							<a class="director-edit-course" data-toggle="modal"
+								data-target="#flipFlop" role="button"
+								data-th-attr="courseId=${course.id}"> <i
+								class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							</a> <a class="director-delete-course" role="button"
+								data-th-attr="courseId=${course.id}"> <i class="fa fa-times"
+								aria-hidden="true"></i>
+							</a>
+						</div>
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+		<div th:replace="~{fragments/page :: page}">...</div>
+
+	</div>
+</div>
+
+<!-- The modal -->
+<div class="modal fade" id="flipFlop" tabindex="-1" role="dialog"
+	aria-labelledby="modalLabel" aria-hidden="true" >
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" style="width:700px">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalLabel">新增/编辑</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" id="formContainer" ></div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" data-dismiss="modal" id="submitEdit">提交</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- JavaScript -->
+<script src="../../js/director/course.js" th:src="@{/js/director/course.js}"></script>
+

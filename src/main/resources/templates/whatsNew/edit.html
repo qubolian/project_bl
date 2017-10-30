@@ -76,37 +76,5 @@
 
 </div>
 
-
-<script type="text/javascript">
-  
-	
-	$('.form_date1').datetimepicker({
-	    language:  'zh-CN',
-	    weekStart: 1,
-	    todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0,
-
-	}).on('changeDate', function (e) {  
-	    $('.form_date2').datetimepicker('setStartDate', $('#startTime').val()); 
-	}); 
-	
-	$('.form_date2').datetimepicker({
-		
-	    language:  'zh-CN',
-	    weekStart: 1,
-	    todayBtn:  1,
-	    autoclose: 1,
-	    todayHighlight: 1,
-	    startView: 2,
-	    minView: 2,
-	    forceParse: 0
-	}).on('changeDate', function (e) {  
-	    $('.form_date1').datetimepicker('setEndDate', $('#endTime').val()); 
-	});
-	
-</script>
+<script src="../../js/super/whatsNew.js" th:src="@{/js/super/whatsNew.js}"></script>
  

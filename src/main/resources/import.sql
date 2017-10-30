@@ -45,12 +45,18 @@ insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibi
 
 
 
+INSERT INTO Course (id, name, grade, credit, major)  VALUES (1, '英语', '大一上', '2', '计算机网络');
+INSERT INTO Course (id, name, grade, credit, major)  VALUES (2, '数学', '大二上', '4', '计算机多媒体');
+INSERT INTO Course (id, name, grade, credit, major)  VALUES (3, '软件开发', '大三上', '3', '计算机软件');
+INSERT INTO Course (id, name, grade, credit, major)  VALUES (4, '界面制作', '大一下', '1', '机电');
+INSERT INTO Course (id, name, grade, credit, major)  VALUES (5, '语文', '大二下', '2', '会计');
 
 
-
-
-
-
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor, Course)  VALUES (1, 1, '赵钱孙李', '计算器科学与技术系', '62555555', 0, '会计');
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor, Course)  VALUES (2, 2, '周吴郑王', '计算器科学与技术系', '62555555', 1, '机电');
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor, Course)  VALUES (3, 3, '斯蒂芬', '计算器科学与技术系', '62555555', 1, '计算机软件');
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor, Course)  VALUES (4, 4, '阿斯顿', '计算器科学与技术系', '62555555', 0, '机电');
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor, Course)  VALUES (5, 5, '周星驰', '计算器科学与技术系', '62555555', 1, '会计');
 
 
 

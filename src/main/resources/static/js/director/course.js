@@ -14,16 +14,16 @@ $(function() {
 	
 	
 	// 根据公告标题、页面索引、页面大小获取用户列表
-	function getWhatsNewByEvents(pageIndex, pageSize) {
+	function getCourseByName(pageIndex, pageSize) {
 		
 		 $.ajax({ 
-			 url: "/super/whatsNewList", 
+			 url: "/director/courseList", 
 			 contentType : 'application/json',
 			 data:{
 				 "async":true, 
 				 "pageIndex":pageIndex,
 				 "pageSize":pageSize,
-				 "department":$("#searchName").val()
+				 "name":$("#searchName").val()
 			 },
 			 success: function(data){
 				 $("#mainContainer").html(data);
@@ -36,20 +36,20 @@ $(function() {
 	
 	// 分页
 	$.tbpage("#mainContainer", function (pageIndex, pageSize) {
-		getWhatsNewByEvents(pageIndex, pageSize);
+		getCourseByName(pageIndex, pageSize);
 		_pageSize = pageSize;
 	});
    
 	// 搜索
 	$("#searchNameBtn").click(function() {
-		getWhatsNewByEvents(0, _pageSize);
+		getCourseByName(0, _pageSize);
 	});
 	
 	
 	// 获取添加用户的界面
-	$("#addWhatsNew").click(function() {
+	$("#addCourse").click(function() {
 		$.ajax({ 
-			 url: "/super/addWhatsNew", 
+			 url: "/director/addCourse", 
 			 success: function(data){
 				
 				 $("#formContainer").html(data);
@@ -61,9 +61,9 @@ $(function() {
 	});
 	
 	// 获取编辑信息的界面
-	$("#rightContainer").on("click",".super-edit-whatsNew", function () { 
+	$("#rightContainer").on("click",".director-edit-course", function () { 
 		$.ajax({ 
-			 url: "/super/editWhatsNew/" + $(this).attr("whatsNewId"), 
+			 url: "/director/editCourse/" + $(this).attr("CourseId"), 
 			 success: function(data){
 				 console.log(data);
 				 $("#formContainer").html(data);
@@ -81,16 +81,16 @@ $(function() {
 	// 提交变更后，清空表单
 	$("#submitEdit").click(function() {
 		$.ajax({ 
-			 url: "/super/addWhatsNew", 
+			 url: "/director/addCourse", 
 			 type: 'POST',
-			 data:$('#whatsNewForm').serialize(),
+			 data:$('#courseForm').serialize(),
 			 success: function(data){
-				 console.log($('#whatsNewForm'));
-				 $('#whatsNewForm')[0].reset();  
+				 
+				 $('#courseForm')[0].reset();  
 				 
 				 if (data.success) {
 					 // 从新刷新主界面
-					 getWhatsNewByEvents(0, _pageSize);
+					 getCourseByName(0, _pageSize);
 				 } else {
 					 toastr.error(data.message);
 				 }
@@ -103,12 +103,12 @@ $(function() {
 	});
 	
 	// 删除信息内容
-	$("#rightContainer").on("click",".super-delete-whatsNew", function () { 
+	$("#rightContainer").on("click",".director-delete-course", function () { 
 		// 获取 CSRF Token 
 		var csrfToken = $("meta[name='_csrf']").attr("content");
 		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({ 
-			 url: "/super/whatsNew/" + $(this).attr("whatsNewId") , 
+			 url: "/director/course/" + $(this).attr("courseId") , 
 			 type: 'DELETE', 
 			 beforeSend: function(request) {
                  request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
@@ -116,7 +116,7 @@ $(function() {
 			 success: function(data){
 				 if (data.success) {
 					 // 从新刷新主界面
-					 getWhatsNewByEvents(0, _pageSize);
+					 getCourseByName(0, _pageSize);
 				 } else {
 					 toastr.error(data.message);
 				 }
@@ -127,34 +127,4 @@ $(function() {
 		 });
 	});
 	
-	$('.form_date1').datetimepicker({
-	    language:  'zh-CN',
-	   
-	    weekStart: 1,
-	    todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-	
-	}).on('changeDate', function (e) {  
-	    $('.form_date2').datetimepicker('setStartDate', $('#startTime').val()); 
-	}); 
-	
-	$('.form_date2').datetimepicker({
-	    language:  'zh-CN',
-	    
-	    weekStart: 1,
-	    todayBtn:  1,
-	    autoclose: 1,
-	    todayHighlight: 1,
-	    startView: 2,
-	    minView: 2,
-	    forceParse: 0
-	}).on('changeDate', function (e) {  
-	    $('.form_date1').datetimepicker('setEndDate', $('#endTime').val()); 
-	});
-	
-
 });
