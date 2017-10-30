@@ -53,6 +53,11 @@ INSERT INTO Course (id, name, grade, credit, major)  VALUES (5, '语文', '大�
 
 
 
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (1, 1, '赵钱孙李', '计算器科学与技术系', '62555555', 0);
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (2, 2, '周吴郑王', '计算器科学与技术系', '62555555', 1);
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (3, 3, '斯蒂芬', '计算器科学与技术系', '62555555', 1);
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (4, 4, '阿斯顿', '计算器科学与技术系', '62555555', 0);
+INSERT INTO Teacher (id, Teacher_Id, Teacher_Name, Department, Office_Tel, Condition_To_Be_An_Advisor)  VALUES (5, 5, '周星驰', '计算器科学与技术系', '62555555', 1);
 
 
 

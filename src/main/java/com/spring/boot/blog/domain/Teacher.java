@@ -26,24 +26,6 @@ public class Teacher implements Serializable {
 	
 
 
-	public Teacher(Long id,int TeacherId, String Name, String Department, String EMail, String OfficeTel,
-			String Position, boolean ConditionToBeAnAdvisor, String Course, String Expert, String ExceptStudent,
-			String Resume) {
-		super();
-		this.id = id;
-		this.TeacherId = TeacherId;
-		this.Name = Name;
-		this.Department = Department;
-		this.EMail = EMail;
-		this.OfficeTel = OfficeTel;
-		this.Position = Position;
-		this.ConditionToBeAnAdvisor = ConditionToBeAnAdvisor;
-		this.Course = Course;
-		this.Expert = Expert;
-		this.ExceptStudent = ExceptStudent;
-		this.Resume = Resume;
-	}
-
 	public Teacher() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -63,7 +45,8 @@ public class Teacher implements Serializable {
 	@NotEmpty(message = "教师名称不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String Name;
+	private String TeacherName;
+	
 
 	@NotEmpty(message = "科系不能为空")
 	@Size(min=2, max=32)
@@ -90,12 +73,6 @@ public class Teacher implements Serializable {
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private boolean ConditionToBeAnAdvisor;
 	
-	@NotEmpty(message = "授课课程不能为空")
-	@Size(min=2, max=50)
-	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
-	private String Course;
-	
-	
 	@Size(min=2, max=1024)
 	@Column(nullable = true, length = 1024) // 专长
 	private String Expert;
@@ -109,6 +86,116 @@ public class Teacher implements Serializable {
 	@Size(min=2, max=1024)
 	@Column(nullable = true, length = 1024) // 履历表
 	private String Resume;
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public int getTeacherId() {
+		return TeacherId;
+	}
+
+
+	public void setTeacherId(int teacherId) {
+		TeacherId = teacherId;
+	}
+
+
+	public String getTeacherName() {
+		return TeacherName;
+	}
+
+
+	public void setTeacherName(String teacherName) {
+		TeacherName = teacherName;
+	}
+
+
+	public String getDepartment() {
+		return Department;
+	}
+
+
+	public void setDepartment(String department) {
+		Department = department;
+	}
+
+
+	public String getEMail() {
+		return EMail;
+	}
+
+
+	public void setEMail(String eMail) {
+		EMail = eMail;
+	}
+
+
+	public String getOfficeTel() {
+		return OfficeTel;
+	}
+
+
+	public void setOfficeTel(String officeTel) {
+		OfficeTel = officeTel;
+	}
+
+
+	public String getPosition() {
+		return Position;
+	}
+
+
+	public void setPosition(String position) {
+		Position = position;
+	}
+
+
+	public boolean isConditionToBeAnAdvisor() {
+		return ConditionToBeAnAdvisor;
+	}
+
+
+	public void setConditionToBeAnAdvisor(boolean conditionToBeAnAdvisor) {
+		ConditionToBeAnAdvisor = conditionToBeAnAdvisor;
+	}
+
+
+	public String getExpert() {
+		return Expert;
+	}
+
+
+	public void setExpert(String expert) {
+		Expert = expert;
+	}
+
+
+	public String getExceptStudent() {
+		return ExceptStudent;
+	}
+
+
+	public void setExceptStudent(String exceptStudent) {
+		ExceptStudent = exceptStudent;
+	}
+
+
+	public String getResume() {
+		return Resume;
+	}
+
+
+	public void setResume(String resume) {
+		Resume = resume;
+	}
+
 
 	  
 	
