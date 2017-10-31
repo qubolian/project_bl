@@ -13,10 +13,13 @@ $(function() {
 	
 	// 提交变更后，清空表单
 	$("#update").click(function() {
+		
+		  var editor_data = CKEDITOR.instances.mark.getData();
+		  
 		$.ajax({ 
 			 url: "/super/missionEdit", 
 			 data:{
-				 "mark":$("#mark").val()
+				 "mark":editor_data
 			 },
 			 success: function(data){
 				
@@ -47,6 +50,7 @@ $(function() {
 	
 	
 	function getMission() {
+		
 		 $.ajax({ 
 			 url: "/super/missionList", 
 			
@@ -56,7 +60,7 @@ $(function() {
 				// "mark":$("#mark").val()
 			 },
 			 success: function(data){
-				 $("#mark").val(data.body.mark);
+				 CKEDITOR.instances.mark.setData(data.body.mark);
 		     },
 		     error : function() {
 		    	 toastr.error("error!");
