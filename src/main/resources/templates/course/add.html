@@ -9,18 +9,43 @@
 	</div>
 	
 	<div class="form-group ">
-		<label for="grade" class="col-form-label">年级</label>
-		<input type="text" class="form-control" id="grade" name="grade"  th:value="*{grade}" maxlength="32" placeholder="请输年级">
+		<label for="term" class="col-form-label">学年度学期</label>
+		<input type="text" class="form-control" id="term" name="term"  th:value="*{term}" maxlength="32" placeholder="请输学年度学期">
 	</div>
 	
 	 <div class="form-group ">
-		<label for="credit" class="col-form-label">学分</label>
-		<input type="text" class="form-control" id="credit" name="credit" th:value="*{credit}" maxlength="32" placeholder="请输学分">
+		<label for="courseId" class="col-form-label">课程代码</label>
+		<input type="text" class="form-control" id="courseId" name="courseId" th:value="*{courseId}" maxlength="32" placeholder="请输课程代码">
 	</div> 
 	
 	<div class="form-group ">
-		<label for="major" class="col-form-label">专业</label>
-		<input type="text" class="form-control" id="major" name="major" th:value="*{major}" maxlength="32" placeholder="请输专业">
+		<label for="courseNumber" class="col-form-label">课程序号</label>
+		<input type="text" class="form-control" id="courseNumber" name="courseNumber" th:value="*{courseNumber}" maxlength="32" placeholder="请输课程序号">
+	</div>
+
+	<div class="form-group ">
+		<label for="examMethods" class="col-form-label">考核方式</label>
+		<input type="text" class="form-control" id="examMethods" name="examMethods" th:value="*{examMethods}" maxlength="32" placeholder="请输考核方式">
+	</div>
+	
+	<div class="form-group ">
+		<label for="credit" class="col-form-label">学分</label>
+		<input type="text" class="form-control" id="credit" name="credit" th:value="*{credit}" maxlength="32" placeholder="请输学分">
+	</div>
+
+	<div class="form-group ">
+		<label for="period" class="col-form-label">课时</label>
+		<input type="text" class="form-control" id="period" name="period" th:value="*{period}" maxlength="32" placeholder="请输课时">
+	</div>
+	
+	<div class="form-group ">
+		<label for="classes" class="col-form-label">班级</label>
+		<input type="text" class="form-control" id="classes" name="classes" th:value="*{classes}" maxlength="32" placeholder="请输班级">
+	</div>
+	
+	<div class="form-group ">
+		<label for="courseType" class="col-form-label">课程类别</label>
+		<input type="text" class="form-control" id="courseType" name="courseType" th:value="*{courseType}" maxlength="32" placeholder="请输课程类别">
 	</div>
 	
 </form>

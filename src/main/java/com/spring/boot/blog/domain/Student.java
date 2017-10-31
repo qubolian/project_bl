@@ -25,11 +25,11 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author <a href="https://waylau.com">Way Lau</a>
  */
 @Entity // 实体
-public class Teacher implements Serializable {
+public class Student implements Serializable {
 	
 
 
-	public Teacher() {
+	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,87 +37,60 @@ public class Teacher implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id // 主键
-	@NotEmpty(message = "教师工号不能为空")
+	@NotEmpty(message = "学号不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private Long Id;
 	
-	@NotEmpty(message = "教师名称不能为空")
+	@NotEmpty(message = "姓名不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String TeacherName;
+	private String Name;
 	
-	@NotEmpty(message = "教师性别不能为空")
+	@NotEmpty(message = "性别不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String Sex;
 	
-	@NotEmpty(message = "教师类型不能为空")
+	@NotEmpty(message = "年级不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String TeacherType;
+	private String grade;
 	
-	@NotEmpty(message = "学院不能为空")
+	@NotEmpty(message = "学制不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String College;
+	private String LengthOfSchooling;
 	
-	@NotEmpty(message = "系不能为空")
+	@NotEmpty(message = "培养层次不能为空")
+	@Size(min=2, max=32)
+	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	private String TrainingLevel;
+
+	@NotEmpty(message = "院系不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String Department;
-
-
-
-
-
-	public Long getId() {
-		return Id;
-	}
-
-	public void setId(Long id) {
-		Id = id;
-	}
-
-	public String getTeacherName() {
-		return TeacherName;
-	}
-
-	public void setTeacherName(String teacherName) {
-		TeacherName = teacherName;
-	}
-
-	public String getSex() {
-		return Sex;
-	}
-
-	public void setSex(String sex) {
-		Sex = sex;
-	}
-
-	public String getTeacherType() {
-		return TeacherType;
-	}
-
-	public void setTeacherType(String teacherType) {
-		TeacherType = teacherType;
-	}
-
-	public String getCollege() {
-		return College;
-	}
-
-	public void setCollege(String college) {
-		College = college;
-	}
-
-	public String getDepartment() {
-		return Department;
-	}
-
-	public void setDepartment(String department) {
-		Department = department;
-	}
+	
+	@NotEmpty(message = "专业不能为空")
+	@Size(min=2, max=32)
+	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	private String Major;
+	
+	@NotEmpty(message = "入校时间不能为空")
+	@Size(min=2, max=32)
+	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	private String EntranceTime;
+	
+	@NotEmpty(message = "学籍状态不能为空")
+	@Size(min=2, max=32)
+	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	private String Status;
+	
+	@NotEmpty(message = "班级不能为空")
+	@Size(min=2, max=32)
+	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	private String Classes;
 
 
 	

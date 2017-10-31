@@ -22,7 +22,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.spring.boot.blog.domain.Course;
+import com.spring.boot.blog.domain.DepartmentList;
+import com.spring.boot.blog.domain.NewsType;
+import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.service.CourseService;
+import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
 
@@ -40,7 +44,8 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 	
-	
+	@Autowired
+	private TeacherService teacherService;
 	
 	/**
 	 * 查询所有课程
@@ -66,6 +71,11 @@ public class CourseController {
 	public ModelAndView createForm(Model model) {
 		model.addAttribute("course", new Course());
 	
+		List<Teacher> teacher = teacherService.listTeachers();
+
+		model.addAttribute("teacher", teacher);
+
+		
 		return new ModelAndView("course/add", "courseModel", model);
 	}
 	
@@ -87,6 +97,11 @@ public class CourseController {
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
 		Course course= courseService.getCourseById(id);	
 		model.addAttribute("course", course);
+		
+		List<Teacher> teacher = teacherService.listTeachers();
+
+		model.addAttribute("teacher", teacher);
+
 		
 		return new ModelAndView("course/edit", "courseModel", model);
 	}
