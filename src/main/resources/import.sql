@@ -44,12 +44,24 @@ INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_C
 insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibility) values('专题档案管理&规划，开会讨论题目，定期问题讨论及询问进度，制定时间&缴交作业，分工管理，成本计算，与老师的沟通&组员','将档案整理好给组长，提出有兴趣的题目，向组长回报问题与进度，在时间内缴交作业，执行被指派的任务，提出所需的物品&价格，良好的沟通行为');
 
 
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04032, '赵钱孙李', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04033, '周吴郑王', '计算器科学与技术系', '女', '教辅人员', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04034, '斯蒂芬', '计算器科学与技术系', '女', '兼任（职）教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04035, '阿斯顿', '计算器科学与技术系', '女', '行政人员', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04036, '周星驰', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
 
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (1, '英语', '大一上', '2', '计算机网络');
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (2, '数学', '大二上', '4', '计算机多媒体');
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (3, '软件开发', '大三上', '3', '计算机软件');
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (4, '界面制作', '大一下', '1', '机电');
-INSERT INTO Course (id, name, grade, credit, major)  VALUES (5, '语文', '大二下', '2', '会计');
+
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (1, '1', '2', '计科B17-1', '专业领域课程组', '英语', '2017-2018-1', '2050587', '考试', '32');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (2, '2', '4', '计科B17-1', '必修', '数学', '2017-2018-1', '2050588', '考查', '32');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (3, '3', '3', '计科B17-1', '集中实践', '软件开发', '2017-2018-1', '2050589', '考查', '32');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (4, '4', '1', '计科B17-1', '专业限选课', '界面制作', '2017-2018-1', '2050590', '考查', '32');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (5, '5', '2', '计科B17-1', '选修', '语文', '2017-2018-1', '2050591', '考查', '32');
+
+INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623381, '张三', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623382, '刘一', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623383, '陈二', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623384, '李四', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623385, '王五', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
 
 
 
