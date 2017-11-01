@@ -67,6 +67,9 @@ $(function() {
 			 url: "/super/editTeacher/" + $(this).attr("TeacherId"), 
 			 success: function(data){
 				 $("#formContainer").html(data);
+				 console.log(data);
+				 
+				 
 		     },
 		     error : function() {
 		    	 toastr.error("error!");

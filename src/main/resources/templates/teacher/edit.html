@@ -15,9 +15,9 @@
 		<label for="sex" class="col-form-label">教师性别</label>
 		
 	 	  <br>
-		<select id="sex" name="sex"  th:remove="all-but-first" class="form-control">  
-			<option value ="男">男</option>
-			<option value ="女">女</option>  
+		<select id="sex" name="sex" class="form-control">  
+			<option value ="男" th:selected="(*{sex} == '男')">男</option>
+			<option value ="女" th:selected="(*{sex} == '女')">女</option>  
         </select>  
 	</div> 
 	

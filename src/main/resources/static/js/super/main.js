@@ -10,10 +10,10 @@
 // DOM 加载完再执行
 $(function() {
 	
-    CKEDITOR.replace( 'mark',{ height: '400px', width: '1150px' } );
+    CKEDITOR.replace( 'mark',{ height: '400px', width: 'auto' } );
    
     
-    getMission();
+   
     
     
 	var _pageSize; // 存储用于搜索

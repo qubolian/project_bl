@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.spring.boot.blog.domain.DepartmentList;
+import com.spring.boot.blog.domain.NewsType;
 import com.spring.boot.blog.domain.Teacher;
+import com.spring.boot.blog.service.DepartmentListService;
 import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
@@ -37,6 +39,9 @@ public class TeacherController {
 	
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private DepartmentListService departmentListService;
 	
 	/**
 	 * 查询所有教师
@@ -62,6 +67,9 @@ public class TeacherController {
 	public ModelAndView createForm(Model model) {
 		model.addAttribute("teacher", new Teacher());
 
+		List<DepartmentList> departmentLists = departmentListService.listDepartmentLists();
+		model.addAttribute("departmentLists", departmentLists);
+		
 		return new ModelAndView("teacher/add", "teacherModel", model);
 	}
 	
@@ -83,6 +91,9 @@ public class TeacherController {
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
 		Teacher teacher= teacherService.getTeacherById(id);	
 		model.addAttribute("teacher", teacher);
+		
+		List<DepartmentList> departmentLists = departmentListService.listDepartmentLists();
+		model.addAttribute("departmentLists", departmentLists);
 		
 		return new ModelAndView("teacher/edit", "teacherModel", model);
 	}
