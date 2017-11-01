@@ -1,0 +1,43 @@
+<div class="container">
+ 
+<form th:action="@{/super/}" method="post" th:object="${teacherModel.teacher}" id="teacherForm">
+	<div class="form-group ">
+		<label for="id" class="col-form-label">教师工号</label>
+		<input type="text" class="form-control" id="id" name="id"  th:value="*{id}" maxlength="32"  readonly>
+	</div>
+	
+	 <div class="form-group ">
+		<label for="teacherName" class="col-form-label">教师名称</label>
+		<input type="text" class="form-control" id="teacherName" name="teacherName"  th:value="*{teacherName}" maxlength="32" placeholder="请输教师名称">
+	</div>
+	
+	<div class="form-group ">
+		<label for="sex" class="col-form-label">教师性别</label>
+		
+	 	  <br>
+		<select id="sex" name="sex"  th:remove="all-but-first" class="form-control">  
+			<option value ="男">男</option>
+			<option value ="女">女</option>  
+        </select>  
+	</div> 
+	
+	<div class="form-group ">
+		<label for="teacherType" class="col-form-label">教师类型</label>
+		<input type="text" class="form-control" id="teacherType" name="teacherType"  th:value="*{teacherType}" maxlength="32" placeholder="请输教师类型">
+	</div>
+	
+	 <div class="form-group ">
+		<label for="college" class="col-form-label">学院</label>
+		<input type="text" class="form-control" id="college" name="college" th:value="*{college}" maxlength="32" placeholder="请输学院">
+	</div> 
+	
+	<div class="form-group ">
+		<label for="department" class="col-form-label">系部</label>
+		<input type="text" class="form-control" id="department" name="department" th:value="*{department}" maxlength="32" placeholder="请输系">
+	</div>
+	
+</form>
+ 
+</div>
+<!-- /.container -->
+ 

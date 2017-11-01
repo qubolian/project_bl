@@ -1,4 +1,4 @@
-package com.spring.boot.blog.controller.director;
+package com.spring.boot.blog.controller.Super;
 
 
 import java.util.List;
@@ -21,11 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import com.spring.boot.blog.domain.Course;
-import com.spring.boot.blog.domain.DepartmentList;
-import com.spring.boot.blog.domain.NewsType;
 import com.spring.boot.blog.domain.Teacher;
-import com.spring.boot.blog.service.CourseService;
 import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
@@ -36,74 +32,72 @@ import com.spring.boot.blog.vo.Response;
  * @date 2017年9月26日
  */
 @RestController
-@RequestMapping("/director")
-public class CourseController {
- 
-
+@RequestMapping("/super")
+public class TeacherController {
 	
 	@Autowired
-	private CourseService courseService;
-	
-
+	private TeacherService teacherService;
 	
 	/**
-	 * 查询所有课程
+	 * 查询所有教师
 	 * @return
 	 */
-	@GetMapping("/courseList")
+	@GetMapping("/teacherList")
 	public ModelAndView listNewsType(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
 			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
-			@RequestParam(value="name",required=false,defaultValue="") String name,
+			@RequestParam(value="teacherName",required=false,defaultValue="") String teacherName,
 			Model model) {
 	 
 		Pageable pageable = new PageRequest(pageIndex, pageSize);
-		Page<Course> page = courseService.listCoursesByNameLike(name, pageable);
-		List<Course> list = page.getContent();	// 当前所在页面数据列表
+		Page<Teacher> page = teacherService.listTeacherByTeacherNameLike(teacherName, pageable);
+		List<Teacher> list = page.getContent();	// 当前所在页面数据列表
 		
 		model.addAttribute("page", page);
-		model.addAttribute("courseList", list);
-		return new ModelAndView(async==true?"course/list :: #mainContainerRepleace":"course/list", "courseModel", model);
+		model.addAttribute("teacherList", list);
+		return new ModelAndView(async==true?"teacher/list :: #mainContainerRepleace":"teacher/list", "teacherModel", model);
 	}
 	
-	@GetMapping("/addCourse")
+	@GetMapping("/addTeacher")
 	public ModelAndView createForm(Model model) {
-		model.addAttribute("course", new Course());
-		return new ModelAndView("course/add", "courseModel", model);
+		model.addAttribute("teacher", new Teacher());
+
+		return new ModelAndView("teacher/add", "teacherModel", model);
 	}
 	
 	
-	@PostMapping("/addCourse")
-	public ResponseEntity<Response> saveOrUpdate(Course course) {
+	@PostMapping("/addTeacher")
+	public ResponseEntity<Response> saveOrUpdate(Teacher teacher) {
 		try {
 			
-			courseService.saveCourse(course);
+			teacherService.saveTeacher(teacher);
 			
 		}  catch (ConstraintViolationException e)  {
 			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
 		}
-		return ResponseEntity.ok().body(new Response(true, "处理成功", course));
+		return ResponseEntity.ok().body(new Response(true, "处理成功", teacher));
 	}
 	
 
-	@GetMapping(value = "editCourse/{id}")
+	@GetMapping(value = "editTeacher/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
-		Course course= courseService.getCourseById(id);	
-		model.addAttribute("course", course);
-		return new ModelAndView("course/edit", "courseModel", model);
+		Teacher teacher= teacherService.getTeacherById(id);	
+		model.addAttribute("teacher", teacher);
+		
+		return new ModelAndView("teacher/edit", "teacherModel", model);
 	}
 	
 	
 	/**
-	 * 删除课程
+	 * 删除教师
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/course/{id}")
+	@DeleteMapping(value = "/teacher/{id}")
     public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
 		try {
-			if(courseService.getCourseById(id)!=null){
-				courseService.removeCourse(id);
+			if(teacherService.getTeacherById(id)!=null){
+				teacherService.removeTeacher(id);
 			}
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));

@@ -1,4 +1,4 @@
-package com.spring.boot.blog.controller.director;
+package com.spring.boot.blog.controller.Super;
 
 
 import java.util.List;
@@ -36,21 +36,22 @@ import com.spring.boot.blog.vo.Response;
  * @date 2017年9月26日
  */
 @RestController
-@RequestMapping("/director")
-public class CourseController {
+@RequestMapping("/super")
+public class StudentController {
  
 
 	
 	@Autowired
 	private CourseService courseService;
 	
-
+	@Autowired
+	private TeacherService teacherService;
 	
 	/**
 	 * 查询所有课程
 	 * @return
 	 */
-	@GetMapping("/courseList")
+	@GetMapping("/studentList")
 	public ModelAndView listNewsType(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
 			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
@@ -66,14 +67,20 @@ public class CourseController {
 		return new ModelAndView(async==true?"course/list :: #mainContainerRepleace":"course/list", "courseModel", model);
 	}
 	
-	@GetMapping("/addCourse")
+	@GetMapping("/addStudent")
 	public ModelAndView createForm(Model model) {
 		model.addAttribute("course", new Course());
+	
+		List<Teacher> teacher = teacherService.listTeachers();
+
+		model.addAttribute("teacher", teacher);
+
+		
 		return new ModelAndView("course/add", "courseModel", model);
 	}
 	
 	
-	@PostMapping("/addCourse")
+	@PostMapping("/addStudent")
 	public ResponseEntity<Response> saveOrUpdate(Course course) {
 		try {
 			
@@ -86,10 +93,16 @@ public class CourseController {
 	}
 	
 
-	@GetMapping(value = "editCourse/{id}")
+	@GetMapping(value = "editStudent/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
 		Course course= courseService.getCourseById(id);	
 		model.addAttribute("course", course);
+		
+		List<Teacher> teacher = teacherService.listTeachers();
+
+		model.addAttribute("teacher", teacher);
+
+		
 		return new ModelAndView("course/edit", "courseModel", model);
 	}
 	
@@ -99,7 +112,7 @@ public class CourseController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/course/{id}")
+	@DeleteMapping(value = "/student/{id}")
     public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
 		try {
 			if(courseService.getCourseById(id)!=null){

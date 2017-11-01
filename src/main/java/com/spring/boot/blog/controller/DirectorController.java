@@ -34,8 +34,8 @@ public class DirectorController {
 		List<Menu> directorList = new ArrayList<>();
 		
 		directorList.add(new Menu("课程管理","/director/courseList"));
-/*		directorList.add(new Menu("教师信息","/director/teacherList"));
-*/		
+
+		
 		
 		model.addAttribute("directorList", directorList);
 		

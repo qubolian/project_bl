@@ -37,87 +37,86 @@ public class Teacher implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id // 主键
-	@NotEmpty(message = "教师工号不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private Long Id;
+	@Column(nullable = false)
+	private Long id;
 	
 	@NotEmpty(message = "教师名称不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String TeacherName;
+	private String teacherName;
 	
-	@NotEmpty(message = "教师性别不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String Sex;
+	@NotEmpty(message = "请选择教师性别")
+	@Column(nullable = false) // 映射为字段，值不能为空
+	private String sex;
 	
 	@NotEmpty(message = "教师类型不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String TeacherType;
+	private String teacherType;
 	
 	@NotEmpty(message = "学院不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String College;
+	private String college;
 	
 	@NotEmpty(message = "系不能为空")
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String Department;
-
-
-
-
+	private String department;
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getTeacherName() {
-		return TeacherName;
+		return teacherName;
 	}
 
 	public void setTeacherName(String teacherName) {
-		TeacherName = teacherName;
+		this.teacherName = teacherName;
 	}
 
 	public String getSex() {
-		return Sex;
+		return sex;
 	}
 
 	public void setSex(String sex) {
-		Sex = sex;
+		this.sex = sex;
 	}
 
 	public String getTeacherType() {
-		return TeacherType;
+		return teacherType;
 	}
 
 	public void setTeacherType(String teacherType) {
-		TeacherType = teacherType;
+		this.teacherType = teacherType;
 	}
 
 	public String getCollege() {
-		return College;
+		return college;
 	}
 
 	public void setCollege(String college) {
-		College = college;
+		this.college = college;
 	}
 
 	public String getDepartment() {
-		return Department;
+		return department;
 	}
 
 	public void setDepartment(String department) {
-		Department = department;
+		this.department = department;
 	}
+
+
+
+
+
+	
 
 
 	
