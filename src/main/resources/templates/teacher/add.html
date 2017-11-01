@@ -32,10 +32,18 @@
 		<input type="text" class="form-control" id="college" name="college" th:value="*{college}" maxlength="32" placeholder="请输学院">
 	</div> 
 	
-	<div class="form-group ">
+	 <div class="form-group ">
 		<label for="department" class="col-form-label">系部</label>
-		<input type="text" class="form-control" id="department" name="department" th:value="*{department}" maxlength="32" placeholder="请输系">
-	</div>
+		
+	 	  <br>
+		<select id="department" name="department"  th:remove="all-but-first" class="form-control">  
+		
+			<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.department}" th:text="${dept.department}">
+		
+			</option>   
+        </select>  
+	</div> 
+	
 	
 </form>
  
