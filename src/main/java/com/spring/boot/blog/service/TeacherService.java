@@ -9,49 +9,49 @@ import com.spring.boot.blog.domain.Teacher;
 
 public interface TeacherService {
 	/**
-	 * 保存信息类别
+	 * 保存教师
 	 * @param Teacher
 	 * @return
 	 */
 	Teacher saveTeacher(Teacher Teacher);
 	
 	/**
-	 * 删除信息类别
+	 * 删除教师
 	 * @param Teacher
 	 * @return
 	 */
 	void removeTeacher(Long id);
 	
 	/**
-	 * 删除列表里面的信息类别
+	 * 删除列表里面的教师
 	 * @param Teacher
 	 * @return
 	 */
 	void removeTeachersInBatch(List<Teacher> Teachers);
 	
 	/**
-	 * 更新信息类别
+	 * 更新教师
 	 * @param Teacher
 	 * @return
 	 */
 	Teacher updateTeacher(Teacher Teacher);
 	
 	/**
-	 * 根据id获取信息类别
+	 * 根据id获取教师
 	 * @param Teacher
 	 * @return
 	 */
 	Teacher getTeacherById(Long id);
 	
 	/**
-	 * 获取信息类别列表
+	 * 获取教师列表
 	 * @param Teacher
 	 * @return
 	 */
 	List<Teacher> listTeachers();
 	
 	/**
-	 * 根据信息类别进行分页模糊查询
+	 * 根据教师进行分页模糊查询
 	 * @param Teacher
 	 * @return
 	 */

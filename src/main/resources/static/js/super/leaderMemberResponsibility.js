@@ -10,20 +10,27 @@
 // DOM 加载完再执行
 $(function() {
 	
+    CKEDITOR.replace( 'leader',{ height: '400px', width: 'auto' } );
+    CKEDITOR.replace( 'member',{ height: '400px', width: 'auto' } );
+    
+
+	
 	// 提交变更后，清空表单
 	$("#Update").click(function() {
+		var leader = CKEDITOR.instances.leader.getData();
+		var member = CKEDITOR.instances.member.getData();
 		$.ajax({ 
 			 url: "/super/leaderMemberResponsibilityEdit", 
 			 data:{
-				 "leader":$("#leader").val(),
-				 "member":$("#member").val()
+				 "leader":leader,
+				 "member":member
 			 },
 			 success: function(data){
 
 				 if (data.success) {
 					 // 更新内容
 					 toastr.info("更新成功");
-					 getLeaderMemberResponsibility();
+					 //getLeaderMemberResponsibility();
 				 } else {
 					 toastr.error("更新失败");
 					 getLeaderMemberResponsibility();
@@ -56,8 +63,11 @@ $(function() {
 				 "member":$("#member").val()*/
 			 },
 			 success: function(data){
-				 $("#leader").val(data.body.leaderResponsibility);
-				 $("#member").val(data.body.memberResponsibility);
+				 
+				 CKEDITOR.instances.leader.setData(data.body.leader);
+				 CKEDITOR.instances.member.setData(data.body.member);
+				/* $("#leader").val(data.body.leaderResponsibility);
+				 $("#member").val(data.body.memberResponsibility);*/
 		     },
 		     error : function() {
 		    	 toastr.error("error!");
@@ -66,55 +76,6 @@ $(function() {
 	}
 	
 	
-/*	// 提交变更后，清空表单
-	$("#rightUpdate").click(function() {
-		$.ajax({ 
-			 url: "/super/MemberResponsibilityEdit", 
-			 data:{
-				 "member":$("#member").val()
-			 },
-			 success: function(data){
-				
-				 
-				 if (data.success) {
-					 // 更新内容
-					 toastr.info("更新成功");
-					 getMemberResponsibility();
-				 } else {
-					 toastr.error("更新失败");
-					 getMemberResponsibility();
-				 }
-
-		     },
-		     error : function() {
-		    	 toastr.error("更新失败!");
-		    	 getMemberResponsibility();
-		     }
-		 });
-	});
-	
-	
-	$("#rightReload").click(function() {
-		getMemberResponsibility();
-	});
-	
-	function getMemberResponsibility() {
-		 $.ajax({ 
-			 url: "/super/MemberResponsibilityList", 
-			
-			 contentType : 'application/json',
-			 
-			 data:{
-				 "member":$("#member").val()
-			 },
-			 success: function(data){
-				 $("#member").val(data.body.member);
-		     },
-		     error : function() {
-		    	 toastr.error("error!");
-		     }
-		 });
-	}*/
 	
 	
 	
