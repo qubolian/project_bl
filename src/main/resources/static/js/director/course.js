@@ -63,9 +63,9 @@ $(function() {
 	// 获取编辑信息的界面
 	$("#rightContainer").on("click",".director-edit-course", function () { 
 		$.ajax({ 
-			 url: "/director/editCourse/" + $(this).attr("CourseId"), 
+			 url: "/director/editCourse/" + $(this).attr("courseId"), 
 			 success: function(data){
-				 console.log(data);
+				 
 				 $("#formContainer").html(data);
 				 
 		     },
@@ -126,5 +126,25 @@ $(function() {
 		     }
 		 });
 	});
+	
+	// 发布课程
+	$("#rightContainer").on("click",".director-publish-course", function () { 
+		$.ajax({ 
+			 url: "/director/publishCourse/" + $(this).attr("courseId"), 
+			 success: function(data){
+				 if (data.success) {
+					 // 从新刷新主界面
+					 getCourseByName(0, _pageSize);
+				 } else {
+					 toastr.error(data.message);
+				 }
+		     },
+		     error : function() {
+		    	 toastr.error("error!");
+		     }
+		 });
+		
+	});
+	
 	
 });

@@ -9,9 +9,11 @@
 			<button class="btn btn-secondary" type="button" id="searchNameBtn">
 				<i class="fa fa-search" aria-hidden="true"></i>
 			</button>
-		</span> <a class="btn btn-primary" data-toggle="modal"
+		</span> 
+		
+<!-- 		<a class="btn btn-primary" data-toggle="modal"
 			data-target="#flipFlop" role="button" id="addCourse"><i
-			class="fa fa-plus" aria-hidden="true"></i></a>
+			class="fa fa-plus" aria-hidden="true"></i></a> -->
 
 	</div>
 </div>
@@ -23,13 +25,15 @@
 				<tr>
 					<th data-field="name">课程名称</th>
 					<th data-field="term">学年度学期</th>
-				    <th data-field="courseId">课程代码</th> 
-				 	<th data-field="courseNumber">课程序号</th>
+				    <th data-field="courseId">代码</th> 
+				 	<th data-field="courseNumber">序号</th>
 					<th data-field="examMethods">考核方式</th>
 					<th data-field="credit">学分</th>
 				    <th data-field="period">课时</th> 
 				 	<th data-field="classes">班级</th>
-				 	<th data-field="courseType">课程类别</th>
+				 	<th data-field="courseType">类别</th>
+				 	<th data-field="teacher">负责人</th>
+				 	<th data-field="supervisors">指导老师</th>
 				 	
 					<th data-field="operation">操作</th>
 				</tr>
@@ -39,29 +43,28 @@
 				<tr th:each="course : ${courseModel.courseList}">
 					<td th:text="${course.name}">课程名称</td>
 					<td th:text="${course.term}">学年度学期</td>
-				    <td th:text="${course.courseId}">课程代码</td>
-					<td th:text="${course.courseNumber}">课程序号</td> 
+				    <td th:text="${course.courseId}">代码</td>
+					<td th:text="${course.courseNumber}">序号</td> 
 					<td th:text="${course.examMethods}">考核方式</td>
 					<td th:text="${course.credit}">学分</td>
 				    <td th:text="${course.period}">课时</td>
 					<td th:text="${course.classes}">班级</td> 
-					<td th:text="${course.courseType}">课程类别</td> 
+					<td th:text="${course.courseType}">类别</td> 
+					<td th:text="${course.teacher}==null?未选择:${course.teacher.teacherName}">负责人</td> 
+					<td id="supervisors" th:text="未选择">指导老师</td> 
 					<td>
 						<div>
-							<a class="director-edit-course" data-toggle="modal"
+							<a class="director-add-teacher" data-toggle="modal"
 								data-target="#flipFlop" role="button"
 								data-th-attr="courseId=${course.id}"> <i
-								class="fa fa-pencil-square-o" aria-hidden="true"></i>
-							</a> <a class="director-delete-course" role="button"
-								data-th-attr="courseId=${course.id}"> <i class="fa fa-times"
-								aria-hidden="true"></i>
-							</a>
-							</a> <a class="director-publish-course" role="button"
-								data-th-attr="courseId=${course.id}"> <i class="fa fa-level-up"
-								aria-hidden="true"></i>
-							</a>
-							
-							
+								class="fa fa-user" aria-hidden="true"></i>
+							</a> 
+							<a class="director-add-supervisor" data-toggle="modal"
+								data-target="#flipFlop" role="button"
+								data-th-attr="courseId=${course.id}"> <i
+								class="fa fa-user-plus" aria-hidden="true"></i>
+							</a> 
+		
 						</div>
 					</td>
 				</tr>
@@ -96,5 +99,5 @@
 </div>
 
 <!-- JavaScript -->
-<script src="../../js/director/course.js" th:src="@{/js/director/course.js}"></script>
+<script src="../../js/director/publish.js" th:src="@{/js/director/publish.js}"></script>
 

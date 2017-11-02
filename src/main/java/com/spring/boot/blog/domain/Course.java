@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,11 +36,19 @@ public class Course implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id // 主键
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
-	private int id; // 用户的唯一标识
+	private Long id; // 用户的唯一标识
 
 	@NotEmpty(message = "课程名称不能为空")
 	@Size(min=2, max=32)
@@ -85,12 +94,28 @@ public class Course implements Serializable {
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String courseType;
+	
+	@NotEmpty(message = "课程状态默认为未发布")
+	@Column(nullable = false) // 映射为字段，值不能为空
+	private String status;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teacherId")
+	private Teacher teacher;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public void setId(Long id) {
 		this.id = id;
 	}
 

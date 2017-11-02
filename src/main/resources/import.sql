@@ -49,13 +49,32 @@ INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  
 INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04034, '斯蒂芬', '计算器科学与技术系', '女', '兼任（职）教师', '信息技术学院');
 INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04035, '阿斯顿', '计算器科学与技术系', '女', '行政人员', '信息技术学院');
 INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04036, '周星驰', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04037, '周星驰', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04038, '赵钱孙李', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04039, '周吴郑王', '计算器科学与技术系', '女', '教辅人员', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04040, '斯蒂芬', '计算器科学与技术系', '女', '兼任（职）教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04041, '阿斯顿', '计算器科学与技术系', '女', '行政人员', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04042, '周星驰', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04043, '周星驰', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04044, '赵钱孙李', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04045, '周吴郑王', '计算器科学与技术系', '女', '教辅人员', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04046, '斯蒂芬', '计算器科学与技术系', '女', '兼任（职）教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04047, '阿斯顿', '计算器科学与技术系', '女', '行政人员', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04048, '周星驰', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04049, '周星驰', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04050, '赵钱孙李', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04051, '周吴郑王', '计算器科学与技术系', '女', '教辅人员', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04052, '斯蒂芬', '计算器科学与技术系', '女', '兼任（职）教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04053, '阿斯顿', '计算器科学与技术系', '女', '行政人员', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04054, '周星驰', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, Department, Sex, Teacher_Type, College)  VALUES (04055, '周星驰', '计算器科学与技术系', '男', '专任教师', '信息技术学院');
 
 
-INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (1, '1', '2', '计科B17-1', '专业领域课程组', '英语', '2017-2018-1', '2050587', '考试', '32');
-INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (2, '2', '4', '计科B17-1', '必修', '数学', '2017-2018-1', '2050588', '考查', '32');
-INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (3, '3', '3', '计科B17-1', '集中实践', '软件开发', '2017-2018-1', '2050589', '考查', '32');
-INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (4, '4', '1', '计科B17-1', '专业限选课', '界面制作', '2017-2018-1', '2050590', '考查', '32');
-INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (5, '5', '2', '计科B17-1', '选修', '语文', '2017-2018-1', '2050591', '考查', '32');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status) VALUES (1, '1124', '2', '计科B17-1', '专业领域课程组', '英语', '2017-2018-1', '2050587', '考试', '32', '0');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status) VALUES (2, '2124', '4', '计科B17-1', '必修', '数学', '2017-2018-1', '2050588', '考查', '32', '0');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status) VALUES (3, '3142', '3', '计科B17-1', '集中实践', '软件开发', '2017-2018-1', '2050589', '考查', '32', '0');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status) VALUES (4, '4124', '1', '计科B17-1', '专业限选课', '界面制作', '2017-2018-1', '2050590', '考查', '32', '0');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status) VALUES (5, '5123', '2', '计科B17-1', '选修', '语文', '2017-2018-1', '2050591', '考查', '32', '0');
 
 INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623381, '张三', '计算器科学与技术系', '男', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
 INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623382, '刘一', '计算器科学与技术系', '女', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');

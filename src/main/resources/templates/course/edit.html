@@ -3,6 +3,8 @@
 <form th:action="@{/director/}" method="post" th:object="${courseModel.course}" id="courseForm">
 	<input type="hidden" name="id" th:value="*{id}">
 	
+	<input type="hidden" name="status" th:value="*{status}">
+	
  	<div class="form-group ">
 		<label for="name" class="col-form-label">课程名称</label>
 		<input type="text" class="form-control" id="name" name="name"  th:value="*{name}" maxlength="32" placeholder="请输课程名称">

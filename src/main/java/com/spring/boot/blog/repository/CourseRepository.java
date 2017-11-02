@@ -11,5 +11,5 @@ import com.spring.boot.blog.domain.Course;
 
 
 public interface CourseRepository extends JpaRepository<Course, Long>{
-	Page<Course> findByNameLike(String name,Pageable pageable);
+	Page<Course> findByNameLikeAndStatus(String name, String status,Pageable pageable);
 }

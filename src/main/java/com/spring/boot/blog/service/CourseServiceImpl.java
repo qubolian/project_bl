@@ -62,10 +62,10 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	@Transactional
-	public Page<Course> listCoursesByNameLike(String name, Pageable pageable) {
+	public Page<Course> listCoursesByNameLike(String name, String status, Pageable pageable) {
 		// TODO Auto-generated method stub
 		name= "%"+name+"%";
-		Page<Course> Courses = CourseRepository.findByNameLike(name, pageable);
+		Page<Course> Courses = CourseRepository.findByNameLikeAndStatus(name,status, pageable);
 		return Courses;
 	}
 

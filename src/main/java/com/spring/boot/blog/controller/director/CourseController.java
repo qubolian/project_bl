@@ -54,7 +54,7 @@ public class CourseController {
 			Model model) {
 	 
 		Pageable pageable = new PageRequest(pageIndex, pageSize);
-		Page<Course> page = courseService.listCoursesByNameLike(name, pageable);
+		Page<Course> page = courseService.listCoursesByNameLike(name, "0", pageable);
 		List<Course> list = page.getContent();	// 当前所在页面数据列表
 		
 		model.addAttribute("page", page);
@@ -107,5 +107,23 @@ public class CourseController {
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
 	}
 	
+	/**
+	 * 发布课程
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/publishCourse/{id}")
+	public ResponseEntity<Response> publish(@PathVariable("id") Long id, Model model) {
+		try {
+			Course course= courseService.getCourseById(id);	
+			course.setStatus("1");
+			courseService.saveCourse(course);
+			
+		} catch (Exception e) {
+			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+		}
+		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
+	}
 	 
 }
