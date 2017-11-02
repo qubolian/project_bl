@@ -57,11 +57,11 @@ INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, cour
 INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (4, '4', '1', '计科B17-1', '专业限选课', '界面制作', '2017-2018-1', '2050590', '考查', '32');
 INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period) VALUES (5, '5', '2', '计科B17-1', '选修', '语文', '2017-2018-1', '2050591', '考查', '32');
 
-INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623381, '张三', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
-INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623382, '刘一', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
-INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623383, '陈二', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
-INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623384, '李四', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
-INSERT INTO student (Id, Name, Department, Sex, grade, Length_Of_Schooling, Training_Level, Major, Entrance_Time, Status, Classes) VALUES (1623385, '王五', '计算器科学与技术系', '4', '2016-9', '男', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623381, '张三', '计算器科学与技术系', '男', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623382, '刘一', '计算器科学与技术系', '女', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623383, '陈二', '计算器科学与技术系', '男', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623384, '李四', '计算器科学与技术系', '女', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623385, '王五', '计算器科学与技术系', '男', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
 
 
 

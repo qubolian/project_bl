@@ -5,12 +5,12 @@
 	<div class="input-group col-md-7 col-xl-6">
 
 		<input type="text" class="form-control" id="searchName"
-			placeholder="输入年级进行搜索"> <span class="input-group-btn">
+			placeholder="输入学生姓名进行搜索"> <span class="input-group-btn">
 			<button class="btn btn-secondary" type="button" id="searchNameBtn">
 				<i class="fa fa-search" aria-hidden="true"></i>
 			</button>
 		</span> <a class="btn btn-primary" data-toggle="modal"
-			data-target="#flipFlop" role="button" id="addHowtoTeamUp"><i
+			data-target="#flipFlop" role="button" id="addStudent"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
 
 	</div>
@@ -21,28 +21,43 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th data-field="gradeId">年级</th>
-					<th data-field="teamUpStage">组队期</th>
-				    <th data-field="seekAdvisorStage">寻找指导老师期</th> 
-				 	<th data-field="projectConductionStage">专题执行期</th>
-				 	<th data-field="operation">操作</th>
+					<th data-field="id">学号</th>
+					<th data-field="name">姓名</th>
+					<th data-field="sex">性别</th>
+				    <th data-field="grade">年级</th> 
+				 	<th data-field="lengthOfSchooling">学制</th>
+				 	<th data-field="trainingLevel">培养层次</th>
+				 	<th data-field="department">院系</th>
+					<th data-field="major">专业</th>
+				    <th data-field="entranceTime">入校时间</th> 
+				 	<th data-field="status">学籍状态</th>
+				 	<th data-field="classes">班级</th>
+					<th data-field="operation">操作</th>
 				</tr>
 			</thead>
 			<tbody>
 
-				<tr th:each="howtoTeamUp : ${howtoTeamUpModel.howtoTeamUpList}">
-					<td th:text="${howtoTeamUp.gradeId}">年级</td>
-					<td th:text="${howtoTeamUp.teamUpStage}">组队期</td>
-				    <td th:text="${howtoTeamUp.seekAdvisorStage}">寻找指导老师期</td>
-					<td th:text="${howtoTeamUp.projectConductionStage}">专题执行期</td> 
+				<tr th:each="Student : ${studentModel.studentList}">
+					<td th:text="${Student.id}">学号</td>
+					<td th:text="${Student.name}">姓名</td>
+					<td th:text="${Student.sex}">性别</td>
+				    <td th:text="${Student.grade}">年级</td>
+					<td th:text="${Student.lengthOfSchooling}">学制</td> 
+					<td th:text="${Student.trainingLevel}">培养层次</td>
+					<td th:text="${Student.department}">院系</td>
+				    <td th:text="${Student.major}">专业</td>
+					<td th:text="${Student.entranceTime}">入校时间</td> 
+					<td th:text="${Student.status}">学籍状态</td>
+					<td th:text="${Student.classes}">班级</td>
+
 					<td>
 						<div>
-							<a class="super-edit-howtoTeamUp" data-toggle="modal"
+							<a class="super-edit-student" data-toggle="modal"
 								data-target="#flipFlop" role="button"
-								data-th-attr="howtoTeamUpId=${howtoTeamUp.id}"> <i
+								data-th-attr="id=${Student.id}"> <i
 								class="fa fa-pencil-square-o" aria-hidden="true"></i>
-							</a> <a class="super-delete-howtoTeamUp" role="button"
-								data-th-attr="howtoTeamUpId=${howtoTeamUp.id}"> <i class="fa fa-times"
+							</a> <a class="super-delete-student" role="button"
+								data-th-attr="id=${Student.id}"> <i class="fa fa-times"
 								aria-hidden="true"></i>
 							</a>
 						</div>
@@ -79,5 +94,5 @@
 </div>
 
 <!-- JavaScript -->
-<script src="../../js/super/howtoTeamUp.js" th:src="@{/js/super/howtoTeamUp.js}"></script>
+<script src="../../js/super/student.js" th:src="@{/js/super/student.js}"></script>
 
