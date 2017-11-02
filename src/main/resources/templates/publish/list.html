@@ -57,7 +57,8 @@
 							<a class="director-add-teacher" data-toggle="modal"
 								data-target="#flipFlop" role="button"
 								data-th-attr="courseId=${course.id}"> <i
-								class="fa fa-user" aria-hidden="true"></i>
+								th:class="${course.teacher}==null?'fa fa-user-o':'fa fa-user'"
+								aria-hidden="true"></i>
 							</a> 
 							<a class="director-add-supervisor" data-toggle="modal"
 								data-target="#flipFlop" role="button"
