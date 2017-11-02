@@ -1,10 +1,9 @@
 <div class="container">
  
 <form th:action="@{/super/}" method="post" th:object="${teacherModel.teacher}" id="teacherForm">
-	
 	<div class="form-group ">
 		<label for="id" class="col-form-label">教师工号</label>
-		<input type="text" class="form-control" id="id" name="id"   maxlength="32" placeholder="请输教师工号">
+		<input type="text" class="form-control" id="id" name="id"  th:value="*{id}" maxlength="32" placeholder="请输教师工号">
 	</div>
 	
 	 <div class="form-group ">
@@ -32,16 +31,16 @@
 		<input type="text" class="form-control" id="college" name="college" th:value="*{college}" maxlength="32" placeholder="请输学院">
 	</div> 
 	
-	 <div class="form-group ">
+	<div class="form-group ">
 		<label for="department" class="col-form-label">系部</label>
-		
 	 	  <br>
 		<select id="department" name="department"  th:remove="all-but-first" class="form-control">  
 		
-			<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.department}" th:text="${dept.department}">
+			<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.department}" th:text="${dept.department}" th:selected="(*{department} == ${dept.department})">
 		
 			</option>   
         </select>  
+
 	</div> 
 	
 	
