@@ -107,5 +107,12 @@ public class CourseController {
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
 	}
 	
+	@GetMapping("/publishCourse/{id}")
+	public ModelAndView publish(@PathVariable("id") Long id, Model model) {
+		Course course= courseService.getCourseById(id);	
+		model.addAttribute("course", course);
+		//return new ModelAndView("course/add", "courseModel", model);
+		return null;
+	}
 	 
 }

@@ -33,8 +33,8 @@ public class DirectorController {
 	public ModelAndView listUsers(Model model) {
 		List<Menu> directorList = new ArrayList<>();
 		
-		directorList.add(new Menu("课程管理","/director/courseList"));
-
+		directorList.add(new Menu("添加课程","/director/courseList"));
+		directorList.add(new Menu("课程管理","/director/SupervisorList"));
 		
 		
 		model.addAttribute("directorList", directorList);
