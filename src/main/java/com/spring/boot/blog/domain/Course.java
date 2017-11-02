@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,6 +34,14 @@ public class Course implements Serializable {
 	public Course() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -87,10 +96,12 @@ public class Course implements Serializable {
 	private String courseType;
 	
 	@NotEmpty(message = "课程状态默认为未发布")
-	@Size(min=1, max=5)
-	@Column(nullable = false, length = 5) // 映射为字段，值不能为空
+	@Column(nullable = false) // 映射为字段，值不能为空
 	private String status;
 	
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teacherId")
+	private Teacher teacher;
 
 	public Long getId() {
 		return id;

@@ -55,7 +55,7 @@ public interface CourseService {
 	 * @param Course
 	 * @return
 	 */
-	Page<Course> listCoursesByNameLike(String name, Pageable pageable);
+	Page<Course> listCoursesByNameLike(String name, String status, Pageable pageable);
 	
 	
 }

@@ -132,9 +132,12 @@ $(function() {
 		$.ajax({ 
 			 url: "/director/publishCourse/" + $(this).attr("courseId"), 
 			 success: function(data){
-				 
-				 $("#formContainer").html(data);
-				 
+				 if (data.success) {
+					 // 从新刷新主界面
+					 getCourseByName(0, _pageSize);
+				 } else {
+					 toastr.error(data.message);
+				 }
 		     },
 		     error : function() {
 		    	 toastr.error("error!");
