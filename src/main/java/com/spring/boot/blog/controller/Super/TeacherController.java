@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.boot.blog.domain.DepartmentList;
-import com.spring.boot.blog.domain.NewsType;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.service.DepartmentListService;
 import com.spring.boot.blog.service.TeacherService;
@@ -48,7 +47,7 @@ public class TeacherController {
 	 * @return
 	 */
 	@GetMapping("/teacherList")
-	public ModelAndView listNewsType(@RequestParam(value="async",required=false) boolean async,
+	public ModelAndView listTeacher(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
 			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
 			@RequestParam(value="teacherName",required=false,defaultValue="") String teacherName,
