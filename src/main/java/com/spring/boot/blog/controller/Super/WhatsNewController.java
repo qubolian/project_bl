@@ -55,7 +55,7 @@ public class WhatsNewController {
 	 * @return
 	 */
 	@GetMapping("/whatsNewList")
-	public ModelAndView listNewsType(@RequestParam(value="async",required=false) boolean async,
+	public ModelAndView listWhatsNew(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
 			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
 			@RequestParam(value="department",required=false,defaultValue="") String events,

@@ -37,58 +37,56 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id // 主键
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Column(nullable = false) // 映射为字段，值不能为空
 	private Long id;
 	
 	@NotEmpty(message = "姓名不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=50)
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String name;
 	
-	@NotEmpty(message = "性别不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@NotEmpty(message = "请选择性别")
+	@Column(nullable = false) // 映射为字段，值不能为空
 	private String sex;
 	
 	@NotEmpty(message = "年级不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=50)
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String grade;
 	
 	@NotEmpty(message = "学制不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=1, max=50)
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String lengthOfSchooling;
 	
 	@NotEmpty(message = "培养层次不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=50)
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String trainingLevel;
 
 	@NotEmpty(message = "院系不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=50)
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String department;
 	
 	@NotEmpty(message = "专业不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=50)
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String major;
 	
 	@NotEmpty(message = "入校时间不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=50)
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String entranceTime;
 	
 	@NotEmpty(message = "学籍状态不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=50)
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String status;
 	
 	@NotEmpty(message = "班级不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=50)
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String classes;
 
 	public Long getId() {

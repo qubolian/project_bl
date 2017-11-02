@@ -22,11 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.spring.boot.blog.domain.Course;
-import com.spring.boot.blog.domain.DepartmentList;
-import com.spring.boot.blog.domain.NewsType;
-import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.service.CourseService;
-import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
 
@@ -51,7 +47,7 @@ public class CourseController {
 	 * @return
 	 */
 	@GetMapping("/courseList")
-	public ModelAndView listNewsType(@RequestParam(value="async",required=false) boolean async,
+	public ModelAndView listCourse(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
 			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
 			@RequestParam(value="name",required=false,defaultValue="") String name,
@@ -111,5 +107,12 @@ public class CourseController {
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
 	}
 	
+	@GetMapping("/publishCourse/{id}")
+	public ModelAndView publish(@PathVariable("id") Long id, Model model) {
+		Course course= courseService.getCourseById(id);	
+		model.addAttribute("course", course);
+		//return new ModelAndView("course/add", "courseModel", model);
+		return null;
+	}
 	 
 }

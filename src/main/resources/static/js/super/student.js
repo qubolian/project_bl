@@ -14,16 +14,16 @@ $(function() {
 	
 	
 	// 根据年级、页面索引、页面大小获取组队方法列表
-	function getTeacherByTeacherName(pageIndex, pageSize) {
+	function getStudentByName(pageIndex, pageSize) {
 		
 		 $.ajax({ 
-			 url: "/super/teacherList", 
+			 url: "/super/studentList", 
 			 contentType : 'application/json',
 			 data:{
 				 "async":true, 
 				 "pageIndex":pageIndex,
 				 "pageSize":pageSize,
-				 "teacherName":$("#searchName").val()
+				 "name":$("#searchName").val()
 			 },
 			 success: function(data){
 				 $("#mainContainer").html(data);
@@ -36,21 +36,21 @@ $(function() {
 	
 	// 分页
 	$.tbpage("#mainContainer", function (pageIndex, pageSize) {
-		getTeacherByTeacherName(pageIndex, pageSize);
+		getStudentByName(pageIndex, pageSize);
 		_pageSize = pageSize;
 	});
    
 	// 搜索
 	$("#searchNameBtn").click(function() {
 		
-		getTeacherByTeacherName(0, _pageSize);
+		getStudentByName(0, _pageSize);
 	});
 	
 	
 	// 获取添加用户的界面
-	$("#addTeacher").click(function() {
+	$("#addStudent").click(function() {
 		$.ajax({ 
-			 url: "/super/addTeacher", 
+			 url: "/super/addStudent", 
 			 success: function(data){
 				
 				 $("#formContainer").html(data);
@@ -62,11 +62,11 @@ $(function() {
 	});
 	
 	// 获取编辑信息的界面
-	$("#rightContainer").on("click",".super-edit-teacher", function () { 
+	$("#rightContainer").on("click",".super-edit-student", function () { 
 		$.ajax({ 
-			 url: "/super/editTeacher/" + $(this).attr("TeacherId"), 
+			 url: "/super/editStudent/" + $(this).attr("id"), 
 			 success: function(data){
-				 $("#formContainer").html(data); 
+				 $("#formContainer").html(data);
 		     },
 		     error : function() {
 		    	 toastr.error("error!");
@@ -80,15 +80,15 @@ $(function() {
 	// 提交变更后，清空表单
 	$("#submitEdit").click(function() {
 		$.ajax({ 
-			 url: "/super/addTeacher", 
+			 url: "/super/addStudent", 
 			 type: 'POST',
-			 data:$('#teacherForm').serialize(),
+			 data:$('#studentForm').serialize(),
 			 success: function(data){
-				 $('#teacherForm')[0].reset();  
+				 $('#studentForm')[0].reset();  
 				 
 				 if (data.success) {
 					 // 从新刷新主界面
-					 getTeacherByTeacherName(0, _pageSize);
+					 getStudentByName(0, _pageSize);
 				 } else {
 					 toastr.error(data.message);
 				 }
@@ -101,12 +101,12 @@ $(function() {
 	});
 	
 	// 删除信息内容
-	$("#rightContainer").on("click",".super-delete-teacher", function () { 
+	$("#rightContainer").on("click",".super-delete-student", function () { 
 		// 获取 CSRF Token 
 		var csrfToken = $("meta[name='_csrf']").attr("content");
 		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({ 
-			 url: "/super/teacher/" + $(this).attr("teacherId") , 
+			 url: "/super/student/" + $(this).attr("id") , 
 			 type: 'DELETE', 
 			 beforeSend: function(request) {
                  request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
@@ -114,7 +114,7 @@ $(function() {
 			 success: function(data){
 				 if (data.success) {
 					 // 从新刷新主界面
-					 getTeacherByTeacherName(0, _pageSize);
+					 getStudentByName(0, _pageSize);
 				 } else {
 					 toastr.error(data.message);
 				 }
