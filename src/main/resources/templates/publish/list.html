@@ -57,7 +57,7 @@
 							<a class="director-add-teacher" data-toggle="modal"
 								data-target="#flipFlop" role="button"
 								data-th-attr="courseId=${course.id}"> <i
-								th:class="${course.teacher}==null?'fa fa-user-plus':'fa fa-users'"
+								th:class="${course.teacher}==null?'fa fa-user-plus':'fa fa-user'"
 								aria-hidden="true"></i>
 							</a> 
 							<a class="director-add-supervisor" data-toggle="modal"
@@ -83,7 +83,7 @@
 <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog"
 	aria-labelledby="modalLabel" aria-hidden="true" >
 	<div class="modal-dialog" role="document">
-		<div class="modal-content" style="width:700px">
+		<div class="modal-content" style="width:600px">
 			<div class="modal-header">
 				<h5 class="modal-title" id="modalLabel">新增/编辑</h5>
 				<button type="button" class="close" data-dismiss="modal"

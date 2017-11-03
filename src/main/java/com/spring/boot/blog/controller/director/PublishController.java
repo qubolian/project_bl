@@ -23,8 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.boot.blog.domain.Course;
 import com.spring.boot.blog.domain.DepartmentList;
+import com.spring.boot.blog.domain.NewsType;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.service.CourseService;
+import com.spring.boot.blog.service.DepartmentListService;
 import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
@@ -45,6 +47,9 @@ public class PublishController {
 	
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private DepartmentListService departmentListService;
 	
 	/**
 	 * 查询所有课程
@@ -84,11 +89,28 @@ public class PublishController {
 		
 		
 		Course course= courseService.getCourseById(id);	
-		List<Teacher> teacher = teacherService.listTeachers();
-		model.addAttribute("teacher", teacher);
+		
+		//List<Teacher> teacher = teacherService.listTeacherByDepartment(department);
+		List<DepartmentList> departmentLists = departmentListService.listDepartmentLists();
+		
+		model.addAttribute("departmentLists", departmentLists);
+		model.addAttribute("teacher", new Teacher());
 		model.addAttribute("course", course);
 		return new ModelAndView("publish/addsupervisors", "teacherModel", model);
 	}
+	
+	@GetMapping("/addSupervisor/{departmentId}")
+	public List<Teacher> addSupervisor(@PathVariable("departmentId") Long departmentId) {
+		
+		DepartmentList departmentlist = departmentListService.getDepartmentListById(departmentId);
+		System.out.println(departmentId);
+		String department = departmentlist.getDepartment();
+		System.out.println(department);
+		List<Teacher> teacher = teacherService.listTeacherByDepartment(department);
+
+		return teacher;
+	}
+	
 	
 	@PostMapping("/addTeacher")
 	public ResponseEntity<Response> saveOrUpdate(Course course) {

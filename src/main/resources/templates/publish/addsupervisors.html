@@ -17,42 +17,40 @@
 	
 	
 	<div class="form-group ">
-		<label for="supervisor" class="col-form-label">选择指导老师</label>
+		<div class="input-group col-md-13 col-xl-13">
+		<label for="supervisor" class="col-form-label">增加指导老师</label>
+		 <a class="btn btn-primary" data-toggle="modal"
+				data-target="#flipFlop" role="button" id="add-A-supervisor"><i
+				class="fa fa-plus" aria-hidden="true"></i></a>
+				
+	     </div>
 		
-	 	  <br>
-	 	  
-	 	<div th:if=*{teacher}==null>
+	 	 <br>  	
 	 	
-	 	<input type="checkbox" th:each="supervisor : ${teacherModel.teacher}"  th:value="${supervisor.id}" th:text="${supervisor.teacherName}" name="supervisor.id" />
-
-	 	
-	 	
-	 	
-	<!-- 		<select id="teacherId" name="teacher.id"  class="form-control">  
-			
-				<option th:each="teacher : ${teacherModel.teacher}"  th:value="${teacher.id}" th:text="${teacher.teacherName}" >
+		 <div class="input-group col-md-13 col-xl-13">
+		 	
+				<select id="teacherDepartment" name="department.id"  class="form-control" >  
+				    
+					<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}">
 		
-			</option>   
-	        </select> 
-	   -->       
-        </div>
-        
-        <div th:if=*{teacher}!=null>
-        
-        
-        <input type="checkbox" th:each="supervisor : ${teacherModel.teacher}"  th:value="${supervisor.id}" th:text="${supervisor.teacherName}" name="supervisor.id" th:checked="(*{teacher.id} == ${supervisor.id})" />
-       
-        
-        <!-- 
-			<select id="teacherId" name="teacher.id"  class="form-control">  
-			
-				<option th:each="teacher : ${teacherModel.teacher}"  th:value="${teacher.id}" th:text="${teacher.teacherName}" th:selected="(*{teacher.id} == ${teacher.id})">
+					</option>   
+		        </select> 
+		       &nbsp;&nbsp;&nbsp;&nbsp;
+	           <select id="teacherName" name="teacher.id"  class="form-control">  
+				
+					<option th:each="teacher : ${teacherModel.teacher}"  th:value="${teacher.id}" th:text="${teacher.teacherName}" >
 		
-			</option>   
-	        </select>  
-	         -->
-        </div>
-        
+					</option>   
+		        </select>
+		        
+		        <div style="visibility: hidden">
+	 		      	<a class="btn btn-primary" data-toggle="modal"
+					data-target="#flipFlop" role="button" id="delete-A-supervisor"><i
+					class="fa fa-minus" aria-hidden="true"></i></a> 
+				</div>
+				
+	     </div>
+	      
         
 	</div>
 	
@@ -64,4 +62,7 @@
  
 </div>
 <!-- /.container -->
+
+<!-- JavaScript -->
+<script src="../../js/director/publish.js" th:src="@{/js/director/publish.js}"></script>
  

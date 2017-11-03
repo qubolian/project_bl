@@ -68,5 +68,12 @@ public class TeacherServiceImpl implements TeacherService {
 		Page<Teacher> teacher = TeacherRepository.findByTeacherNameLike(teacherName, pageable);
 		return teacher;
 	}
+	
+	@Override
+	@Transactional
+	public List<Teacher> listTeacherByDepartment(String department) {
+		return TeacherRepository.findByDepartment(department);
+	}
+	
 
 }

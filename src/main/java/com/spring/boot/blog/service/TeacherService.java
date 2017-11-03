@@ -56,4 +56,7 @@ public interface TeacherService {
 	 * @return
 	 */
 	Page<Teacher> listTeacherByTeacherNameLike(String teacherName, Pageable pageable);
+	
+	List<Teacher> listTeacherByDepartment(String department);
+
 }

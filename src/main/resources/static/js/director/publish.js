@@ -51,6 +51,7 @@ $(function() {
 			 url: "/director/addTeacher/" + $(this).attr("courseId"), 
 			 success: function(data){
 				 
+				 $("#modalLabel").text("编辑课程负责人");
 				 $("#formContainer").html(data);
 				 
 		     },
@@ -66,7 +67,7 @@ $(function() {
 		$.ajax({ 
 			 url: "/director/addSupervisors/" + $(this).attr("courseId"), 
 			 success: function(data){
-				 
+				 $("#modalLabel").text("编辑指导老师");
 				 $("#formContainer").html(data);
 				 
 		     },
@@ -101,9 +102,17 @@ $(function() {
 		 });
 	});
 	
-
+	$("#teacherDepartment").change(function() {
+		$.ajax({ 
+			 url: "/director/addSupervisor/" + $(this).children('option:selected').val(), 
+			 success: function(data){
+				 alert(123);
+		     },
+		     error : function() {
+		    	 toastr.error("error!");
+		     }
+		 });
 	
-
-	
+	});
 	
 });
