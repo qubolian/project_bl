@@ -3,6 +3,7 @@ package com.spring.boot.blog.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -63,6 +64,20 @@ public class Teacher implements Serializable {
 	@Size(min=2, max=32)
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String department;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER) 
+	@JoinTable(name = "CourseSupervisor", 
+				joinColumns = {@JoinColumn(name = "supervisorId")}, 
+				inverseJoinColumns = {@JoinColumn(name = "courseId")}) 
+	private List<Course> courses;
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
 
 	public Long getId() {
 		return id;

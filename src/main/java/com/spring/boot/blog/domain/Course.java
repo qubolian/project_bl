@@ -3,6 +3,7 @@ package com.spring.boot.blog.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -102,6 +104,20 @@ public class Course implements Serializable {
 	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacherId")
 	private Teacher teacher;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER) 
+	@JoinTable(name = "CourseSupervisor", 
+				joinColumns = {@JoinColumn(name = "courseId")}, 
+				inverseJoinColumns = {@JoinColumn(name = "supervisorId")}) 
+	private List<Teacher> supervisor;
+
+	public List<Teacher> getSupervisor() {
+		return supervisor;
+	}
+
+	public void setSupervisor(List<Teacher> supervisor) {
+		this.supervisor = supervisor;
+	}
 
 	public Long getId() {
 		return id;

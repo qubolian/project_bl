@@ -1,9 +1,65 @@
 <div class="container">
  
-<form th:action="@{/super/}" method="post" th:object="${teacherModel.teacher}" id="teacherForm">
+<form th:action="@{/super/}" method="post" th:object="${teacherModel.course}" id="teacherForm">
 	
-	85463
+	<input type="hidden" name="id" th:value="*{id}">
+	<input type="hidden" name="status" th:value="*{status}">
+	<input type="hidden" name="name" th:value="*{name}">
+	<input type="hidden" name="term" th:value="*{term}">
+	<input type="hidden" name="courseId" th:value="*{courseId}">
+	<input type="hidden" name="courseNumber" th:value="*{courseNumber}">
+	<input type="hidden" name="examMethods" th:value="*{examMethods}">
+	<input type="hidden" name="credit" th:value="*{credit}">
+	<input type="hidden" name="period" th:value="*{period}">
+	<input type="hidden" name="classes" th:value="*{classes}">
+	<input type="hidden" name="courseType" th:value="*{courseType}">
 	
+	
+	
+	<div class="form-group ">
+		<label for="supervisor" class="col-form-label">选择指导老师</label>
+		
+	 	  <br>
+	 	  
+	 	<div th:if=*{teacher}==null>
+	 	
+	 	<input type="checkbox" th:each="supervisor : ${teacherModel.teacher}"  th:value="${supervisor.id}" th:text="${supervisor.teacherName}" name="supervisor.id" />
+
+	 	
+	 	
+	 	
+	<!-- 		<select id="teacherId" name="teacher.id"  class="form-control">  
+			
+				<option th:each="teacher : ${teacherModel.teacher}"  th:value="${teacher.id}" th:text="${teacher.teacherName}" >
+		
+			</option>   
+	        </select> 
+	   -->       
+        </div>
+        
+        <div th:if=*{teacher}!=null>
+        
+        
+        <input type="checkbox" th:each="supervisor : ${teacherModel.teacher}"  th:value="${supervisor.id}" th:text="${supervisor.teacherName}" name="supervisor.id" th:checked="(*{teacher.id} == ${supervisor.id})" />
+       
+        
+        <!-- 
+			<select id="teacherId" name="teacher.id"  class="form-control">  
+			
+				<option th:each="teacher : ${teacherModel.teacher}"  th:value="${teacher.id}" th:text="${teacher.teacherName}" th:selected="(*{teacher.id} == ${teacher.id})">
+		
+			</option>   
+	        </select>  
+	         -->
+        </div>
+        
+        
+	</div>
+	
+	
+	
+	
+
 </form>
  
 </div>

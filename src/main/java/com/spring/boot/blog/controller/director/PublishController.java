@@ -80,6 +80,9 @@ public class PublishController {
 	
 	@GetMapping("/addSupervisors/{id}")
 	public ModelAndView addSupervisors(@PathVariable("id") Long id, Model model) {
+		
+		
+		
 		Course course= courseService.getCourseById(id);	
 		List<Teacher> teacher = teacherService.listTeachers();
 		model.addAttribute("teacher", teacher);
