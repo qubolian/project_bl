@@ -2,55 +2,53 @@
  
 <form th:action="@{/super/}" method="post" th:object="${teacherModel.course}" id="teacherForm">
 	
-	<input type="hidden" name="id" th:value="*{id}">
-	<input type="hidden" name="status" th:value="*{status}">
-	<input type="hidden" name="name" th:value="*{name}">
-	<input type="hidden" name="term" th:value="*{term}">
-	<input type="hidden" name="courseId" th:value="*{courseId}">
-	<input type="hidden" name="courseNumber" th:value="*{courseNumber}">
-	<input type="hidden" name="examMethods" th:value="*{examMethods}">
-	<input type="hidden" name="credit" th:value="*{credit}">
-	<input type="hidden" name="period" th:value="*{period}">
-	<input type="hidden" name="classes" th:value="*{classes}">
-	<input type="hidden" name="courseType" th:value="*{courseType}">
+	<input type="hidden" id="courseId" name="id" th:value="*{id}">
 	
-	
-	
-	<div class="form-group ">
+	<div class="form-group" id="form-group">
 		<div class="input-group col-md-13 col-xl-13">
-		<label for="supervisor" class="col-form-label">增加指导老师</label>
-		 <a class="btn btn-primary" data-toggle="modal"
-				data-target="#flipFlop" role="button" id="add-A-supervisor"><i
-				class="fa fa-plus" aria-hidden="true"></i></a>
-				
-	     </div>
+		<table width="100%">
+		<tr>
+		<td align="center">
+			<label class="col-form-label">增加指导老师</label>
+			<a class="btn btn-primary"  id="add-A-supervisor"><i
+				class="fa fa-plus"></i></a>
+		</td>
+		<td align="center">
+			<label class="col-form-label">减少指导老师</label>
+			<a class="btn btn-primary"  id="delete-A-supervisor"><i
+				class="fa fa-minus"></i></a>
+		</td>
+		</tr>
+		</table>
+	    </div>
+		
+		
 		
 	 	 <br>  	
-	 	
+	 	<div class="choose">
 		 <div class="input-group col-md-13 col-xl-13">
 		 	
-				<select id="teacherDepartment" name="department.id"  class="form-control" >  
-				    
+		 		<label class="col-form-label">1.&nbsp;&nbsp;&nbsp;</label>
+		 	
+				<select id="teacherDepartment" name="department.id"  class="form-control">  
+				    <option value='-1' selected='selected'>======请选择院系======</option>
 					<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}">
 		
-					</option>   
+					</option>  
+					 
 		        </select> 
 		       &nbsp;&nbsp;&nbsp;&nbsp;
 	           <select id="teacherName" name="teacher.id"  class="form-control">  
 				
-					<option th:each="teacher : ${teacherModel.teacher}"  th:value="${teacher.id}" th:text="${teacher.teacherName}" >
+				<option value='-1' selected='selected'>======请选择教师======</option>
 		
-					</option>   
+			 
+					
+					 
 		        </select>
 		        
-		        <div style="visibility: hidden">
-	 		      	<a class="btn btn-primary" data-toggle="modal"
-					data-target="#flipFlop" role="button" id="delete-A-supervisor"><i
-					class="fa fa-minus" aria-hidden="true"></i></a> 
-				</div>
-				
 	     </div>
-	      
+	     </div>
         
 	</div>
 	
