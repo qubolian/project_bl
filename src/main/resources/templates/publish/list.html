@@ -32,6 +32,8 @@
 				    <th data-field="period">课时</th> 
 				 	<th data-field="classes">班级</th>
 				 	<th data-field="courseType">类别</th>
+				 	<th data-field="upperLimit">上限</th>
+				 	<th data-field="lowerLimit">下限</th>
 				 	<th data-field="teacher">负责人</th>
 				 	<th data-field="supervisors">指导老师</th>
 				 	
@@ -50,6 +52,8 @@
 				    <td th:text="${course.period}">课时</td>
 					<td th:text="${course.classes}">班级</td> 
 					<td th:text="${course.courseType}">类别</td> 
+					<td th:text="${course.upperLimit}">上限</td> 
+					<td th:text="${course.lowerLimit}">下限</td> 
 					<td th:text="${course.teacher}==null?未选择:${course.teacher.teacherName}">负责人</td> 
 					<td id="supervisors" th:text="未选择">指导老师</td> 
 					<td>

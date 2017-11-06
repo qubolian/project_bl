@@ -24,5 +24,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeButtons = 'Source,About,Iframe,Language,CreateDiv,Scayt,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,Unlink,Link,Anchor,NewPage,Save,Flash,Maximize,ShowBlocks,Print,Preview,Templates';
 
 	config.resize_enabled = false;
-	config.filebrowserUploadUrl="/super/addNewsType";
+	config.filebrowserUploadUrl="http://192.168.20.230:8080/ckeditorUpload";
 };

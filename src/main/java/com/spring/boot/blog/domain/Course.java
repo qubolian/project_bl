@@ -102,6 +102,30 @@ public class Course implements Serializable {
 	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacherId")
 	private Teacher teacher;
+	
+	@NotNull(message = "队伍收取学生上限不能为空")
+	@Column(nullable = false) // 映射为字段，值不能为空
+	private Long upperLimit;
+	
+	@NotNull(message = "队伍收取学生下限不能为空")
+	@Column(nullable = false) // 映射为字段，值不能为空
+	private Long lowerLimit;
+
+	public Long getUpperLimit() {
+		return upperLimit;
+	}
+
+	public void setUpperLimit(Long upperLimit) {
+		this.upperLimit = upperLimit;
+	}
+
+	public Long getLowerLimit() {
+		return lowerLimit;
+	}
+
+	public void setLowerLimit(Long lowerLimit) {
+		this.lowerLimit = lowerLimit;
+	}
 
 	public Long getId() {
 		return id;
