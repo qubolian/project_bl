@@ -3,6 +3,7 @@ package com.spring.boot.blog.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -59,10 +61,32 @@ public class Teacher implements Serializable {
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String college;
 	
-	@NotEmpty(message = "系不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
-	private String department;
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "departmentId")
+	@NotNull(message = "必须选择系部")
+	private DepartmentList department;
+	
+	public DepartmentList getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(DepartmentList department) {
+		this.department = department;
+	}
+
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER) 
+	@JoinTable(name = "CourseSupervisor", 
+				joinColumns = {@JoinColumn(name = "supervisorId")}, 
+				inverseJoinColumns = {@JoinColumn(name = "courseId")}) 
+	private List<Course> courses;
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
 
 	public Long getId() {
 		return id;
@@ -104,13 +128,7 @@ public class Teacher implements Serializable {
 		this.college = college;
 	}
 
-	public String getDepartment() {
-		return department;
-	}
 
-	public void setDepartment(String department) {
-		this.department = department;
-	}
 
 
 

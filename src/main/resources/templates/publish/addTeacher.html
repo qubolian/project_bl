@@ -2,19 +2,7 @@
  
 <form th:action="@{/super/}" method="post" th:object="${teacherModel.course}" id="teacherForm">
 	
-	<input type="hidden" name="id" th:value="*{id}">
-	<input type="hidden" name="status" th:value="*{status}">
-	<input type="hidden" name="name" th:value="*{name}">
-	<input type="hidden" name="term" th:value="*{term}">
-	<input type="hidden" name="courseId" th:value="*{courseId}">
-	<input type="hidden" name="courseNumber" th:value="*{courseNumber}">
-	<input type="hidden" name="examMethods" th:value="*{examMethods}">
-	<input type="hidden" name="credit" th:value="*{credit}">
-	<input type="hidden" name="period" th:value="*{period}">
-	<input type="hidden" name="classes" th:value="*{classes}">
-	<input type="hidden" name="courseType" th:value="*{courseType}">
-	
-	
+	<input type="hidden" id="id" name="id" th:value="*{id}">
 	
 	 <div class="form-group ">
 		<label for="teacher" class="col-form-label">选择课程负责人</label>
@@ -42,6 +30,7 @@
         
 	</div>
 	
+
 
 </form>
  

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.spring.boot.blog.domain.Course;
+import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.repository.CourseRepository;
 
 @Service
@@ -68,5 +69,5 @@ public class CourseServiceImpl implements CourseService {
 		Page<Course> Courses = CourseRepository.findByNameLikeAndStatus(name,status, pageable);
 		return Courses;
 	}
-
+	
 }

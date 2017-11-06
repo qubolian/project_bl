@@ -32,7 +32,11 @@
 	
 	<div class="form-group ">
 		<label for="trainingLevel" class="col-form-label">培养层次</label>
-		<input type="text" class="form-control" id="trainingLevel" name="trainingLevel" th:value="*{trainingLevel}" maxlength="32" placeholder="请输培养层次">
+				  <br>
+		<select id="trainingLevel" name="trainingLevel" class="form-control">  
+			<option value ="本科">本科</option>
+			<option value ="专科">专科</option>  
+        </select> 
 	</div> 
 	
 	<div class="form-group ">
@@ -52,7 +56,11 @@
 	
 	<div class="form-group ">
 		<label for="status" class="col-form-label">学籍状态</label>
-		<input type="text" class="form-control" id="status" name="status" th:value="*{status}" maxlength="32" placeholder="请输学籍状态">
+				  <br>
+		<select id="status" name="status" class="form-control">  
+			<option value ="在籍">在籍</option>
+			<option value ="不在籍">不在籍</option>  
+        </select> 
 	</div> 
 	
 	<div class="form-group ">

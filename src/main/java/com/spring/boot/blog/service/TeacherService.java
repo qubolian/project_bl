@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.spring.boot.blog.domain.DepartmentList;
 import com.spring.boot.blog.domain.Teacher;
 
 public interface TeacherService {
@@ -56,4 +57,7 @@ public interface TeacherService {
 	 * @return
 	 */
 	Page<Teacher> listTeacherByTeacherNameLike(String teacherName, Pageable pageable);
+	
+	List<Teacher> listTeacherByDepartment(DepartmentList department);
+
 }
