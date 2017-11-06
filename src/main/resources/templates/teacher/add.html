@@ -34,9 +34,9 @@
 	<div class="form-group ">
 		<label for="department" class="col-form-label">系部</label>
 	 	  <br>
-		<select id="department" name="department"  th:remove="all-but-first" class="form-control">  
+		<select id="departmentId" name="department.id"  th:remove="all-but-first" class="form-control">  
 		
-			<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.department}" th:text="${dept.department}" th:selected="(*{department} == ${dept.department})">
+			<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}" >
 		
 			</option>   
         </select>  

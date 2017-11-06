@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.spring.boot.blog.domain.Course;
+import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.repository.CourseRepository;
 
 @Service
@@ -62,11 +63,11 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	@Transactional
-	public Page<Course> listCoursesByNameLike(String name, Pageable pageable) {
+	public Page<Course> listCoursesByNameLike(String name, String status, Pageable pageable) {
 		// TODO Auto-generated method stub
 		name= "%"+name+"%";
-		Page<Course> Courses = CourseRepository.findByNameLike(name, pageable);
+		Page<Course> Courses = CourseRepository.findByNameLikeAndStatus(name,status, pageable);
 		return Courses;
 	}
-
+	
 }

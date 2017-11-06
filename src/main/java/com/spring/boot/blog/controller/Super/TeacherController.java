@@ -57,6 +57,9 @@ public class TeacherController {
 		Page<Teacher> page = teacherService.listTeacherByTeacherNameLike(teacherName, pageable);
 		List<Teacher> list = page.getContent();	// 当前所在页面数据列表
 		
+		List<DepartmentList> departmentLists = departmentListService.listDepartmentLists();
+		model.addAttribute("departmentLists", departmentLists);
+		
 		model.addAttribute("page", page);
 		model.addAttribute("teacherList", list);
 		return new ModelAndView(async==true?"teacher/list :: #mainContainerRepleace":"teacher/list", "teacherModel", model);

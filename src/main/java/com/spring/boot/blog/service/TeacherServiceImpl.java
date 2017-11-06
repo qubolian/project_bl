@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.spring.boot.blog.domain.DepartmentList;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.repository.TeacherRepository;
 
@@ -68,5 +70,12 @@ public class TeacherServiceImpl implements TeacherService {
 		Page<Teacher> teacher = TeacherRepository.findByTeacherNameLike(teacherName, pageable);
 		return teacher;
 	}
+	
+	@Override
+	@Transactional
+	public List<Teacher> listTeacherByDepartment(DepartmentList department) {
+		return TeacherRepository.findByDepartment(department);
+	}
+	
 
 }

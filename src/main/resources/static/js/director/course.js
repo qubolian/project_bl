@@ -80,26 +80,30 @@ $(function() {
 	
 	// 提交变更后，清空表单
 	$("#submitEdit").click(function() {
-		$.ajax({ 
-			 url: "/director/addCourse", 
-			 type: 'POST',
-			 data:$('#courseForm').serialize(),
-			 success: function(data){
-				 
-				 $('#courseForm')[0].reset();  
-				 
-				 if (data.success) {
-					 // 从新刷新主界面
-					 getCourseByName(0, _pageSize);
-				 } else {
-					 toastr.error(data.message);
-				 }
-
-		     },
-		     error : function() {
-		    	 toastr.error("error!");
-		     }
-		 });
+		if($("#upperLimit").val() > $("#lowerLimit").val()){
+			$.ajax({ 
+				 url: "/director/addCourse", 
+				 type: 'POST',
+				 data:$('#courseForm').serialize(),
+				 success: function(data){
+					 
+					 $('#courseForm')[0].reset();  
+					 
+					 if (data.success) {
+						 // 从新刷新主界面
+						 getCourseByName(0, _pageSize);
+					 } else {
+						 toastr.error(data.message);
+					 }
+	
+			     },
+			     error : function() {
+			    	 toastr.error("error!");
+			     }
+			 });
+		}else{
+			toastr.error("上限不能低于下限");
+		}
 	});
 	
 	// 删除信息内容
@@ -132,9 +136,12 @@ $(function() {
 		$.ajax({ 
 			 url: "/director/publishCourse/" + $(this).attr("courseId"), 
 			 success: function(data){
-				 
-				 $("#formContainer").html(data);
-				 
+				 if (data.success) {
+					 // 从新刷新主界面
+					 getCourseByName(0, _pageSize);
+				 } else {
+					 toastr.error(data.message);
+				 }
 		     },
 		     error : function() {
 		    	 toastr.error("error!");

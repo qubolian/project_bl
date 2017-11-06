@@ -1,0 +1,66 @@
+<div class="container">
+ 
+<form th:action="@{/super/}" method="post" th:object="${teacherModel.course}" id="teacherForm">
+	
+	<input type="hidden" id="courseId" name="id" th:value="*{id}">
+	
+	<div class="form-group" id="form-group">
+		<div class="input-group col-md-13 col-xl-13">
+		<table width="100%">
+		<tr>
+		<td align="center">
+			<label class="col-form-label">增加指导老师</label>
+			<a class="btn btn-info"  id="add-A-supervisor"><i
+				class="fa fa-plus" ></i></a>
+		</td>
+		<td align="center">
+			<label class="col-form-label">减少指导老师</label>
+			<a class="btn btn-info"  id="delete-A-supervisor"><i
+				class="fa fa-minus" ></i></a>
+		</td>
+		</tr>
+		</table>
+	    </div>
+		
+		
+		
+	 	 <br>  	
+	 	<div class="choose">
+		 <div class="input-group col-md-13 col-xl-13">
+		 	
+		 		<label class="col-form-label">1.&nbsp;&nbsp;&nbsp;</label>
+		 	
+				<select id="teacherDepartment" name="department.id"  class="form-control">  
+				    <option value='-1' selected='selected'>======请选择院系======</option>
+					<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}">
+		
+					</option>  
+					 
+		        </select> 
+		       &nbsp;&nbsp;&nbsp;&nbsp;
+	           <select id="teacherName" name="teacher.id"  class="form-control">  
+				
+				<option value='-1' selected='selected'>======请选择教师======</option>
+		
+			 
+					
+					 
+		        </select>
+		        
+	     </div>
+	     </div>
+        
+	</div>
+	
+	
+	
+	
+
+</form>
+ 
+</div>
+<!-- /.container -->
+
+<!-- JavaScript -->
+<script src="../../js/director/publish.js" th:src="@{/js/director/publish.js}"></script>
+ 
