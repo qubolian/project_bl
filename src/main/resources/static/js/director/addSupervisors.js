@@ -36,35 +36,8 @@ $(function() {
 		 });
 	}
 	
-	// 分页
-	$.tbpage("#mainContainer", function (pageIndex, pageSize) {
-		getCourseByName(pageIndex, pageSize);
-		_pageSize = pageSize;
-	});
-   
-	// 搜索
-	$("#searchNameBtn").click(function() {
-		getCourseByName(0, _pageSize);
-	});
 	
-	// 获取增加课程负责人的界面
-	$("#rightContainer").on("click",".director-add-teacher", function () { 
-		$.ajax({ 
-			 url: "/director/addTeacher/" + $(this).attr("courseId"), 
-			 success: function(data){
-				 
-				 $("#modalLabel").text("编辑课程负责人");
-				 $("#formContainer").html(data);
-				 
-		     },
-		     error : function() {
-		    	 toastr.error("error!");
-		     }
-		 });
-		
-	});
-	
-	// 获取增加指导老师的页面
+/*	// 获取增加指导老师的页面
 	$("#rightContainer").on("click",".director-add-supervisor", function () { 
 		$.ajax({ 
 			 url: "/director/addSupervisors/" + $(this).attr("courseId"), 
@@ -77,18 +50,17 @@ $(function() {
 		    	 toastr.error("error!");
 		     }
 		 });
-	});
+	});*/
 	
 	
-	// 提交变更后，清空表单
+	/*// 提交变更后，清空表单
 	$("#submitEdit").click(function() {
-		if(document.getElementById("teacherName4")) 
-		{ 
 			var a = "";
 			for(var i = 0;i<5;i++){
 			    var j = i+1;
 				if($("#teacherName"+j).val() > 0){
-					a = $("#teacherName"+j).val() + "," + a ;
+				//a.push($("#teacherName"+j).val());
+					a =$("#teacherName"+j).val() + "," + a ;
 				}
 			}
 			$.ajax({ 
@@ -96,11 +68,11 @@ $(function() {
 				 //type: 'POST',
 				 data:{
 					 tid:a,
-					 id:$("#courseId").val()
+					 id:$("#courseId").val() 
 				 },
 				 success: function(data){
 					 
-					 $('#teacherForm')[0].reset();  
+					// $('#teacherForm')[0].reset();  
 					 
 					 if (data.success) {
 						 // 从新刷新主界面
@@ -113,31 +85,8 @@ $(function() {
 			    	 toastr.error("error!");
 			     }
 			 });
-		} else{
-			$.ajax({ 
-				 url: "/director/selectTeacher", 
-				 //type: 'POST',
-				 data:{
-					 id:$("#id").val(),
-					 tid:$("#teacherId").val()
-				 },
-				 success: function(data){
-					 
-					 $('#teacherForm')[0].reset();  
-					 
-					 if (data.success) {
-						 // 从新刷新主界面
-						 getCourseByName(0, _pageSize);
-					 } else {
-						 toastr.error(data.message);
-					 }
-			     },
-			     error : function() {
-			    	 toastr.error("error!");
-			     }
-			 });
-		}
-	});
+
+	});*/
 	
 	//增加指导老师
 	$("#add-A-supervisor").click(function() {
@@ -162,7 +111,9 @@ $(function() {
 		}
 		else{
 			$("#"+count).css("display","none");
-			$("#"+count).children().eq(2).val("0");
+			$("#"+count).children().eq(1).val("0");
+			$("#"+count).children().eq(2).empty();
+			$("#"+count).children().eq(2).append("<option value='0' selected='selected'>======请选择教师======</option>");
 		}
 	});
 	
@@ -216,5 +167,48 @@ $(function() {
 		var deptId = $(this).children('option:selected').val();
 		addTeacherName(select,deptId);
 	});	
+	
+	//选择教师后刷新教师列表
+	function deleteTeacherName(teacherName, deptId, thisTeacher) {
+		for(var i = 0;i<5;i++){
+			if($("#teacherDepartment"+(i+1)).children('option:selected').val() == deptId){
+				for(var j = 0 ;j<$("#teacherName"+(i+1)).children().length;j++){
+					if((i+1) != thisTeacher){
+						if($("#teacherName"+(i+1)).children().eq(j).val() == teacherName){
+							$("#teacherName"+(i+1)).children().eq(j).remove();
+						}
+					}					
+				}
+			}
+		}
+	}
+	
+	$("#teacherName1").change(function() {
+		var deptId = $(this).parent().children().eq(1).val();
+		var teacherName = $(this).children('option:selected').val();
+		var thisTeacher = 1;
+		deleteTeacherName(teacherName,deptId, thisTeacher);
+	});
+	$("#teacherName2").change(function() {
+		var deptId = $(this).parent().children().eq(1).val();
+		var teacherName = $(this).children('option:selected').val();
+		var thisTeacher = 2;
+		deleteTeacherName(teacherName,deptId, thisTeacher);
+	});
+	$("#teacherName3").change(function() {
+		var deptId = $(this).parent().children().eq(1).val();
+		var teacherName = $(this).children('option:selected').val();
+		var thisTeacher = 3;
+		deleteTeacherName(teacherName,deptId, thisTeacher);	});
+	$("#teacherName4").change(function() {
+		var deptId = $(this).parent().children().eq(1).val();
+		var teacherName = $(this).children('option:selected').val();
+		var thisTeacher = 4;
+		deleteTeacherName(teacherName,deptId, thisTeacher);	});
+	$("#teacherName5").change(function() {
+		var deptId = $(this).parent().children().eq(1).val();
+		var teacherName = $(this).children('option:selected').val();
+		var thisTeacher = 5;
+		deleteTeacherName(teacherName,deptId, thisTeacher);	});	
 	
 });

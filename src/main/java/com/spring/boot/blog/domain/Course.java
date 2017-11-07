@@ -129,10 +129,10 @@ public class Course implements Serializable {
 	public void setLowerLimit(Long lowerLimit) {
 		this.lowerLimit = lowerLimit;
 	}
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER) 
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
 	@JoinTable(name = "CourseSupervisor", 
-				joinColumns = {@JoinColumn(name = "courseId")}, 
-				inverseJoinColumns = {@JoinColumn(name = "supervisorId")}) 
+				joinColumns = {@JoinColumn(name = "courseId", referencedColumnName = "id")}, 
+				inverseJoinColumns = {@JoinColumn(name = "supervisorId", referencedColumnName = "id")}) 
 	private List<Teacher> supervisor;
 
 	public List<Teacher> getSupervisor() {

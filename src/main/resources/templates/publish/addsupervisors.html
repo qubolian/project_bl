@@ -25,32 +25,86 @@
 		
 		
 	 	 <br>  	
-	 	<div class="choose">
-		 <div class="input-group col-md-13 col-xl-13">
+	 <div class="choose">
+	 	
+		 <div class="input-group col-md-13 col-xl-13" id="1">
 		 	
 		 		<label class="col-form-label">1.&nbsp;&nbsp;&nbsp;</label>
 		 	
-				<select id="teacherDepartment" name="department.id"  class="form-control">  
-				    <option value='-1' selected='selected'>======请选择院系======</option>
-					<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}">
-		
-					</option>  
-					 
+				<select id="teacherDepartment1" name="department.id"  class="form-control">  
+				    <option value='0' selected='selected'>======请选择院系======</option>
+					<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}"></option>  
 		        </select> 
-		       &nbsp;&nbsp;&nbsp;&nbsp;
-	           <select id="teacherName" name="teacher.id"  class="form-control">  
-				
-				<option value='-1' selected='selected'>======请选择教师======</option>
-		
-			 
-					
-					 
-		        </select>
+		        &nbsp;&nbsp;&nbsp;&nbsp;
 		        
+	            <select id="teacherName1" name="teacher.id"  class="form-control">  
+					<option value='0' selected='selected'>======请选择教师======</option>
+		        </select>
 	     </div>
+	     
+	     <div class="input-group col-md-13 col-xl-13" id="2" style="display:none">
+		 	
+		 		<label class="col-form-label">2.&nbsp;&nbsp;&nbsp;</label>
+		 	
+				<select id="teacherDepartment2" name="department.id"  class="form-control">  
+				    <option value='0' selected='selected'>======请选择院系======</option>
+					<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}"></option>  
+		        </select> 
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+		        
+	            <select id="teacherName2" name="teacher.id"  class="form-control">  
+					<option value='0' selected='selected'>======请选择教师======</option>
+		        </select>
 	     </div>
-        
+	     
+	     <div class="input-group col-md-13 col-xl-13" id="3" style="display:none">
+		 	
+		 		<label class="col-form-label">3.&nbsp;&nbsp;&nbsp;</label>
+		 	
+				<select id="teacherDepartment3" name="department.id"  class="form-control">  
+				    <option value='0' selected='selected'>======请选择院系======</option>
+					<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}"></option>  
+		        </select> 
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+		        
+	            <select id="teacherName3" name="teacher.id"  class="form-control">  
+					<option value='0' selected='selected'>======请选择教师======</option>
+		        </select>
+	     </div>
+	     
+	     <div class="input-group col-md-13 col-xl-13" id="4" style="display:none">
+		 	
+		 		<label class="col-form-label">4.&nbsp;&nbsp;&nbsp;</label>
+		 	
+				<select id="teacherDepartment4" name="department.id"  class="form-control">  
+				    <option value='0' selected='selected'>======请选择院系======</option>
+					<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}"></option>  
+		        </select> 
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+		        
+	            <select id="teacherName4" name="teacher.id"  class="form-control">  
+					<option value='0' selected='selected'>======请选择教师======</option>
+		        </select>
+	     </div>
+	     
+	     <div class="input-group col-md-13 col-xl-13" id="5" style="display:none">
+		 	
+		 		<label class="col-form-label">5.&nbsp;&nbsp;&nbsp;</label>
+		 	
+				<select id="teacherDepartment5" name="department.id"  class="form-control">  
+				    <option value='0' selected='selected'>======请选择院系======</option>
+					<option th:each="dept : ${teacherModel.departmentLists}"  th:value="${dept.id}" th:text="${dept.department}"></option>  
+		        </select> 
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+		        
+	            <select id="teacherName5" name="teacher.id"  class="form-control">  
+					<option value='0' selected='selected'>======请选择教师======</option>
+		        </select>
+	     </div>
+	     
 	</div>
+        
+</div>
 	
 	
 	
@@ -62,5 +116,5 @@
 <!-- /.container -->
 
 <!-- JavaScript -->
-<script src="../../js/director/publish.js" th:src="@{/js/director/publish.js}"></script>
+<script src="../../js/director/addSupervisors.js" th:src="@{/js/director/addSupervisors.js}"></script>
  
