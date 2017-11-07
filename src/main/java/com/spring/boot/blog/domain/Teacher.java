@@ -66,26 +66,26 @@ public class Teacher implements Serializable {
 	@NotNull(message = "必须选择系部")
 	private DepartmentList department;
 	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
+	@JoinTable(name = "CourseSupervisor", 
+				joinColumns = {@JoinColumn(name = "supervisorId", referencedColumnName = "id")}, 
+				inverseJoinColumns = {@JoinColumn(name = "courseId", referencedColumnName = "id")}) 
+	private List<Course> course;
+	
+	public List<Course> getCourse() {
+		return course;
+	}
+
+	public void setCourse(List<Course> course) {
+		this.course = course;
+	}
+
 	public DepartmentList getDepartment() {
 		return department;
 	}
 
 	public void setDepartment(DepartmentList department) {
 		this.department = department;
-	}
-
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER) 
-	@JoinTable(name = "CourseSupervisor", 
-				joinColumns = {@JoinColumn(name = "supervisorId")}, 
-				inverseJoinColumns = {@JoinColumn(name = "courseId")}) 
-	private List<Course> courses;
-
-	public List<Course> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
 	}
 
 	public Long getId() {
