@@ -67,7 +67,7 @@ $(function() {
 				// "mark":$("#mark").val()
 			 },
 			 success: function(data){
-				 console.log(data);
+				 
 				 CKEDITOR.instances.mark.setData(data.body.mark);
 		     },
 		     error : function() {

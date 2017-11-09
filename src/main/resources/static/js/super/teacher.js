@@ -79,6 +79,7 @@ $(function() {
 	
 	// 提交变更后，清空表单
 	$("#submitEdit").click(function() {
+
 		$.ajax({ 
 			 url: "/super/addTeacher", 
 			 type: 'POST',
@@ -92,7 +93,6 @@ $(function() {
 				 } else {
 					 toastr.error(data.message);
 				 }
-
 		     },
 		     error : function() {
 		    	 toastr.error("error!");

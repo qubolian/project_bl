@@ -66,7 +66,7 @@ public class Teacher implements Serializable {
 	@NotNull(message = "必须选择系部")
 	private DepartmentList department;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER) 
 	@JoinTable(name = "CourseSupervisor", 
 				joinColumns = {@JoinColumn(name = "supervisorId", referencedColumnName = "id")}, 
 				inverseJoinColumns = {@JoinColumn(name = "courseId", referencedColumnName = "id")}) 

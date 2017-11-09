@@ -32,12 +32,12 @@
 	
 	<div class="form-group ">
 		<label for="credit" class="col-form-label">学分</label>
-		<input type="text" class="form-control" id="credit" name="credit" th:value="*{credit}" maxlength="32" placeholder="请输学分">
+		<input type="text" class="form-control" id="credit" name="credit" th:value="*{credit}" maxlength="32" placeholder="请输学分" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
 	</div>
 
 	<div class="form-group ">
 		<label for="period" class="col-form-label">课时</label>
-		<input type="text" class="form-control" id="period" name="period" th:value="*{period}" maxlength="32" placeholder="请输课时">
+		<input type="text" class="form-control" id="period" name="period" th:value="*{period}" maxlength="32" placeholder="请输课时" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
 	</div>
 	
 	<div class="form-group ">
@@ -52,12 +52,12 @@
 	
 	<div class="form-group ">
 		<label for="upperLimit" class="col-form-label">队伍收取学生上限</label>
-		<input type="text" class="form-control" id="upperLimit" name="upperLimit" th:value="*{upperLimit}" placeholder="请输队伍收取学生上限">
+		<input type="text" class="form-control" id="upperLimit" name="upperLimit" placeholder="请输队伍收取学生上限" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
 	</div>
 	
 	<div class="form-group ">
 		<label for="lowerLimit" class="col-form-label">队伍收取学生下限</label>
-		<input type="text" class="form-control" id="lowerLimit" name="lowerLimit" th:value="*{lowerLimit}" placeholder="请输队伍收取学生下限">
+		<input type="text" class="form-control" id="lowerLimit" name="lowerLimit" th:value="*{lowerLimit}" placeholder="请输队伍收取学生下限" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
 	</div>
 </form>
 </div>
