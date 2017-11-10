@@ -105,6 +105,7 @@ $(function() {
 			toastr.error("上限不能低于下限");
 		}
 	});
+
 	
 	// 删除信息内容
 	$("#rightContainer").on("click",".director-delete-course", function () { 

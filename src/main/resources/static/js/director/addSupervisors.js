@@ -36,62 +36,43 @@ $(function() {
 		 });
 	}
 	
-	
-/*	// 获取增加指导老师的页面
-	$("#rightContainer").on("click",".director-add-supervisor", function () { 
-		$.ajax({ 
-			 url: "/director/addSupervisors/" + $(this).attr("courseId"), 
-			 success: function(data){
-				 $("#modalLabel").text("编辑指导老师");
-				 $("#formContainer").html(data);
-				 
-		     },
-		     error : function() {
-		    	 toastr.error("error!");
-		     }
-		 });
-	});*/
-	
-	
-	/*// 提交变更后，清空表单
-	$("#submitEdit").click(function() {
-			var a = "";
-			for(var i = 0;i<5;i++){
-			    var j = i+1;
-				if($("#teacherName"+j).val() > 0){
-				//a.push($("#teacherName"+j).val());
-					a =$("#teacherName"+j).val() + "," + a ;
+	//获取指导老师页面时插入已指派指导老师
+	function getSelects() {
+		
+		var deptmentSelect = new Array(); 
+		var teacherSelect = new Array(); 
+		deptmentSelect = $("#deptmentSelect").val().split(",");
+		teacherSelect = $("#teacherSelect").val().split(",");
+		
+		if(deptmentSelect[0] > 0){
+			for(var i = 0;i<(deptmentSelect.length-1);i++){
+				$("#"+(i+1)).show();
+				$("#teacherDepartment"+(i+1)).val(deptmentSelect[i]);
+				
+				var id = $("#teacherList"+i+" option").map(function(){return $(this).val();}).get();
+				var name = $("#teacherList"+i+" option").map(function(){return $(this).text();}).get();
+				for(var j = 0;j<id.length;j++){
+					if(id[j] != teacherSelect[i] && ( id[j] == teacherSelect[0] || id[j] == teacherSelect[1] || id[j] == teacherSelect[2] || id[j] == teacherSelect[3] || id[j] == teacherSelect[4] )){
+						continue;}
+					$("#teacherName"+(i+1)).append("<option value='"+id[j]+"'>"+name[j]+"</option>");
 				}
+				$("#teacherName"+(i+1)).val(teacherSelect[i]);
+				
 			}
-			$.ajax({ 
-				 url: "/director/selectSupervisor", 
-				 //type: 'POST',
-				 data:{
-					 tid:a,
-					 id:$("#courseId").val() 
-				 },
-				 success: function(data){
-					 
-					// $('#teacherForm')[0].reset();  
-					 
-					 if (data.success) {
-						 // 从新刷新主界面
-						 getCourseByName(0, _pageSize);
-					 } else {
-						 toastr.error(data.message);
-					 }
-			     },
-			     error : function() {
-			    	 toastr.error("error!");
-			     }
-			 });
+		}
+	}
 
-	});*/
+	getSelects();
 	
 	//增加指导老师
 	$("#add-A-supervisor").click(function() {
 		var count= add + del;
 		add=add+1;
+		if($("#teacherList0 option").length > 0){
+			var deptmentSelect = new Array(); 
+			deptmentSelect = $("#deptmentSelect").val().split(",");
+			count += (deptmentSelect.length-2);
+		}
 		if(count>=6){
 			toastr.error("最多增加5个指导老师");
 			add=add-1;
@@ -105,6 +86,11 @@ $(function() {
 	$("#delete-A-supervisor").click(function() {
 		del=del-1;
 		var count= add + del;
+		if($("#teacherList0 option").length > 0){
+			var deptmentSelect = new Array(); 
+			deptmentSelect = $("#deptmentSelect").val().split(",");
+			count += (deptmentSelect.length-2);
+		}
 		if(count<2){
 			toastr.error("最少分配1个指导老师");
 			del=del+1;
@@ -126,44 +112,44 @@ $(function() {
 		$.ajax({ 
 			 url: "/director/addSupervisor/" + deptId, 
 			 success: function(data){
-		
-				 select.empty();
-				 for(var i = 0;i<data.length;i++){
-					if(data[i].id == a[0] || data[i].id == a[1] || data[i].id == a[2] || data[i].id == a[3] || data[i].id == a[4])
+				 $("#teacherName"+select).empty();
+				 for(var i = 0;i<data.body.length;i++){
+					if(data.body[i].id == a[0] || data.body[i].id == a[1] || data.body[i].id == a[2] || data.body[i].id == a[3] || data.body[i].id == a[4])
 						{continue;}
-					select.append("<option value='"+data[i].id+"'>"+data[i].teacherName+"</option>");
+					$("#teacherName"+select).append("<option value='"+data.body[i].id+"'>"+data.body[i].teacherName+"</option>");
 				 }
-				 select.prepend("<option value='0' selected='selected'>======请选择教师======</option>");
+				 $("#teacherName"+select).prepend("<option value='0' selected='selected'>======请选择教师======</option>");
 			 
 			 },
 		     error : function() {
 		    	 toastr.error("error!");
 		     }
 		 });
+
 	}
 	
 	$("#teacherDepartment1").change(function() {
-		var select = $(this).parent().children().eq(2);
+		var select = 1;
 		var deptId = $(this).children('option:selected').val();
 		addTeacherName(select,deptId);
 	});
 	$("#teacherDepartment2").change(function() {
-		var select = $(this).parent().children().eq(2);
+		var select = 2;
 		var deptId = $(this).children('option:selected').val();
 		addTeacherName(select,deptId);
 	});
 	$("#teacherDepartment3").change(function() {
-		var select = $(this).parent().children().eq(2);
+		var select = 3;
 		var deptId = $(this).children('option:selected').val();
 		addTeacherName(select,deptId);
 	});
 	$("#teacherDepartment4").change(function() {
-		var select = $(this).parent().children().eq(2);
+		var select = 4;
 		var deptId = $(this).children('option:selected').val();
 		addTeacherName(select,deptId);
 	});
 	$("#teacherDepartment5").change(function() {
-		var select = $(this).parent().children().eq(2);
+		var select = 5;
 		var deptId = $(this).children('option:selected').val();
 		addTeacherName(select,deptId);
 	});	
@@ -210,5 +196,8 @@ $(function() {
 		var teacherName = $(this).children('option:selected').val();
 		var thisTeacher = 5;
 		deleteTeacherName(teacherName,deptId, thisTeacher);	});	
+	
+	
+	
 	
 });

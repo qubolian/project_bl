@@ -107,15 +107,46 @@ public class PublishController {
 	public ModelAndView addSupervisors(@PathVariable("id") Long id, Model model) {
 		Course course= courseService.getCourseById(id);	
 		List<Teacher> supervisiorSelect = course.getSupervisor();
+		String deptmentSelect = "0";
+		String teacherSelect = "0";
+		for (Teacher teacher : supervisiorSelect) {
+			
+			deptmentSelect = teacher.getDepartment().getId() + "," + deptmentSelect;
+			teacherSelect = teacher.getId() + "," + teacherSelect ;
+			
+		}
+	/*	deptmentSelect = deptmentSelect.substring(0,deptmentSelect.length() - 1);
+		teacherSelect = teacherSelect.substring(0,teacherSelect.length()-1);*/
 		
-		int countTecher = supervisiorSelect.size();
+		String[] depts = deptmentSelect.split(",");
+		Long[] dept = new Long[depts.length-1];
+
+		for(int i = 0; i<(depts.length-1) ;i++) {
+			dept[i] = Long.parseLong(depts[i]);
+
+			DepartmentList department = new DepartmentList();
+			department.setId(dept[i]);
+			List<Teacher> teacherList = teacherService.listTeacherByDepartment(department);
+			model.addAttribute("teacherList"+i, teacherList);
+			
+		}
+
+		for(int i = (depts.length-1);i<5 ;i++) {
+			List<Teacher> teacherList = new ArrayList<Teacher>();
+			Teacher teacher = new Teacher();
+			teacher.setId((long) 0);
+			teacher.setTeacherName("0");
+			teacherList.add(teacher);
+			model.addAttribute("teacherList"+i, teacherList);
+		}
+		
 		List<DepartmentList> departmentLists = departmentListService.listDepartmentLists();
 		
 		model.addAttribute("departmentLists", departmentLists);
 		model.addAttribute("teacher", new Teacher());
 		model.addAttribute("course", course);
-		model.addAttribute("countTecher", countTecher);
-		
+		model.addAttribute("deptmentSelect", deptmentSelect);
+		model.addAttribute("teacherSelect", teacherSelect);
 		
 		
 		return new ModelAndView("publish/addsupervisors", "teacherModel", model);
@@ -127,14 +158,16 @@ public class PublishController {
 	 * @return
 	 */
 	@GetMapping("/addSupervisor/{departmentId}")
-	public List<Teacher> addSupervisor(@PathVariable("departmentId") Long departmentId) {
-		
-		DepartmentList department = new DepartmentList();
-		department.setId(departmentId);
-		
-		List<Teacher> teacher = teacherService.listTeacherByDepartment(department);
-
-		return teacher;
+	public ResponseEntity<Response> addSupervisor(@PathVariable("departmentId") Long departmentId) {
+		List<Teacher> teacher = new ArrayList<Teacher>();
+		try {
+			DepartmentList department = new DepartmentList();
+			department.setId(departmentId);
+			teacher = teacherService.listTeacherByDepartment(department);
+		}  catch (ConstraintViolationException e)  {
+			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+		}
+		return ResponseEntity.ok().body(new Response(true, "显示成功", teacher));
 	}
 	
 	/**

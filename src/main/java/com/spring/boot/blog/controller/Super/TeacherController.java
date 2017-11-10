@@ -1,6 +1,7 @@
 package com.spring.boot.blog.controller.Super;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.ConstraintViolationException;
@@ -10,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +23,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.boot.blog.domain.Authority;
 import com.spring.boot.blog.domain.DepartmentList;
 import com.spring.boot.blog.domain.Teacher;
+import com.spring.boot.blog.domain.User;
+import com.spring.boot.blog.service.AuthorityService;
 import com.spring.boot.blog.service.DepartmentListService;
 import com.spring.boot.blog.service.TeacherService;
+import com.spring.boot.blog.service.UserService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
 
@@ -42,6 +49,11 @@ public class TeacherController {
 	@Autowired
 	private DepartmentListService departmentListService;
 	
+	@Autowired
+	private AuthorityService  authorityService;
+	
+	@Autowired
+	private UserService userService;
 	/**
 	 * 查询所有教师
 	 * @return
@@ -79,9 +91,30 @@ public class TeacherController {
 	@PostMapping("/addTeacher")
 	public ResponseEntity<Response> saveOrUpdate(Teacher teacher) {
 		try {
-			
 			teacherService.saveTeacher(teacher);
 			
+			//为Teacher新增一个User账户
+			User user = new User(teacher.getTeacherName(), (long)0, "teacher@qq.com",teacher.getId().toString()); 
+			user.setPassword("123456");
+			List<Authority> authorities = new ArrayList<>();
+			authorities.add(authorityService.getAuthorityById((long) 3));
+			user.setAuthorities(authorities);
+			if(user.getId() == 0) {
+				user.setEncodePassword(user.getPassword()); // 加密密码
+			}else {
+				// 判断密码是否做了变更
+				User originalUser = userService.getUserById(user.getId());
+				String rawPassword = originalUser.getPassword();
+				PasswordEncoder  encoder = new BCryptPasswordEncoder();
+				String encodePasswd = encoder.encode(user.getPassword());
+				boolean isMatch = encoder.matches(rawPassword, encodePasswd);
+				if (!isMatch) {
+					user.setEncodePassword(user.getPassword());
+				}else {
+					user.setPassword(user.getPassword());
+				}
+			}
+			userService.saveUser(user);
 		}  catch (ConstraintViolationException e)  {
 			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
 		}
