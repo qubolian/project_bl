@@ -97,7 +97,12 @@ public class NewsTypeController {
 			if(newsTypeService.getNewsTypeById(id)!=null){
 			 newsTypeService.removeNewsType(id);
 			}
-		} catch (Exception e) {
+		}catch (RuntimeException e) {
+			Throwable cause = e.getCause();
+		    if(cause instanceof org.hibernate.exception.ConstraintViolationException) {
+		    	return  ResponseEntity.ok().body( new Response(false, "请先删除该信息类别下所有消息"));
+		    }
+		}catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));

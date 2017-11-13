@@ -37,7 +37,6 @@ public class AdminController {
 		
 		
 		
-		
 		model.addAttribute("list", list);
 		
 		

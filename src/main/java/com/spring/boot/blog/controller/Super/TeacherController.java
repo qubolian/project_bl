@@ -145,6 +145,11 @@ public class TeacherController {
 			if(teacherService.getTeacherById(id)!=null){
 				teacherService.removeTeacher(id);
 			}
+		}catch (RuntimeException e) {
+			Throwable cause = e.getCause();
+		    if(cause instanceof org.hibernate.exception.ConstraintViolationException) {
+		    	return  ResponseEntity.ok().body( new Response(false, "请先删除该教师负责的课程"));
+		    }
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}

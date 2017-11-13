@@ -101,6 +101,7 @@ public class Course implements Serializable {
 	@Column(nullable = false) // 映射为字段，值不能为空
 	private String status;
 	
+	//课程负责人
 	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacherId")
 	private Teacher teacher;
@@ -130,6 +131,7 @@ public class Course implements Serializable {
 		this.lowerLimit = lowerLimit;
 	}
 	
+	//指导老师
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER) 
 	@JoinTable(name = "CourseSupervisor", 
 				joinColumns = {@JoinColumn(name = "courseId", referencedColumnName = "id")}, 
