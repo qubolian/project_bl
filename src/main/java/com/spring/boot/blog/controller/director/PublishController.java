@@ -13,6 +13,7 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolationException;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,6 +39,9 @@ import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.DeptmentSupervisor;
 import com.spring.boot.blog.vo.Response;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;  
+
 
 /**
  * 后台页面控制器.
@@ -102,9 +106,11 @@ public class PublishController {
 	 * @param id
 	 * @param model
 	 * @return
+	 * @throws JsonProcessingException 
 	 */
 	@GetMapping("/addSupervisors/{id}")
 	public ModelAndView addSupervisors(@PathVariable("id") Long id, Model model) {
+		
 		Course course= courseService.getCourseById(id);	
 		List<Teacher> supervisiorSelect = course.getSupervisor();
 		String deptmentSelect = "0";
@@ -127,6 +133,7 @@ public class PublishController {
 			DepartmentList department = new DepartmentList();
 			department.setId(dept[i]);
 			List<Teacher> teacherList = teacherService.listTeacherByDepartment(department);
+			
 			model.addAttribute("teacherList"+i, teacherList);
 			
 		}
@@ -156,18 +163,23 @@ public class PublishController {
 	 * 根据院系获取教师列表
 	 * @param departmentId
 	 * @return
+	 * @throws JsonProcessingException 
 	 */
 	@GetMapping("/addSupervisor/{departmentId}")
-	public ResponseEntity<Response> addSupervisor(@PathVariable("departmentId") Long departmentId) {
+	public ResponseEntity<Response> addSupervisor(@PathVariable("departmentId") Long departmentId) throws JsonProcessingException {
 		List<Teacher> teacher = new ArrayList<Teacher>();
+		String jsonlist = new String();
 		try {
 			DepartmentList department = new DepartmentList();
 			department.setId(departmentId);
 			teacher = teacherService.listTeacherByDepartment(department);
+			
+			ObjectMapper mapper = new ObjectMapper();
+			jsonlist = mapper.writeValueAsString(teacher); 
 		}  catch (ConstraintViolationException e)  {
 			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
 		}
-		return ResponseEntity.ok().body(new Response(true, "显示成功", teacher));
+		return ResponseEntity.ok().body(new Response(true, "显示成功", jsonlist));
 	}
 	
 	/**

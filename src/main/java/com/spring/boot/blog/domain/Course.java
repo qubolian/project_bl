@@ -53,47 +53,47 @@ public class Course implements Serializable {
 	private Long id; // 用户的唯一标识
 
 	@NotEmpty(message = "课程名称不能为空")
-	@Size(min=2, max=32)
+	@Size(min=2, max=32, message="课程名称长度必须在2到32之间")
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String name;
 
 	@NotEmpty(message = "学年度学期不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=16, message="学年度学期长度必须在2到16之间")
+	@Column(nullable = false, length = 16) // 映射为字段，值不能为空
 	private String term;
 	
 	@NotEmpty(message = "课程代码不能为空")
-	@Size(min=2, max=10)
+	@Size(min=2, max=10, message="课程代码长度必须在2到10之间")
 	@Column(nullable = false, length = 10) // 映射为字段，值不能为空
 	private String courseId;
 	
 	@NotEmpty(message = "课程序号不能为空")
-	@Size(min=2, max=10)
+	@Size(min=2, max=10, message="课程序号长度必须在2到10之间")
 	@Column(nullable = false, length = 10) // 映射为字段，值不能为空
 	private String courseNumber;
 	
 	@NotEmpty(message = "考核方式不能为空")
-	@Size(min=1, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=1, max=6, message="考核方式长度必须在1到6之间")
+	@Column(nullable = false, length = 6) // 映射为字段，值不能为空
 	private String examMethods;
 	
 	@NotEmpty(message = "学分不能为空")
-	@Size(min=1, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=1, max=5, message="学分长度必须在1到5之间")
+	@Column(nullable = false, length = 5) // 映射为字段，值不能为空
 	private String credit;
 
 	@NotEmpty(message = "课时不能为空")
-	@Size(min=1, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=1, max=5, message="课时长度必须在1到5之间")
+	@Column(nullable = false, length = 5) // 映射为字段，值不能为空
 	private String period;
 	
 	@NotEmpty(message = "班级不能为空")
-	@Size(min=2, max=32)
+	@Size(min=2, max=32, message="班级长度必须在2到32之间")
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String classes;
 
 	@NotEmpty(message = "课程类别不能为空")
-	@Size(min=2, max=32)
+	@Size(min=2, max=32, message="课程类别长度必须在2到32之间")
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String courseType;
 	
@@ -129,6 +129,7 @@ public class Course implements Serializable {
 	public void setLowerLimit(Long lowerLimit) {
 		this.lowerLimit = lowerLimit;
 	}
+	
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER) 
 	@JoinTable(name = "CourseSupervisor", 
 				joinColumns = {@JoinColumn(name = "courseId", referencedColumnName = "id")}, 

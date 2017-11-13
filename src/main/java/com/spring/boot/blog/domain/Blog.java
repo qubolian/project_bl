@@ -35,26 +35,26 @@ public class Blog implements Serializable {
 	private Long id; // 用户的唯一标识
 	
 	@NotEmpty(message = "标题不能为空")
-	@Size(min=2, max=50)
+	@Size(min=2, max=50, message="标题长度必须在2到50之间")
 	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
 	private String title;
 	
 	@NotEmpty(message = "摘要不能为空")
-	@Size(min=2, max=300)
+	@Size(min=2, max=300, message="摘要长度必须在2到300之间")
 	@Column(nullable = false) // 映射为字段，值不能为空
 	private String summary;
 
 	@Lob  // 大对象，映射 MySQL 的 Long Text 类型
 	@Basic(fetch=FetchType.LAZY) // 懒加载
 	@NotEmpty(message = "内容不能为空")
-	@Size(min=2)
+	@Size(min=2, message="内容长度不得小于2")
 	@Column(nullable = false) // 映射为字段，值不能为空
 	private String content;
 	
 	@Lob  // 大对象，映射 MySQL 的 Long Text 类型
 	@Basic(fetch=FetchType.LAZY) // 懒加载
 	@NotEmpty(message = "内容不能为空")
-	@Size(min=2)
+	@Size(min=2, message="内容长度不得小于2")
 	@Column(nullable = false) // 映射为字段，值不能为空
 	private String htmlContent; // 将 md 转为 html
 

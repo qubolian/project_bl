@@ -6,6 +6,14 @@
 	
 	<input type="hidden" id="deptmentSelect" name="deptmentSelect" th:value="${teacherModel.deptmentSelect}">
 	<input type="hidden" id="teacherSelect" name="teacherSelect" th:value="${teacherModel.teacherSelect}">
+	
+<!-- 	<input type="hidden" id="teacherList0" name="teacherList0" th:value="${teacherModel.teacherSelect}">
+	<input type="hidden" id="teacherList1" name="teacherList1" th:value="${teacherModel.teacherSelect}">
+	<input type="hidden" id="teacherList2" name="teacherList2" th:value="${teacherModel.teacherSelect}">
+	<input type="hidden" id="teacherList3" name="teacherList3" th:value="${teacherModel.teacherSelect}">
+	<input type="hidden" id="teacherList4" name="teacherList4" th:value="${teacherModel.teacherSelect}">
+ -->	
+	
  	<div th:if="${teacherModel.deptmentSelect} != 0" style="display:none">
 		<select id="teacherList0" name="teacherList0">  
 			<option th:each="t0 : ${teacherModel.teacherList0}"  th:value="${t0.id}" th:text="${t0.teacherName}" ></option>  
@@ -25,7 +33,7 @@
 		<select id="teacherList4" name="teacherList4">  
 			<option th:each="t4 : ${teacherModel.teacherList4}"  th:value="${t4.id}" th:text="${t4.teacherName}" ></option>  
 		</select> 
-	</div> 
+	</div>  
 	
 	<div class="form-group" id="form-group">
 		<div class="input-group col-md-13 col-xl-13">

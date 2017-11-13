@@ -112,11 +112,12 @@ $(function() {
 		$.ajax({ 
 			 url: "/director/addSupervisor/" + deptId, 
 			 success: function(data){
+				 var teacher = JSON.parse(data.body);
 				 $("#teacherName"+select).empty();
-				 for(var i = 0;i<data.body.length;i++){
-					if(data.body[i].id == a[0] || data.body[i].id == a[1] || data.body[i].id == a[2] || data.body[i].id == a[3] || data.body[i].id == a[4])
-						{continue;}
-					$("#teacherName"+select).append("<option value='"+data.body[i].id+"'>"+data.body[i].teacherName+"</option>");
+				 for(var i = 0;i<teacher.length;i++){
+					if(teacher[i].id == a[0] || teacher[i].id == a[1] || teacher[i].id == a[2] || teacher[i].id == a[3] || teacher[i].id == a[4]){
+						continue;}
+					$("#teacherName"+select).append("<option value='"+teacher[i].id+"'>"+teacher[i].teacherName+"</option>");
 				 }
 				 $("#teacherName"+select).prepend("<option value='0' selected='selected'>======请选择教师======</option>");
 			 
@@ -125,7 +126,6 @@ $(function() {
 		    	 toastr.error("error!");
 		     }
 		 });
-
 	}
 	
 	$("#teacherDepartment1").change(function() {
