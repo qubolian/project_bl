@@ -41,8 +41,6 @@ public class SuperController {
 	@Autowired
 	private ProjectMissionService projectMissionService;
 	
-	@Autowired
-	private NewsTypeService newsTypeService;
 	/**
 	 * 获取后台管理主页面
 	 * @return
@@ -81,74 +79,6 @@ public class SuperController {
 		}
 		return ResponseEntity.ok().body(new Response(true, "更新成功", pm));
 	}
-	
-	
-	/**
-	 * 查询所有信息类别
-	 * @return
-	 */
-	@GetMapping("/newsTypeList")
-	public ModelAndView listNewsType(@RequestParam(value="async",required=false) boolean async,
-			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
-			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
-			@RequestParam(value="messageType",required=false,defaultValue="") String messageType,
-			Model model) {
-	 
-		Pageable pageable = new PageRequest(pageIndex, pageSize);
-		Page<NewsType> page = newsTypeService.listNewsTypesByMessageTypeLike(messageType, pageable);
-		List<NewsType> list = page.getContent();	// 当前所在页面数据列表
-		
-		model.addAttribute("page", page);
-		model.addAttribute("newsTypeList", list);
-		return new ModelAndView(async==true?"newsType/list :: #mainContainerRepleace":"newsType/list", "newsTypeModel", model);
-	}
-	
-	@GetMapping("/addNewsType")
-	public ModelAndView createForm(Model model) {
-		model.addAttribute("newsType", new NewsType(0L,null));
-		return new ModelAndView("newsType/add", "newsTypeModel", model);
-	}
-	
-	
-	@PostMapping("/addNewsType")
-	public ResponseEntity<Response> saveOrUpdate(NewsType newsType) {
-		try {
-			newsTypeService.saveNewsType(newsType);
-		}  catch (ConstraintViolationException e)  {
-			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
-		}
-		return ResponseEntity.ok().body(new Response(true, "处理成功", newsType));
-	}
-	
-
-	@GetMapping(value = "editNewsType/{id}")
-	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
-		NewsType newsType= newsTypeService.getNewsTypeById(id);
-		model.addAttribute("newsType", newsType);
-		return new ModelAndView("newsType/edit", "newsTypeModel", model);
-	}
-	
-	
-	/**
-	 * 删除信息类别
-	 * @param id
-	 * @return
-	 */
-	@DeleteMapping(value = "/newsType/{id}")
-    public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
-		try {
-			if(newsTypeService.getNewsTypeById(id)!=null){
-			 newsTypeService.removeNewsType(id);
-			}
-		} catch (Exception e) {
-			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
-		}
-		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
-	}
-	
-
-	
-	
 	
 	 
 }

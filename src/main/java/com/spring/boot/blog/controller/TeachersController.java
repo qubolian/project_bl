@@ -4,23 +4,25 @@ package com.spring.boot.blog.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.spring.boot.blog.util.Menu;
 
 /**
- * 用户控制器.
+ * 后台页面控制器.
  * 
  * @author <a href="https://waylau.com">Way Lau</a>
  * @date 2017年2月26日
  */
 @Controller
-@RequestMapping("/admins")
-public class AdminController {
+@RequestMapping("/teachers/menu")
+public class TeachersController {
  
 
 	/**
@@ -29,20 +31,16 @@ public class AdminController {
 	 */
 	@GetMapping
 	public ModelAndView listUsers(Model model) {
-		List<Menu> list = new ArrayList<>();
-		list.add(new Menu("院办用户管理", "/users"));
-		list.add(new Menu("角色管理", "/roles"));
-		list.add(new Menu("学生管理", "/blogs"));
-		list.add(new Menu("教师管理", "/commits"));
+		List<Menu> directorList = new ArrayList<>();
 		
+		directorList.add(new Menu("课程开启","/director/courseList"));
 		
+		model.addAttribute("directorList", directorList);
 		
-		model.addAttribute("list", list);
-		
-		
-		
-		return new ModelAndView("admins/index", "model", model);
+		return new ModelAndView("teachers/menu/index", "model", model);
 	}
- 
+
+	
+
 	 
 }

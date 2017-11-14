@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.boot.blog.domain.DepartmentList;
 import com.spring.boot.blog.domain.NewsType;
-import com.spring.boot.blog.service.DepartmentListService;
+import com.spring.boot.blog.domain.ProjectMission;
+import com.spring.boot.blog.domain.User;
+import com.spring.boot.blog.service.NewsTypeService;
+import com.spring.boot.blog.service.ProjectMissionService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
 
@@ -33,56 +35,54 @@ import com.spring.boot.blog.vo.Response;
  */
 @RestController
 @RequestMapping("/super")
-public class DepartmentListController {
+public class NewsTypeController {
  
-
-	
 	@Autowired
-	private DepartmentListService departmentListService;
+	private NewsTypeService newsTypeService;
 	
 	/**
 	 * 查询所有信息类别
 	 * @return
 	 */
-	@GetMapping("/departmentListList")
+	@GetMapping("/newsTypeList")
 	public ModelAndView listNewsType(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
 			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
-			@RequestParam(value="department",required=false,defaultValue="") String department,
+			@RequestParam(value="messageType",required=false,defaultValue="") String messageType,
 			Model model) {
 	 
 		Pageable pageable = new PageRequest(pageIndex, pageSize);
-		Page<DepartmentList> page = departmentListService.listDepartmentListsByDepartmentLike(department, pageable);
-		List<DepartmentList> list = page.getContent();	// 当前所在页面数据列表
+		Page<NewsType> page = newsTypeService.listNewsTypesByMessageTypeLike(messageType, pageable);
+		List<NewsType> list = page.getContent();	// 当前所在页面数据列表
 		
 		model.addAttribute("page", page);
-		model.addAttribute("departmentListList", list);
-		return new ModelAndView(async==true?"departmentList/list :: #mainContainerRepleace":"departmentList/list", "departmentListModel", model);
+		model.addAttribute("newsTypeList", list);
+		return new ModelAndView(async==true?"newsType/list :: #mainContainerRepleace":"newsType/list", "newsTypeModel", model);
 	}
 	
-	@GetMapping("/addDepartmentList")
+	@GetMapping("/addNewsType")
 	public ModelAndView createForm(Model model) {
-		model.addAttribute("departmentList", new DepartmentList(0L,null,null));
-		return new ModelAndView("departmentList/add", "departmentListModel", model);
+		model.addAttribute("newsType", new NewsType(0L,null));
+		return new ModelAndView("newsType/add", "newsTypeModel", model);
 	}
 	
 	
-	@PostMapping("/addDepartmentList")
-	public ResponseEntity<Response> saveOrUpdate(DepartmentList departmentList) {
+	@PostMapping("/addNewsType")
+	public ResponseEntity<Response> saveOrUpdate(NewsType newsType) {
 		try {
-			departmentListService.saveDepartmentList(departmentList);
+			newsTypeService.saveNewsType(newsType);
 		}  catch (ConstraintViolationException e)  {
 			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
 		}
-		return ResponseEntity.ok().body(new Response(true, "处理成功", departmentList));
+		return ResponseEntity.ok().body(new Response(true, "处理成功", newsType));
 	}
 	
 
-	@GetMapping(value = "editDepartmentList/{id}")
+	@GetMapping(value = "editNewsType/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
-		DepartmentList departmentList= departmentListService.getDepartmentListById(id);
-		model.addAttribute("departmentList", departmentList);
-		return new ModelAndView("departmentList/edit", "departmentListModel", model);
+		NewsType newsType= newsTypeService.getNewsTypeById(id);
+		model.addAttribute("newsType", newsType);
+		return new ModelAndView("newsType/edit", "newsTypeModel", model);
 	}
 	
 	
@@ -91,22 +91,26 @@ public class DepartmentListController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/departmentList/{id}")
+	@DeleteMapping(value = "/newsType/{id}")
     public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
 		try {
-			if(departmentListService.getDepartmentListById(id)!=null){
-				departmentListService.removeDepartmentList(id);
+			if(newsTypeService.getNewsTypeById(id)!=null){
+			 newsTypeService.removeNewsType(id);
 			}
 		}catch (RuntimeException e) {
 			Throwable cause = e.getCause();
 		    if(cause instanceof org.hibernate.exception.ConstraintViolationException) {
-		    	return  ResponseEntity.ok().body( new Response(false, "请先删除该系部下所有信息"));
+		    	return  ResponseEntity.ok().body( new Response(false, "请先删除该信息类别下所有消息"));
 		    }
-		} catch (Exception e) {
+		}catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
 	}
+	
+
+	
+	
 	
 	 
 }

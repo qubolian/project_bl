@@ -59,7 +59,7 @@
 							<a class="director-add-supervisor" data-toggle="modal"
 								data-target="#flipFlop" role="button"
 								data-th-attr="courseId=${course.id}"> <i
-								th:class="${course.supervisor}==null?'fa fa-user-plus':'fa fa-users'"
+								th:class="${course.supervisor.isEmpty()}?'fa fa-user-plus':'fa fa-users'"
 								aria-hidden="true"></i>
 							</a> 
 		
