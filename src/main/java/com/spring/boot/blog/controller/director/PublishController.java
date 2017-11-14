@@ -3,12 +3,8 @@ package com.spring.boot.blog.controller.director;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
 import java.util.Set;
 
 import javax.validation.ConstraintViolationException;
@@ -19,16 +15,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.boot.blog.domain.Course;
 import com.spring.boot.blog.domain.DepartmentList;
 import com.spring.boot.blog.domain.Teacher;
@@ -36,7 +31,6 @@ import com.spring.boot.blog.service.CourseService;
 import com.spring.boot.blog.service.DepartmentListService;
 import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
-import com.spring.boot.blog.vo.DeptmentSupervisor;
 import com.spring.boot.blog.vo.Response;
 
 /**
@@ -156,9 +150,10 @@ public class PublishController {
 	 * 根据院系获取教师列表
 	 * @param departmentId
 	 * @return
+	 * @throws JsonProcessingException 
 	 */
 	@GetMapping("/addSupervisor/{departmentId}")
-	public ResponseEntity<Response> addSupervisor(@PathVariable("departmentId") Long departmentId) {
+	public ResponseEntity<Response> addSupervisor(@PathVariable("departmentId") Long departmentId) throws JsonProcessingException {
 		List<Teacher> teacher = new ArrayList<Teacher>();
 		try {
 			DepartmentList department = new DepartmentList();
@@ -167,6 +162,12 @@ public class PublishController {
 		}  catch (ConstraintViolationException e)  {
 			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
 		}
+		ObjectMapper mapper = new ObjectMapper();  
+		
+		  String json = mapper.writeValueAsString(teacher);  
+	      System.out.println(json);
+		
+		  
 		return ResponseEntity.ok().body(new Response(true, "显示成功", teacher));
 	}
 	
