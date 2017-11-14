@@ -73,7 +73,7 @@
             <div sec:authorize="isAuthenticated()"  class="row" >
 				<div class="dropdown">
 				   
-					<a class=" dropdown-toggle" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}" data-toggle="dropdown"><span sec:authentication="name"></span></a>
+					<a class=" dropdown-toggle" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}" data-toggle="dropdown"><span sec:authentication="principal.name"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
 					
 					<div class="dropdown-menu" >
 					<div sec:authorize="hasRole('ROLE_ADMIN')">
