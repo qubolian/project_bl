@@ -15,4 +15,5 @@ import com.spring.boot.blog.domain.Teacher;
 
 public interface CourseRepository extends JpaRepository<Course, Long>{
 	Page<Course> findByNameLikeAndStatus(String name, String status,Pageable pageable);
+	Page<Course> findByTeacherIdAndStatus(Long id, String status,Pageable pageable);
 }

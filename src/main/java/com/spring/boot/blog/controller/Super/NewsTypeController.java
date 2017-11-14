@@ -71,8 +71,13 @@ public class NewsTypeController {
 	public ResponseEntity<Response> saveOrUpdate(NewsType newsType) {
 		try {
 			newsTypeService.saveNewsType(newsType);
-		}  catch (ConstraintViolationException e)  {
-			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+		}catch (RuntimeException e)  {
+			Throwable cause = e.getCause();
+		    if(cause instanceof javax.persistence.RollbackException) {
+		    	return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
+		    }
+		}catch (Exception e)  {
+			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
 		return ResponseEntity.ok().body(new Response(true, "处理成功", newsType));
 	}

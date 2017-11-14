@@ -91,7 +91,7 @@ public class StudentController {
 			studentService.saveStudent(student);
 			
 			//为Student新增一个User账户
-			User user = new User(student.getName(), (long)0, "student@qq.com",student.getId().toString()); 
+			User user = new User(student.getName(), (long)0, "student"+student.getId()+"@qq.com",student.getId().toString()); 
 			user.setPassword("123456");
 			List<Authority> authorities = new ArrayList<>();
 			authorities.add(authorityService.getAuthorityById((long) 4));
@@ -113,8 +113,13 @@ public class StudentController {
 			}
 			userService.saveUser(user);
 
-		}  catch (ConstraintViolationException e)  {
-			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+		}catch (RuntimeException e)  {
+			Throwable cause = e.getCause();
+		    if(cause instanceof javax.persistence.RollbackException) {
+		    	return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
+		    }
+		}catch (Exception e)  {
+			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
 		return ResponseEntity.ok().body(new Response(true, "处理成功", student));
 	}

@@ -70,4 +70,11 @@ public class CourseServiceImpl implements CourseService {
 		return Courses;
 	}
 	
+	@Override
+	@Transactional
+	public Page<Course> listCoursesByTeacherIdAndStatus(Long id, String status,Pageable pageable){
+		Page<Course> Courses = CourseRepository.findByTeacherIdAndStatus(id,status, pageable);
+		return Courses;
+	}
+	
 }

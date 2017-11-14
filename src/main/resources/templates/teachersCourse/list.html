@@ -1,6 +1,6 @@
 
 
-<div class="card-header bg-dark font-white" >
+<div class="card-header bg-dark font-white">
 
 	<div class="input-group col-md-7 col-xl-6">
 
@@ -16,7 +16,6 @@
 
 <div id="mainContainer" class="container">
 	<div id="mainContainerRepleace" class="row" th:unless="${courseModel.courseList.isEmpty()}">
-	
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -36,7 +35,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+
 				<tr th:each="course : ${courseModel.courseList}">
 					<td th:text="${course.name}">课程名称</td>
 					<td th:text="${course.term}">学年度学期</td>
@@ -49,31 +48,34 @@
 					<td th:text="${course.courseType}">类别</td> 
 					<td th:text="${course.upperLimit}">上限</td> 
 					<td th:text="${course.lowerLimit}">下限</td> 
+					
 					<td>
 						<div>
-							<a class="director-add-teacher" data-toggle="modal"
+						
+							<a class="teachers-upload-files" data-toggle="modal"
 								data-target="#flipFlop" role="button"
 								data-th-attr="courseId=${course.id}"> <i
-								th:class="${course.teacher}==null?'fa fa-user-plus':'fa fa-user'"
-								aria-hidden="true"></i>
+								class="fa fa-upload" aria-hidden="true"></i>
 							</a> 
-							<a class="director-add-supervisor" data-toggle="modal"
+							
+							<a class="teachers-edit-standard" data-toggle="modal"
 								data-target="#flipFlop" role="button"
 								data-th-attr="courseId=${course.id}"> <i
-								th:class="${course.supervisor.isEmpty()}?'fa fa-user-plus':'fa fa-users'"
-								aria-hidden="true"></i>
+								class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							</a> 
-		
+							
+							</a> <a class="teachers-start-course" role="button"
+								data-th-attr="courseId=${course.id}"> <i class="fa fa-level-up"
+								aria-hidden="true"></i>
+							</a>
+
 						</div>
 					</td>
 				</tr>
-				
-				
-				
+
 			</tbody>
-				
+
 		</table>
-		
 		<div th:replace="~{fragments/page :: page}">...</div>
 
 	</div>
@@ -87,7 +89,7 @@
 <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog"
 	aria-labelledby="modalLabel" aria-hidden="true" >
 	<div class="modal-dialog" role="document">
-		<div class="modal-content" style="width:600px">
+		<div class="modal-content" style="width:700px">
 			<div class="modal-header">
 				<h5 class="modal-title" id="modalLabel">新增/编辑</h5>
 				<button type="button" class="close" data-dismiss="modal"
@@ -105,5 +107,5 @@
 </div>
 
 <!-- JavaScript -->
-<script src="../../js/director/publish.js" th:src="@{/js/director/publish.js}"></script>
+<script src="../../js/teachers/main.js" th:src="@{/js/teachers/main.js}"></script>
 

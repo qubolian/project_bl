@@ -30,12 +30,12 @@ public class TeachersController {
 	 * @return
 	 */
 	@GetMapping
-	public ModelAndView listUsers(Model model) {
-		List<Menu> directorList = new ArrayList<>();
+	public ModelAndView listTeachers(Model model) {
+		List<Menu> teachersList = new ArrayList<>();
 		
-		directorList.add(new Menu("课程开启","/director/courseList"));
+		teachersList.add(new Menu("课程开启","/teachers/courseList"));
 		
-		model.addAttribute("directorList", directorList);
+		model.addAttribute("teachersList", teachersList);
 		
 		return new ModelAndView("teachers/menu/index", "model", model);
 	}
