@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -77,24 +78,29 @@ public class UserspaceController {
 	
 	@PostMapping("/{username}/profile")
 	@PreAuthorize("authentication.name.equals(#username)") 
-	public String saveProfile(@PathVariable("username") String username,User user) {
-		User originalUser = userService.getUserById(user.getId());
-		originalUser.setEmail(user.getEmail());
-		originalUser.setName(user.getName());
+	public String saveProfile( User user, @PathVariable("username") String username,@RequestParam(value="newPassword",required=false) String newPassword) {
 		
-		// 判断密码是否做了变更
-		String rawPassword = originalUser.getPassword();
-		PasswordEncoder  encoder = new BCryptPasswordEncoder();
-		String encodePasswd = encoder.encode(user.getPassword());
-		boolean isMatch = encoder.matches(rawPassword, encodePasswd);
-		if (!isMatch) {
-			originalUser.setEncodePassword(user.getPassword());
-		}
-		
-		userService.saveUser(originalUser);
-		return "redirect:/u/" + username + "/profile";
-	}
+			User originalUser = userService.getUserById(user.getId());
+			originalUser.setEmail(user.getEmail());
+			originalUser.setName(user.getName());
+			
+			/*// 判断密码是否做了变更
+			String rawPassword = originalUser.getPassword();
+			PasswordEncoder  encoder = new BCryptPasswordEncoder();
+			String encodePasswd = encoder.encode(user.getPassword());
+			boolean isMatch = encoder.matches(rawPassword, encodePasswd);
+			if (!isMatch) {
+				originalUser.setEncodePassword(user.getPassword());
+			}*/
+			// 判断密码是否做了变更
+			if(newPassword != "") {
+				originalUser.setEncodePassword(newPassword);
+			}
+			
+			userService.saveUser(originalUser);
+			return "redirect:/u/" + username + "/profile";
 	
+	}
 	
 	/**
 	 * 保存头像
@@ -233,9 +239,12 @@ public class UserspaceController {
 		blog.setUser(user);
 		try {
 			blogService.saveBlog(blog);
-		} catch (ConstraintViolationException e)  {
-			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
-		} catch (Exception e) {
+		}catch (RuntimeException e)  {
+			Throwable cause = e.getCause();
+		    if(cause instanceof javax.persistence.RollbackException) {
+		    	return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
+		    }
+		}catch (Exception e) {
 			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
 		

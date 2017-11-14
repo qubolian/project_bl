@@ -71,8 +71,13 @@ public class DepartmentListController {
 	public ResponseEntity<Response> saveOrUpdate(DepartmentList departmentList) {
 		try {
 			departmentListService.saveDepartmentList(departmentList);
-		}  catch (ConstraintViolationException e)  {
-			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+		}catch (RuntimeException e)  {
+			Throwable cause = e.getCause();
+		    if(cause instanceof javax.persistence.RollbackException) {
+		    	return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
+		    }
+		}catch (Exception e)  {
+			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
 		return ResponseEntity.ok().body(new Response(true, "处理成功", departmentList));
 	}
@@ -97,6 +102,11 @@ public class DepartmentListController {
 			if(departmentListService.getDepartmentListById(id)!=null){
 				departmentListService.removeDepartmentList(id);
 			}
+		}catch (RuntimeException e) {
+			Throwable cause = e.getCause();
+		    if(cause instanceof org.hibernate.exception.ConstraintViolationException) {
+		    	return  ResponseEntity.ok().body( new Response(false, "请先删除该系部下所有信息"));
+		    }
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}

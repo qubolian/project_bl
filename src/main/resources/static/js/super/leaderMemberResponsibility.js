@@ -63,9 +63,9 @@ $(function() {
 				 "member":$("#member").val()*/
 			 },
 			 success: function(data){
-				 
-				 CKEDITOR.instances.leader.setData(data.body.leader);
-				 CKEDITOR.instances.member.setData(data.body.member);
+				 console.log(data);
+				 CKEDITOR.instances.leader.setData(data.body.leaderResponsibility);
+				 CKEDITOR.instances.member.setData(data.body.memberResponsibility);
 				/* $("#leader").val(data.body.leaderResponsibility);
 				 $("#member").val(data.body.memberResponsibility);*/
 		     },

@@ -45,7 +45,7 @@
             <div class="card ">
  				<h5 class="card-header"><i class="fa fa-cog" aria-hidden="true"></i> 个人设置</h5>
                     <div class="card-block">
-						<form th:action="@{/u/admin/profile}" method="post" th:object="${userModel.user}" id="userForm">
+						<form th:action="@{/u/admin/profile}" method="post" th:object="${userModel.user}" id="userForm" >
 							<input type="hidden" name="id" id="userId" th:value="*{id}" >
 							
 							<div class="form-group ">
@@ -62,11 +62,23 @@
 								<input type="text" class="form-control" id="name" name="name" th:value="*{name}" maxlength="20" placeholder="请输入姓名，至少2个字符，至多20个" >
 							</div>
 							<div class="form-group">
+								<label class="col-form-label">修改密码</label>
+								<input type="checkbox" id="changePassword">
+							</div>
+							<div class="form-group"  style="display:none">
 								<label for="password" class="col-form-label">密码</label>
-								<input type="password" class="form-control" id="password" name="password"  th:value="*{password}" maxlength="30" placeholder="请输入密码，至少3个字符，至多30个" >
+								<input type="password" class="form-control" id="Password" name="Password"  th:value="*{password}" maxlength="30" readonly >
+							</div>
+							<div class="form-group" style="display:none">
+								<label for="password" class="col-form-label">新密码</label>
+								<input type="password" class="form-control" id="newPassword" name="newPassword" value="" maxlength="30" placeholder="请输入新密码，至少3个字符，至多30个" >
+							</div>
+							<div class="form-group" style="display:none">
+								<label for="password" class="col-form-label">确认密码</label>
+								<input type="password" class="form-control" id="confirmPassword"  value="" maxlength="30" placeholder="请输入新密码，至少3个字符，至多30个" >
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary">保存</button>
+								<button id="submit" type="submit" class="btn btn-primary" >保存</button>
 							</div>
 						</form>
                         

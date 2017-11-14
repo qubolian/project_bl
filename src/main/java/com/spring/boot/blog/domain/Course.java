@@ -13,14 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 import org.hibernate.validator.constraints.NotEmpty;
-
 
 /**
  * 发布单位
@@ -30,8 +27,6 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity // 实体
 public class Course implements Serializable {
-	
-
 
 	public Course() {
 		super();
@@ -53,63 +48,64 @@ public class Course implements Serializable {
 	private Long id; // 用户的唯一标识
 
 	@NotEmpty(message = "课程名称不能为空")
-	@Size(min=2, max=32, message="课程名称长度必须在2到32之间")
+
+	@Size(min = 2, max = 32, message = "课程名称长度必须在2到32之间")
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String name;
 
 	@NotEmpty(message = "学年度学期不能为空")
-	@Size(min=2, max=16, message="学年度学期长度必须在2到16之间")
+	@Size(min = 2, max = 16, message = "学年度学期长度必须在2到16之间")
 	@Column(nullable = false, length = 16) // 映射为字段，值不能为空
 	private String term;
-	
+
 	@NotEmpty(message = "课程代码不能为空")
-	@Size(min=2, max=10, message="课程代码长度必须在2到10之间")
+	@Size(min = 2, max = 10, message = "课程代码长度必须在2到10之间")
 	@Column(nullable = false, length = 10) // 映射为字段，值不能为空
 	private String courseId;
-	
+
 	@NotEmpty(message = "课程序号不能为空")
-	@Size(min=2, max=10, message="课程序号长度必须在2到10之间")
+	@Size(min = 2, max = 10, message = "课程序号长度必须在2到10之间")
 	@Column(nullable = false, length = 10) // 映射为字段，值不能为空
 	private String courseNumber;
-	
+
 	@NotEmpty(message = "考核方式不能为空")
-	@Size(min=1, max=6, message="考核方式长度必须在1到6之间")
+	@Size(min = 1, max = 6, message = "考核方式长度必须在1到6之间")
 	@Column(nullable = false, length = 6) // 映射为字段，值不能为空
 	private String examMethods;
-	
+
 	@NotEmpty(message = "学分不能为空")
-	@Size(min=1, max=5, message="学分长度必须在1到5之间")
+	@Size(min = 1, max = 5, message = "学分长度必须在1到5之间")
 	@Column(nullable = false, length = 5) // 映射为字段，值不能为空
 	private String credit;
 
 	@NotEmpty(message = "课时不能为空")
-	@Size(min=1, max=5, message="课时长度必须在1到5之间")
+	@Size(min = 1, max = 5, message = "课时长度必须在1到5之间")
 	@Column(nullable = false, length = 5) // 映射为字段，值不能为空
 	private String period;
-	
+
 	@NotEmpty(message = "班级不能为空")
-	@Size(min=2, max=32, message="班级长度必须在2到32之间")
+	@Size(min = 2, max = 32, message = "班级长度必须在2到32之间")
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String classes;
 
 	@NotEmpty(message = "课程类别不能为空")
-	@Size(min=2, max=32, message="课程类别长度必须在2到32之间")
+	@Size(min = 2, max = 32, message = "课程类别长度必须在2到32之间")
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String courseType;
-	
+
 	@NotEmpty(message = "课程状态默认为未发布")
 	@Column(nullable = false) // 映射为字段，值不能为空
 	private String status;
-	
+
+	// 课程负责人
 	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacherId")
+	@JoinColumn(name = "teacherId")
 	private Teacher teacher;
-	
 
 	@NotNull(message = "队伍收取学生上限不能为空")
 	@Column(nullable = false) // 映射为字段，值不能为空
 	private Long upperLimit;
-	
+
 	@NotNull(message = "队伍收取学生下限不能为空")
 	@Column(nullable = false) // 映射为字段，值不能为空
 	private Long lowerLimit;
@@ -129,11 +125,12 @@ public class Course implements Serializable {
 	public void setLowerLimit(Long lowerLimit) {
 		this.lowerLimit = lowerLimit;
 	}
-	
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER) 
-	@JoinTable(name = "CourseSupervisor", 
-				joinColumns = {@JoinColumn(name = "courseId", referencedColumnName = "id")}, 
-				inverseJoinColumns = {@JoinColumn(name = "supervisorId", referencedColumnName = "id")}) 
+
+	// 指导老师
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinTable(name = "CourseSupervisor", joinColumns = {
+			@JoinColumn(name = "courseId", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "supervisorId", referencedColumnName = "id") })
 	private List<Teacher> supervisor;
 
 	public List<Teacher> getSupervisor() {
@@ -232,10 +229,4 @@ public class Course implements Serializable {
 		this.courseType = courseType;
 	}
 
-
-
-
-	
-	
- 
 }

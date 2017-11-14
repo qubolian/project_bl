@@ -1,4 +1,4 @@
-package com.spring.boot.blog.controller.director;
+package com.spring.boot.blog.controller.Super;
 
 
 import java.util.List;
@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-
-import com.spring.boot.blog.domain.Course;
-import com.spring.boot.blog.service.CourseService;
+import com.spring.boot.blog.domain.NewsType;
+import com.spring.boot.blog.domain.ProjectMission;
+import com.spring.boot.blog.domain.User;
+import com.spring.boot.blog.service.NewsTypeService;
+import com.spring.boot.blog.service.ProjectMissionService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
 
@@ -32,49 +34,43 @@ import com.spring.boot.blog.vo.Response;
  * @date 2017年9月26日
  */
 @RestController
-@RequestMapping("/director")
-public class CourseController {
+@RequestMapping("/super")
+public class NewsTypeController {
  
-
-	
 	@Autowired
-	private CourseService courseService;
-	
-
+	private NewsTypeService newsTypeService;
 	
 	/**
-	 * 查询所有课程
+	 * 查询所有信息类别
 	 * @return
 	 */
-	@GetMapping("/courseList")
-	public ModelAndView listCourse(@RequestParam(value="async",required=false) boolean async,
+	@GetMapping("/newsTypeList")
+	public ModelAndView listNewsType(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
 			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
-			@RequestParam(value="name",required=false,defaultValue="") String name,
+			@RequestParam(value="messageType",required=false,defaultValue="") String messageType,
 			Model model) {
 	 
 		Pageable pageable = new PageRequest(pageIndex, pageSize);
-		Page<Course> page = courseService.listCoursesByNameLike(name, "0", pageable);
-		List<Course> list = page.getContent();	// 当前所在页面数据列表
+		Page<NewsType> page = newsTypeService.listNewsTypesByMessageTypeLike(messageType, pageable);
+		List<NewsType> list = page.getContent();	// 当前所在页面数据列表
 		
 		model.addAttribute("page", page);
-		model.addAttribute("courseList", list);
-		return new ModelAndView(async==true?"course/list :: #mainContainerRepleace":"course/list", "courseModel", model);
+		model.addAttribute("newsTypeList", list);
+		return new ModelAndView(async==true?"newsType/list :: #mainContainerRepleace":"newsType/list", "newsTypeModel", model);
 	}
 	
-	@GetMapping("/addCourse")
+	@GetMapping("/addNewsType")
 	public ModelAndView createForm(Model model) {
-		model.addAttribute("course", new Course());
-		return new ModelAndView("course/add", "courseModel", model);
+		model.addAttribute("newsType", new NewsType(0L,null));
+		return new ModelAndView("newsType/add", "newsTypeModel", model);
 	}
 	
 	
-	@PostMapping("/addCourse")
-	public ResponseEntity<Response> saveOrUpdate(Course course) {
+	@PostMapping("/addNewsType")
+	public ResponseEntity<Response> saveOrUpdate(NewsType newsType) {
 		try {
-			
-			courseService.saveCourse(course);
-			
+			newsTypeService.saveNewsType(newsType);
 		}catch (RuntimeException e)  {
 			Throwable cause = e.getCause();
 		    if(cause instanceof javax.persistence.RollbackException) {
@@ -83,52 +79,43 @@ public class CourseController {
 		}catch (Exception e)  {
 			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
-		return ResponseEntity.ok().body(new Response(true, "处理成功", course));
+		return ResponseEntity.ok().body(new Response(true, "处理成功", newsType));
 	}
 	
 
-	@GetMapping(value = "editCourse/{id}")
+	@GetMapping(value = "editNewsType/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
-		Course course= courseService.getCourseById(id);	
-		model.addAttribute("course", course);
-		return new ModelAndView("course/edit", "courseModel", model);
+		NewsType newsType= newsTypeService.getNewsTypeById(id);
+		model.addAttribute("newsType", newsType);
+		return new ModelAndView("newsType/edit", "newsTypeModel", model);
 	}
 	
 	
 	/**
-	 * 删除课程
+	 * 删除信息类别
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/course/{id}")
+	@DeleteMapping(value = "/newsType/{id}")
     public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
 		try {
-			if(courseService.getCourseById(id)!=null){
-				courseService.removeCourse(id);
+			if(newsTypeService.getNewsTypeById(id)!=null){
+			 newsTypeService.removeNewsType(id);
 			}
-		} catch (Exception e) {
+		}catch (RuntimeException e) {
+			Throwable cause = e.getCause();
+		    if(cause instanceof org.hibernate.exception.ConstraintViolationException) {
+		    	return  ResponseEntity.ok().body( new Response(false, "请先删除该信息类别下所有消息"));
+		    }
+		}catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
 	}
 	
-	/**
-	 * 发布课程
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/publishCourse/{id}")
-	public ResponseEntity<Response> publish(@PathVariable("id") Long id, Model model) {
-		try {
-			Course course= courseService.getCourseById(id);	
-			course.setStatus("1");
-			courseService.saveCourse(course);
-			
-		} catch (Exception e) {
-			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
-		}
-		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
-	}
+
+	
+	
+	
 	 
 }
