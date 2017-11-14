@@ -39,23 +39,23 @@ public class User implements UserDetails{
 	private Long id; // 用户的唯一标识
 
 	@NotEmpty(message = "姓名不能为空")
-	@Size(min=2, max=20)
+	@Size(min=2, max=20, message="姓名长度必须在2到20之间")
 	@Column(nullable = false, length = 20) // 映射为字段，值不能为空
 	private String name;
 
 	@NotEmpty(message = "邮箱不能为空")
-	@Size(max=50)
+	@Size(max=50, message="邮箱长度必须在2到50之间")
 	@Email(message= "邮箱格式不对" ) 
 	@Column(nullable = false, length = 50, unique = true)
 	private String email;
 
 	@NotEmpty(message = "账号不能为空")
-	@Size(min=3, max=20)
+	@Size(min=3, max=20, message="账号长度必须在2到20之间")
 	@Column(nullable = false, length = 20, unique = true)
 	private String userName; // 用户账号，用户登录时的唯一标识
 
 	@NotEmpty(message = "密码不能为空")
-	@Size(max=100)
+	@Size(max=100, message="密码长度不能大于100")
 	@Column(length = 100)
 	private String password; // 登录时密码
 	

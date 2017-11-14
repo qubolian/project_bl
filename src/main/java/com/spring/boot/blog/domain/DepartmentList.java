@@ -47,12 +47,12 @@ public class DepartmentList implements Serializable {
 	private Long id; // 用户的唯一标识
 	
 	@NotEmpty(message = "代码不能为空")
-	@Size(min=2, max=16)
+	@Size(min=2, max=16, message="代码长度必须在2到16之间")
 	@Column(nullable = false, length = 16) // 映射为字段，值不能为空
 	private String code;
 	
 	@NotEmpty(message = "发布单位不能为空")
-	@Size(min=2, max=64)
+	@Size(min=2, max=64, message="发布单位长度必须在2到64之间")
 	@Column(nullable = false, length = 64) // 映射为字段，值不能为空
 	private String department;
 

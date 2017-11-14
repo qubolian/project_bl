@@ -38,23 +38,23 @@ public class HowtoTeamUp  implements Serializable {
 	private Long id; // 用户的唯一标识
 	
 	@NotEmpty(message = "年级不能为空")
-	@Size(min=2, max=1024)
-	@Column(nullable = false, length = 256) // 映射为字段，值不能为空
+	@Size(min=2, max=10, message="年级长度必须在2到10之间")
+	@Column(nullable = false, length = 10) // 映射为字段，值不能为空
 	private String gradeId;
 	
 	@NotEmpty(message = "组队期不能为空")
-	@Size(min=2, max=64)
-	@Column(nullable = false, length = 64) // 映射为字段，值不能为空
+	@Size(min=2, max=32, message="组队期长度必须在2到32之间")
+	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String teamUpStage;
 
 	@NotEmpty(message = "寻找指导老师期不能为空")
-	@Size(min=2, max=64)
-	@Column(nullable = false, length = 64) // 映射为字段，值不能为空
+	@Size(min=2, max=32, message="寻找指导老师期长度必须在2到32之间")
+	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String seekAdvisorStage;
 	
 	@NotEmpty(message = "专题执行期不能为空")
-	@Size(min=2, max=64)
-	@Column(nullable = false, length = 64) // 映射为字段，值不能为空
+	@Size(min=2, max=32, message="专题执行期长度必须在2到32之间")
+	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String projectConductionStage;
 
 	public Long getId() {

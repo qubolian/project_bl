@@ -35,12 +35,12 @@ public class ProjectMission implements Serializable {
 	private Long id; // 用户的唯一标识
 	
 	@NotEmpty(message = "宗旨不能为空")
-	@Size(min=2, max=1024)
+	@Size(min=2, max=1024, message="宗旨长度必须在2到1024之间")
 	@Column(nullable = false, length = 1024) // 映射为字段，值不能为空
 	private String misson;
 	
 	@NotEmpty(message = "备注不能为空")
-	@Size(min=2, max=2048)
+	@Size(min=2, max=2048, message="备注长度必须在2到2048之间")
 	@Column(nullable = false, length = 2048) // 映射为字段，值不能为空
 	private String mark;
 

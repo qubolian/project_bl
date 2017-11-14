@@ -19,6 +19,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * 发布单位
@@ -43,8 +45,8 @@ public class Teacher implements Serializable {
 	private Long id;
 	
 	@NotEmpty(message = "教师名称不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=16, message="教师名称长度必须在2到16之间")
+	@Column(nullable = false, length = 16) // 映射为字段，值不能为空
 	private String teacherName;
 	
 	@NotEmpty(message = "请选择教师性别")
@@ -52,20 +54,22 @@ public class Teacher implements Serializable {
 	private String sex;
 	
 	@NotEmpty(message = "教师类型不能为空")
-	@Size(min=2, max=32)
-	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
+	@Size(min=2, max=16, message="教师类型长度必须在2到16之间")
+	@Column(nullable = false, length = 16) // 映射为字段，值不能为空
 	private String teacherType;
 	
 	@NotEmpty(message = "学院不能为空")
-	@Size(min=2, max=32)
+	@Size(min=2, max=32, message="学院长度必须在2到32之间")
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String college;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "departmentId")
 	@NotNull(message = "必须选择系部")
 	private DepartmentList department;
 	
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER) 
 	@JoinTable(name = "CourseSupervisor", 
 				joinColumns = {@JoinColumn(name = "supervisorId", referencedColumnName = "id")}, 

@@ -7,57 +7,57 @@
 	
  	<div class="form-group ">
 		<label for="name" class="col-form-label">课程名称</label>
-		<input type="text" class="form-control" id="name" name="name"  th:value="*{name}" maxlength="32" placeholder="请输课程名称">
+		<input type="text" class="form-control" id="name" name="name"  th:value="*{name}" maxlength="32" placeholder="请输课程名称，2到32字符">
 	</div>
 	
 	<div class="form-group ">
 		<label for="term" class="col-form-label">学年度学期</label>
-		<input type="text" class="form-control" id="term" name="term"  th:value="*{term}" maxlength="32" placeholder="请输学年度学期">
+		<input type="text" class="form-control" id="term" name="term"  th:value="*{term}" maxlength="32" placeholder="请输学年度学期，例：2017-2018-1（表示2017-2018学年第一学期）">
 	</div>
 	
 	 <div class="form-group ">
 		<label for="courseId" class="col-form-label">课程代码</label>
-		<input type="text" class="form-control" id="courseId" name="courseId" th:value="*{courseId}" maxlength="32" placeholder="请输课程代码">
+		<input type="text" class="form-control" id="courseId" name="courseId" th:value="*{courseId}" maxlength="32" placeholder="请输课程代码，7位10进制数">
 	</div> 
 	
 	<div class="form-group ">
 		<label for="courseNumber" class="col-form-label">课程序号</label>
-		<input type="text" class="form-control" id="courseNumber" name="courseNumber" th:value="*{courseNumber}" maxlength="32" placeholder="请输课程序号">
+		<input type="text" class="form-control" id="courseNumber" name="courseNumber" th:value="*{courseNumber}" maxlength="32" placeholder="请输课程序号，4位10进制数">
 	</div>
 
 	<div class="form-group ">
 		<label for="examMethods" class="col-form-label">考核方式</label>
-		<input type="text" class="form-control" id="examMethods" name="examMethods" th:value="*{examMethods}" maxlength="32" placeholder="请输考核方式">
+		<input type="text" class="form-control" id="examMethods" name="examMethods" th:value="*{examMethods}" maxlength="32" placeholder="请输考核方式，例：考试/考查">
 	</div>
 	
 	<div class="form-group ">
 		<label for="credit" class="col-form-label">学分</label>
-		<input type="text" class="form-control" id="credit" name="credit" th:value="*{credit}" maxlength="32" placeholder="请输学分" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+		<input type="text" class="form-control" id="credit" name="credit" th:value="*{credit}" maxlength="32" placeholder="请输学分，只能输入数字" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
 	</div>
 
 	<div class="form-group ">
 		<label for="period" class="col-form-label">课时</label>
-		<input type="text" class="form-control" id="period" name="period" th:value="*{period}" maxlength="32" placeholder="请输课时" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+		<input type="text" class="form-control" id="period" name="period" th:value="*{period}" maxlength="32" placeholder="请输课时，只能输入数字" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
 	</div>
 	
 	<div class="form-group ">
 		<label for="classes" class="col-form-label">班级</label>
-		<input type="text" class="form-control" id="classes" name="classes" th:value="*{classes}" maxlength="32" placeholder="请输班级">
+		<input type="text" class="form-control" id="classes" name="classes" th:value="*{classes}" maxlength="32" placeholder="请输班级，2到32字符">
 	</div>
 	
 	<div class="form-group ">
 		<label for="courseType" class="col-form-label">课程类别</label>
-		<input type="text" class="form-control" id="courseType" name="courseType" th:value="*{courseType}" maxlength="32" placeholder="请输课程类别">
+		<input type="text" class="form-control" id="courseType" name="courseType" th:value="*{courseType}" maxlength="32" placeholder="请输课程类别，2到32字符">
 	</div>
 	
 	<div class="form-group ">
 		<label for="upperLimit" class="col-form-label">队伍收取学生上限</label>
-		<input type="text" class="form-control" id="upperLimit" name="upperLimit" placeholder="请输队伍收取学生上限" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+		<input type="text" class="form-control" id="upperLimit" name="upperLimit" placeholder="请输队伍收取学生上限，只能输入数字" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
 	</div>
 	
 	<div class="form-group ">
 		<label for="lowerLimit" class="col-form-label">队伍收取学生下限</label>
-		<input type="text" class="form-control" id="lowerLimit" name="lowerLimit" th:value="*{lowerLimit}" placeholder="请输队伍收取学生下限" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+		<input type="text" class="form-control" id="lowerLimit" name="lowerLimit" th:value="*{lowerLimit}" placeholder="请输队伍收取学生下限，只能输入数字" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
 	</div>
 </form>
 </div>

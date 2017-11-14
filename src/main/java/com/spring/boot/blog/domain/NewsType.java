@@ -39,7 +39,7 @@ public class NewsType implements Serializable {
 	private Long id; // 用户的唯一标识
 	
 	@NotEmpty(message = "信息类别不能为空")
-	@Size(min=2, max=64)
+	@Size(min=2, max=64, message="信息类别必须在2到64之间")
 	@Column(nullable = false, length = 64) // 映射为字段，值不能为空
 	private String messageType;
 	

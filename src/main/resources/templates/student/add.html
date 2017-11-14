@@ -3,12 +3,12 @@
 <form th:action="@{/super/}" method="post" th:object="${studentModel.student}" id="studentForm">
 	<div class="form-group ">
 		<label for="id" class="col-form-label">学号</label>
-		<input type="text" class="form-control" id="id" name="id"   maxlength="32" placeholder="请输学号" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+		<input type="text" class="form-control" id="id" name="id"   maxlength="32" placeholder="请输学号，7位10进制数" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
 	</div>
 	
 	<div class="form-group ">
 		<label for="name" class="col-form-label">学生姓名</label>
-		<input type="text" class="form-control" id="name" name="name"   maxlength="32" placeholder="请输学生姓名">
+		<input type="text" class="form-control" id="name" name="name"   maxlength="32" placeholder="请输学生姓名，2到16字符">
 	</div>
 	
 	<div class="form-group ">
@@ -22,12 +22,12 @@
 	
 	<div class="form-group ">
 		<label for="grade" class="col-form-label">年级</label>
-		<input type="text" class="form-control" id="grade" name="grade"  th:value="*{grade}" maxlength="32" placeholder="请输年级">
+		<input type="text" class="form-control" id="grade" name="grade"  th:value="*{grade}" maxlength="32" placeholder="请输年级，例：2016-9（表示2016级9月入学）">
 	</div>
 	
 	 <div class="form-group ">
 		<label for="lengthOfSchooling" class="col-form-label">学制</label>
-		<input type="text" class="form-control" id="lengthOfSchooling" name="lengthOfSchooling" th:value="*{lengthOfSchooling}" maxlength="32" placeholder="请输学制">
+		<input type="text" class="form-control" id="lengthOfSchooling" name="lengthOfSchooling" th:value="*{lengthOfSchooling}" maxlength="32" placeholder="请输学制，例：4（表示4年）">
 	</div> 
 	
 	<div class="form-group ">
@@ -41,17 +41,17 @@
 	
 	<div class="form-group ">
 		<label for="department" class="col-form-label">院系</label>
-		<input type="text" class="form-control" id="department" name="department" th:value="*{department}" maxlength="32" placeholder="请输院系">
+		<input type="text" class="form-control" id="department" name="department" th:value="*{department}" maxlength="32" placeholder="请输院系，2到32字符">
 	</div> 
 	
 	<div class="form-group ">
 		<label for="major" class="col-form-label">专业</label>
-		<input type="text" class="form-control" id="major" name="major" th:value="*{major}" maxlength="32" placeholder="请输专业">
+		<input type="text" class="form-control" id="major" name="major" th:value="*{major}" maxlength="32" placeholder="请输专业，2到32字符">
 	</div> 
 	
 	<div class="form-group ">
 		<label for="entranceTime" class="col-form-label">入校时间</label>
-		<input type="text" class="form-control" id="entranceTime" name="entranceTime" th:value="*{entranceTime}" maxlength="32" placeholder="请输入校时间">
+		<input type="text" class="form-control" id="entranceTime" name="entranceTime" th:value="*{entranceTime}" maxlength="32" placeholder="请输入校时间，例：2016-09-01">
 	</div> 
 	
 	<div class="form-group ">
@@ -65,7 +65,7 @@
 	
 	<div class="form-group ">
 		<label for="classes" class="col-form-label">班级</label>
-		<input type="text" class="form-control" id="classes" name="classes" th:value="*{classes}" maxlength="32" placeholder="请输班级">
+		<input type="text" class="form-control" id="classes" name="classes" th:value="*{classes}" maxlength="32" placeholder="请输班级，例：计科B17-1（B表示本科，构成：专业、B、年级、班级编号）">
 	</div> 
 	
 	
