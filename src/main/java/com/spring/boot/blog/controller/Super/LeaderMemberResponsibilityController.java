@@ -61,8 +61,13 @@ public class LeaderMemberResponsibilityController {
 		lmr.setMemberResponsibility(member);
 		try {
 			lmr = leaderMemberResponsibilityService.saveLeaderMemberResponsibility(lmr);
-		}  catch (ConstraintViolationException e)  {
-			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+		}catch (RuntimeException e)  {
+			Throwable cause = e.getCause();
+		    if(cause instanceof javax.persistence.RollbackException) {
+		    	return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
+		    }
+		}catch (Exception e)  {
+			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
 		return ResponseEntity.ok().body(new Response(true, "更新成功", lmr));
 	}

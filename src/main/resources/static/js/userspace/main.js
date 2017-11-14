@@ -93,7 +93,28 @@ $(function() {
 		    }
 		})
 	});
- 
-
-	 
+	
+	$('#userForm').submit(function(){
+		if($("#confirmPassword").val() != $("#newPassword").val()){
+			toastr.error("两次密码输入不一致，请重试！");
+			return false;
+		}
+		return true;
+	});
+	
+	$("#changePassword").change(function(){
+		alert(123);
+		if($("#changePassword"checked == true).){
+			alert(123);
+		}
+		if($("#changePassword"checked == false).){
+			alert(321);
+		}
+	});
+	
+	
+	
+	
+	
+	
 });

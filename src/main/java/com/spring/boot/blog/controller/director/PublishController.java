@@ -228,6 +228,9 @@ public class PublishController {
 			@RequestParam(value="id",required=false,defaultValue="") Long id,
 			@RequestParam(value="tid",required=false,defaultValue="") String tid
 			) {
+		if("".equals(tid)) {
+			return ResponseEntity.ok().body(new Response(false, "提交失败，指导老师不能为空！"));
+		}
 		try {
 			String[] tids=tid.split(",");
 
@@ -250,9 +253,8 @@ public class PublishController {
 			courseService.saveCourse(course);
 			
 			
-			
-		}  catch (ConstraintViolationException e)  {
-			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+		}catch (Exception e)  {
+			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
 		return ResponseEntity.ok().body(new Response(true, "处理成功"));
 	}

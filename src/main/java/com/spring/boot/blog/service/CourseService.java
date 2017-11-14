@@ -58,5 +58,7 @@ public interface CourseService {
 	 * @return
 	 */
 	Page<Course> listCoursesByNameLike(String name, String status, Pageable pageable);
+	
+	Page<Course> listCoursesByTeacherIdAndStatus(Long id, String status,Pageable pageable);
 
 }

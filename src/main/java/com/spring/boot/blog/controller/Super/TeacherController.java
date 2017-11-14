@@ -96,7 +96,7 @@ public class TeacherController {
 			teacherService.saveTeacher(teacher);
 			
 			//为Teacher新增一个User账户
-			User user = new User(teacher.getTeacherName(), (long)0, "teacher@qq.com",teacher.getId().toString()); 
+			User user = new User(teacher.getTeacherName(), (long)0, "teacher"+teacher.getId()+"@qq.com",teacher.getId().toString()); 
 			user.setPassword("123456");
 			List<Authority> authorities = new ArrayList<>();
 			authorities.add(authorityService.getAuthorityById((long) 3));
