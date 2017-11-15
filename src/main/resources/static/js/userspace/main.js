@@ -102,13 +102,11 @@ $(function() {
 		return true;
 	});
 	
-	$("#changePassword").change(function(){
-		alert(123);
-		if($("#changePassword"checked == true).){
-			alert(123);
-		}
-		if($("#changePassword"checked == false).){
-			alert(321);
+	$(":checkbox").change(function () {
+		if($(this).is(':checked')){
+			$("#CP").show();
+		}else{
+			$("#CP").hide();
 		}
 	});
 	
