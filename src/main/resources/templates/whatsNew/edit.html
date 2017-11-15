@@ -64,8 +64,7 @@
 	
 	<div class="form-group ">
 		<label for="note" class="col-form-label">内容说明</label>
-		<textarea rows="3" cols="20" class="form-control" id="note" name="note"  th:value="*{note}" maxlength="32" placeholder="请输内容说明，2到1024字符" >
-		</textarea>
+		<textarea rows="3" cols="20" class="form-control" id="note" name="note"  th:value="*{note}" maxlength="32" placeholder="请输内容说明，2到1024字符" >[[${whatsNewModel.whatsNew.note}]]</textarea>
 	</div> 
 	
 </form>
