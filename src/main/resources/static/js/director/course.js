@@ -41,13 +41,13 @@ $(function() {
 	});
    
 	// 搜索
-	$("#searchNameBtn").click(function() {
+	$("#searchNameBtn").on("click",function(){
 		getCourseByName(0, _pageSize);
 	});
 	
 	
 	// 获取添加用户的界面
-	$("#addCourse").click(function() {
+	$("#addCourse").on("click",function(){
 		$.ajax({ 
 			 url: "/director/addCourse", 
 			 success: function(data){
@@ -79,7 +79,7 @@ $(function() {
 	
 	
 	// 提交变更后，清空表单
-	$("#submitEdit").click(function() {
+	$("#submitEdit").on("click",function(){
 		if($("#upperLimit").val() > $("#lowerLimit").val()){
 			$.ajax({ 
 				 url: "/director/addCourse", 

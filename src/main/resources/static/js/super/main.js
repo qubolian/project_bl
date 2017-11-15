@@ -13,7 +13,7 @@ $(function() {
     CKEDITOR.replace( 'mark',{ height: '400px', width: 'auto' } );
 	
 	// 提交变更后，清空表单
-	$("#update").click(function() {
+	$("#update").on("click",function(){
 		
 		  var editor_data = CKEDITOR.instances.mark.getData();
 		  
@@ -43,7 +43,7 @@ $(function() {
 	});
 	
 	
-	$("#reload").click(function() {
+	$("#reload").on("click",function(){
 		getMission();
 	});
 	

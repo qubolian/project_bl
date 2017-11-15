@@ -65,7 +65,7 @@ $(function() {
 	getSelects();
 	
 	//增加指导老师
-	$("#add-A-supervisor").click(function() {
+	$("#add-A-supervisor").on("click",function(){
 		var count= add + del;
 		add=add+1;
 		if($("#teacherList0 option").length > 0){
@@ -83,7 +83,7 @@ $(function() {
 	});
 	
 	//减少指导老师
-	$("#delete-A-supervisor").click(function() {
+	$("#delete-A-supervisor").on("click",function(){
 		del=del-1;
 		var count= add + del;
 		if($("#teacherList0 option").length > 0){

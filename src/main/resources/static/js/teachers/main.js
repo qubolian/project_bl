@@ -41,7 +41,7 @@ $(function() {
 	});
    
 	// 搜索
-	$("#searchNameBtn").click(function() {
+	$("#searchNameBtn").on("click",function(){
 		getCourseByName(0, _pageSize);
 	});
 	

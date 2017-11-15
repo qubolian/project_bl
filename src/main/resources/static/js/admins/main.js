@@ -9,7 +9,7 @@
 $(function() {
 
 	// 菜单事件
-	$(".blog-menu .list-group-item").click(function() {
+	$(".blog-menu .list-group-item").on("click",function(){
  
 		var url = $(this).attr("url");
 		

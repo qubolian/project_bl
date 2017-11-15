@@ -91,10 +91,7 @@ public class WhatsNewController {
 			whatsNewService.saveWhatsNew(whatsNew);
 			
 		}catch (RuntimeException e)  {
-			Throwable cause = e.getCause();
-		    if(cause instanceof javax.persistence.RollbackException) {
-		    	return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
-		    }
+			return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
 		}catch (Exception e)  {
 			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}

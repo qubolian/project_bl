@@ -41,14 +41,14 @@ $(function() {
 	});
    
 	// 搜索
-	$("#searchNameBtn").click(function() {
+	$("#searchNameBtn").on("click",function(){
 		
 		getTeacherByTeacherName(0, _pageSize);
 	});
 	
 	
 	// 获取添加用户的界面
-	$("#addTeacher").click(function() {
+	$("#addTeacher").on("click",function(){
 		$.ajax({ 
 			 url: "/super/addTeacher", 
 			 success: function(data){
@@ -78,7 +78,7 @@ $(function() {
 	
 	
 	// 提交变更后，清空表单
-	$("#submitEdit").click(function() {
+	$("#submitEdit").on("click",function(){
 
 		$.ajax({ 
 			 url: "/super/addTeacher", 

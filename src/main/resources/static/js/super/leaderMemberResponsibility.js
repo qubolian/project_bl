@@ -16,7 +16,7 @@ $(function() {
 
 	
 	// 提交变更后，清空表单
-	$("#Update").click(function() {
+	$("#Update").on("click",function(){
 		var leader = CKEDITOR.instances.leader.getData();
 		var member = CKEDITOR.instances.member.getData();
 		$.ajax({ 
@@ -45,7 +45,7 @@ $(function() {
 	});
 	
 	
-	$("#Reload").click(function() {
+	$("#Reload").on("click",function(){
 		getLeaderMemberResponsibility();
 	});
 	

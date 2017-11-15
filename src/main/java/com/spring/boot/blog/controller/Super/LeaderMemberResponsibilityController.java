@@ -62,42 +62,12 @@ public class LeaderMemberResponsibilityController {
 		try {
 			lmr = leaderMemberResponsibilityService.saveLeaderMemberResponsibility(lmr);
 		}catch (RuntimeException e)  {
-			Throwable cause = e.getCause();
-		    if(cause instanceof javax.persistence.RollbackException) {
-		    	return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
-		    }
+			return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
 		}catch (Exception e)  {
 			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
 		return ResponseEntity.ok().body(new Response(true, "更新成功", lmr));
 	}
-	/*
-	@GetMapping("/MemberResponsibilityList")
-	public ResponseEntity<Response> MemberResponsibilityShow() {
-		LeaderMemberResponsibility lmr ;
-		try {
-			lmr = leaderMemberResponsibilityService.getLeaderMemberResponsibilityById(1L);
-		}  catch (ConstraintViolationException e)  {
-			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
-		}
-		return ResponseEntity.ok().body(new Response(true, "显示成功", lmr));
-	}
-	
-	@GetMapping("/MemberResponsibilityEdit")
-	public ResponseEntity<Response> MemberResponsibilityEdit(String member) {
-		
-		
-		LeaderMemberResponsibility lmr = new  LeaderMemberResponsibility();
-		lmr.setId(1L);
-		lmr.setMisson("123");
-		lmr.setMark(mark);
-		try {
-			lmr = leaderMemberResponsibilityService.saveLeaderMemberResponsibility(lmr);
-		}  catch (ConstraintViolationException e)  {
-			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
-		}
-		return ResponseEntity.ok().body(new Response(true, "更新成功", lmr));
-	}*/
 	
 	 
 }
