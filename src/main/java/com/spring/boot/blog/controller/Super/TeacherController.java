@@ -99,9 +99,9 @@ public class TeacherController {
 	
 	@PostMapping("/addTeacher")
 	public ResponseEntity<Response> saveOrUpdate(Teacher teacher,
-			@RequestParam(value="isDirector",required=false,defaultValue="") String isDirector) {
+			@RequestParam(value="isAuthority",required=false,defaultValue="") String isAuthority) {
 		try {
-			teacherService.saveTeacher(teacher);
+			
 			
 			String s = String.valueOf(teacher.getId());
 			User  user = (User)userDetailsService.loadUserByUsername(s);
@@ -110,10 +110,12 @@ public class TeacherController {
 				user = new User(teacher.getTeacherName(), (long)0, "teacher"+teacher.getId()+"@qq.com",teacher.getId().toString()); 
 			}
 			
+			user.setName(teacher.getTeacherName());
 			user.setPassword("123456");
 			List<Authority> authorities = new ArrayList<>();
-			if("1".equals(isDirector)) {
+			if("1".equals(isAuthority)) {
 				authorities.add(authorityService.getAuthorityById((long) 5));
+				teacher.setIsAuthority(1);
 			}
 			authorities.add(authorityService.getAuthorityById((long) 3));
 			user.setAuthorities(authorities);
@@ -133,6 +135,7 @@ public class TeacherController {
 				}
 			}
 			userService.saveUser(user);
+			teacherService.saveTeacher(teacher);
 		}catch (RuntimeException e)  {
 			return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
 		}catch (Exception e)  {

@@ -27,6 +27,7 @@
 				    <th data-field="teacherType">教师类型</th> 
 				 	<th data-field="college">学院</th>
 				 	<th data-field="department">系部</th>
+				 	<th data-field="isAuthority">是否为系主任</th>
 				 	<th data-field="operation">操作</th>
 				</tr>
 			</thead>
@@ -39,6 +40,7 @@
 				    <td th:text="${Teacher.teacherType}">教师类型</td>
 					<td th:text="${Teacher.college}">学院</td> 
 					<td th:text="${Teacher.department.department}">系部</td> 
+					<td th:text="${Teacher.isAuthority==1}?是">是否为系主任</td>
 					<td>
 						<div>
 							<a class="super-edit-teacher" data-toggle="modal"

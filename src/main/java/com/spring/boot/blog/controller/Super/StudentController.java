@@ -97,8 +97,13 @@ public class StudentController {
 			
 			studentService.saveStudent(student);
 			
-			//为Student新增一个User账户
-			User user = new User(student.getName(), (long)0, "student"+student.getId()+"@qq.com",student.getId().toString()); 
+			String s = String.valueOf(student.getId());
+			User  user = (User)userDetailsService.loadUserByUsername(s);
+			if(user==null) {
+				//为Student新增一个User账户
+				user = new User(student.getName(), (long)0, "student"+student.getId()+"@qq.com",student.getId().toString()); 
+			}
+			user.setName(student.getName());
 			user.setPassword("123456");
 			List<Authority> authorities = new ArrayList<>();
 			authorities.add(authorityService.getAuthorityById((long) 4));
