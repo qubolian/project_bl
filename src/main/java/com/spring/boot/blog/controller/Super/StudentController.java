@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
@@ -53,6 +54,12 @@ public class StudentController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	
+	
 	
 	/**
 	 * 查询所有学生
@@ -143,6 +150,9 @@ public class StudentController {
 		try {
 			if(studentService.getStudentById(id)!=null){
 				studentService.removeStudent(id);
+				String s = String.valueOf(id);
+				User  user = (User)userDetailsService.loadUserByUsername(s);
+				userService.removeUser(user.getId());
 			}
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
