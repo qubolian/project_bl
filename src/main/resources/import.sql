@@ -44,16 +44,16 @@ INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_C
 insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibility) values('专题档案管理&规划，开会讨论题目，定期问题讨论及询问进度，制定时间&缴交作业，分工管理，成本计算，与老师的沟通&组员','将档案整理好给组长，提出有兴趣的题目，向组长回报问题与进度，在时间内缴交作业，执行被指派的任务，提出所需的物品&价格，良好的沟通行为');
 
 
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04032, '计算1', '1', '男', '专任教师', '信息技术学院');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04033, '软件1', '2', '女', '教辅人员', '信息技术学院');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04034, '网络1', '3', '女', '兼任（职）教师', '信息技术学院');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04035, '计算2', '1', '女', '行政人员', '信息技术学院');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04036, '软件2', '2', '男', '专任教师', '信息技术学院');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04037, '网络2', '3', '男', '专任教师', '信息技术学院');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04038, '计算3', '1', '男', '专任教师', '信息技术学院');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04039, '软件3', '2', '女', '教辅人员', '信息技术学院');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04040, '网络3', '3', '女', '兼任（职）教师', '信息技术学院');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College)  VALUES (04041, '计算4', '1', '女', '行政人员', '信息技术学院');
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04032, '计算1', '1', '男', '专任教师', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04033, '软件1', '2', '女', '教辅人员', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04034, '网络1', '3', '女', '兼任（职）教师', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04035, '计算2', '1', '女', '行政人员', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04036, '软件2', '2', '男', '专任教师', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04037, '网络2', '3', '男', '专任教师', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04038, '计算3', '1', '男', '专任教师', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04039, '软件3', '2', '女', '教辅人员', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04040, '网络3', '3', '女', '兼任（职）教师', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04041, '计算4', '1', '女', '行政人员', '信息技术学院', 0);
 
 
 

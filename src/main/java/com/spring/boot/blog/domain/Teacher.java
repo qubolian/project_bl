@@ -76,6 +76,17 @@ public class Teacher implements Serializable {
 				inverseJoinColumns = {@JoinColumn(name = "courseId", referencedColumnName = "id")}) 
 	private List<Course> course;
 	
+	//是否为系主任
+	private int isAuthority;
+	
+	public int getIsAuthority() {
+		return isAuthority;
+	}
+
+	public void setIsAuthority(int isAuthority) {
+		this.isAuthority = isAuthority;
+	}
+
 	public List<Course> getCourse() {
 		return course;
 	}
