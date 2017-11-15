@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.TransactionSystemException;
@@ -56,6 +57,11 @@ public class TeacherController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	
 	/**
 	 * 查询所有教师
 	 * @return
@@ -91,14 +97,18 @@ public class TeacherController {
 	
 	
 	@PostMapping("/addTeacher")
-	public ResponseEntity<Response> saveOrUpdate(Teacher teacher) {
+	public ResponseEntity<Response> saveOrUpdate(Teacher teacher,
+			@RequestParam(value="isDirector",required=false,defaultValue="") String isDirector) {
 		try {
 			teacherService.saveTeacher(teacher);
-			
+
 			//为Teacher新增一个User账户
 			User user = new User(teacher.getTeacherName(), (long)0, "teacher"+teacher.getId()+"@qq.com",teacher.getId().toString()); 
 			user.setPassword("123456");
 			List<Authority> authorities = new ArrayList<>();
+			if("1".equals(isDirector)) {
+				authorities.add(authorityService.getAuthorityById((long) 5));
+			}
 			authorities.add(authorityService.getAuthorityById((long) 3));
 			user.setAuthorities(authorities);
 			if(user.getId() == 0) {
@@ -148,6 +158,9 @@ public class TeacherController {
 		try {
 			if(teacherService.getTeacherById(id)!=null){
 				teacherService.removeTeacher(id);
+				String s = String.valueOf(id);
+				User  user = (User)userDetailsService.loadUserByUsername(s);
+				userService.removeUser(user.getId());
 			}
 		}catch (RuntimeException e) {
 			Throwable cause = e.getCause();
