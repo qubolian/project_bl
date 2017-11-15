@@ -1,5 +1,5 @@
-INSERT INTO user (id, user_name, password, name, email) VALUES (1, 'admin', '123456', '张嗣峰', 'i@sina.com');
-INSERT INTO user (id, user_name, password, name, email)  VALUES (2, 'magic', '123456', 'magic', 'magic@126.com');
+INSERT INTO user (id, user_name, password, name, email) VALUES (1, 'admin', '123456', '管理员', 'i@sina.com');
+INSERT INTO user (id, user_name, password, name, email)  VALUES (2, '19901', '123456', 'ax180', 'magic@126.com');
 
 INSERT INTO authority (id, name,mark) VALUES (1, 'ROLE_ADMIN','系统管理员');
 INSERT INTO authority (id, name,mark) VALUES (6, 'ROLE_USER','辅导员');
