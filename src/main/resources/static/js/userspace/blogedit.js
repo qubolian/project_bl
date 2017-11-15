@@ -34,7 +34,7 @@ $(function() {
  
     });
  
- 	$("#uploadImage").click(function() {
+ 	$("#uploadImage").on("click",function(){
 		$.ajax({
 		    url: 'http://localhost:8081/upload',
 		    type: 'POST',
@@ -53,7 +53,7 @@ $(function() {
  	})
  
  	// 发布博客
- 	$("#submitBlog").click(function() {
+ 	$("#submitBlog").on("click",function(){
  		
 		// 获取 CSRF Token 
 		var csrfToken = $("meta[name='_csrf']").attr("content");

@@ -40,14 +40,14 @@ $(function() {
 	});
    
 	// 搜索
-	$("#searchNameBtn").click(function() {
+	$("#searchNameBtn").on("click",function(){
 	
 		getNewsTypetByMessageType(0, _pageSize);
 	});
 	
 	
 	// 获取添加信息的界面
-	$("#addNewsType").click(function() {
+	$("#addNewsType").on("click",function(){
 		$.ajax({ 
 			 url: "/super/addNewsType", 
 			 success: function(data){
@@ -77,7 +77,7 @@ $(function() {
 	
 	
 	// 提交变更后，清空表单
-	$("#submitEdit").click(function() {
+	$("#submitEdit").on("click",function(){
 		$.ajax({ 
 			 url: "/super/addNewsType", 
 			 type: 'POST',

@@ -79,7 +79,7 @@ $(function() {
 	
 	
 	// 提交变更后，清空表单
-	$("#submitEdit").click(function() {
+	$("#submitEdit").on("click",function(){
 		$.ajax({ 
 			 url: "/super/addWhatsNew", 
 			 type: 'POST',
@@ -125,35 +125,6 @@ $(function() {
 		    	 toastr.error("error!");
 		     }
 		 });
-	});
-	
-	$('.form_date1').datetimepicker({
-	    language:  'zh-CN',
-	   
-	    weekStart: 1,
-	    todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-	
-	}).on('changeDate', function (e) {  
-	    $('.form_date2').datetimepicker('setStartDate', $('#startTime').val()); 
-	}); 
-	
-	$('.form_date2').datetimepicker({
-	    language:  'zh-CN',
-	    
-	    weekStart: 1,
-	    todayBtn:  1,
-	    autoclose: 1,
-	    todayHighlight: 1,
-	    startView: 2,
-	    minView: 2,
-	    forceParse: 0
-	}).on('changeDate', function (e) {  
-	    $('.form_date1').datetimepicker('setEndDate', $('#endTime').val()); 
 	});
 	
 

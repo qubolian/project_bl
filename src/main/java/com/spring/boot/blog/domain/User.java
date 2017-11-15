@@ -50,7 +50,7 @@ public class User implements UserDetails{
 	private String email;
 
 	@NotEmpty(message = "账号不能为空")
-	@Size(min=3, max=20, message="账号长度必须在2到20之间")
+	@Size(min=2, max=20, message="账号长度必须在2到20之间")
 	@Column(nullable = false, length = 20, unique = true)
 	private String userName; // 用户账号，用户登录时的唯一标识
 

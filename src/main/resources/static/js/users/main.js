@@ -39,12 +39,12 @@ $(function() {
 	});
    
 	// 搜索
-	$("#searchNameBtn").click(function() {
+	$("#searchNameBtn").on("click",function(){
 		getUersByName(0, _pageSize);
 	});
 	
 	// 获取添加用户的界面
-	$("#addUser").click(function() {
+	$("#addUser").on("click",function(){
 		$.ajax({ 
 			 url: "/users/add", 
 			 success: function(data){
@@ -71,7 +71,7 @@ $(function() {
 	});
 	
 	// 提交变更后，清空表单
-	$("#submitEdit").click(function() {
+	$("#submitEdit").on("click",function(){
 		$.ajax({ 
 			 url: "/users", 
 			 type: 'POST',

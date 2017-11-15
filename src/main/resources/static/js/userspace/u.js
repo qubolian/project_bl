@@ -45,12 +45,12 @@ $(function() {
 	});
    
 	// 关键字搜索
-	$("#searchBlogs").click(function() {
+	$("#searchBlogs").on("click",function(){
 		getBlogsByName(0, _pageSize);
 	});
 	
 	// 最新\最热切换事件
-	$(".nav-item .nav-link").click(function() {
+	$(".nav-item .nav-link").on("click",function(){
  
 		var url = $(this).attr("url");
 		
@@ -122,7 +122,7 @@ $(function() {
 	});
 	
 	// 提交分类
-	$("#submitEditCatalog").click(function() {
+	$("#submitEditCatalog").on("click",function(){
 		// 获取 CSRF Token 
 		var csrfToken = $("meta[name='_csrf']").attr("content");
 		var csrfHeader = $("meta[name='_csrf_header']").attr("content");

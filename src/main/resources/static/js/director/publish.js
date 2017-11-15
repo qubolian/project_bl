@@ -43,7 +43,7 @@ $(function() {
 	});
    
 	// 搜索
-	$("#searchNameBtn").click(function() {
+	$("#searchNameBtn").on("click",function(){
 		getCourseByName(0, _pageSize);
 	});
 	
@@ -81,7 +81,7 @@ $(function() {
 	
 	
 	// 提交变更后，清空表单
-	$("#submitEdit").click(function() {
+	$("#submitEdit").on("click",function(){
 		if(document.getElementById("teacherName4")) 
 		{ 
 			var a = "";

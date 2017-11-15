@@ -41,14 +41,14 @@ $(function() {
 	});
    
 	// 搜索
-	$("#searchNameBtn").click(function() {
+	$("#searchNameBtn").on("click",function(){
 		
 		getHowtoTeamUpByGradeId(0, _pageSize);
 	});
 	
 	
 	// 获取添加用户的界面
-	$("#addHowtoTeamUp").click(function() {
+	$("#addHowtoTeamUp").on("click",function(){
 		$.ajax({ 
 			 url: "/super/addHowtoTeamUp", 
 			 success: function(data){
@@ -78,7 +78,7 @@ $(function() {
 	
 	
 	// 提交变更后，清空表单
-	$("#submitEdit").click(function() {
+	$("#submitEdit").on("click",function(){
 		$.ajax({ 
 			 url: "/super/addHowtoTeamUp", 
 			 type: 'POST',
