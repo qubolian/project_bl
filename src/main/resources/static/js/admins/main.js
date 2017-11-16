@@ -20,6 +20,7 @@ $(function() {
 		// 加载其他模块的页面到右侧工作区
 		 $.ajax({ 
 			 url: url, 
+			 //dataType:'JSONP',
 			 success: function(data){
 				
 				 $("#rightContainer").html(data);

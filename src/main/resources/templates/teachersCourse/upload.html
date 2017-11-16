@@ -1,18 +1,4 @@
 <div class="container">
- 
-<!-- <form th:action="@{/teachers/}" method="post" th:object="${teacherModel.teacher}" id="teacherForm">
-	<div class="form-group ">
-		<label for="id" class="col-form-label">教师工号</label>
-		<input type="text" class="form-control" id="id" name="id"  th:value="*{id}" maxlength="32" placeholder="请输教师工号，5位十进制数" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
-	</div>
-	
-	 <div class="form-group ">
-		<label for="teacherName" class="col-form-label">教师名称</label>
-		<input type="text" class="form-control" id="teacherName" name="teacherName"  th:value="*{teacherName}" maxlength="32" placeholder="请输教师名称，2到16字符">
-	</div>
-	
-	
-</form> -->
 
 <form th:action="@{/teachers/}" method="post" id="teacherForm">
 	<div class="form-group ">
@@ -30,4 +16,7 @@
  
 </div>
 <!-- /.container -->
- 
+
+
+ <!-- JavaScript -->
+<script src="../../js/teachers/upload.js" th:src="@{/js/teachers/upload.js}"></script>
