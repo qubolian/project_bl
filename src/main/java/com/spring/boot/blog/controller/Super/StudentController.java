@@ -157,7 +157,9 @@ public class StudentController {
 				studentService.removeStudent(id);
 				String s = String.valueOf(id);
 				User  user = (User)userDetailsService.loadUserByUsername(s);
-				userService.removeUser(user.getId());
+				if(user!=null){
+					userService.removeUser(user.getId());
+				}
 			}
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));

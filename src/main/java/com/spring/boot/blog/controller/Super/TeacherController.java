@@ -184,7 +184,9 @@ public class TeacherController {
 				teacherService.removeTeacher(id);
 				String s = String.valueOf(id);
 				User  user = (User)userDetailsService.loadUserByUsername(s);
-				userService.removeUser(user.getId());
+				if(user!=null){
+					userService.removeUser(user.getId());
+				}
 			}
 		}catch (RuntimeException e) {
 			Throwable cause = e.getCause();

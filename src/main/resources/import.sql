@@ -1,4 +1,5 @@
-INSERT INTO user (id, user_name, password, name, email) VALUES (1, 'admin', '123456', '系统管理员', 'i@sina.com');
+
+INSERT INTO user (id, user_name, password, name, email) VALUES (1, 'admin', '123456', '管理员', 'i@sina.com');
 
 
 INSERT INTO authority (id, name,mark) VALUES (1, 'ROLE_ADMIN','系统管理员');
@@ -44,14 +45,7 @@ insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibi
 
 INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04032, '计算1', '1', '男', '专任教师', '信息技术学院', 0);
 INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04033, '软件1', '2', '女', '教辅人员', '信息技术学院', 0);
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04034, '网络1', '3', '女', '兼任（职）教师', '信息技术学院', 0);
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04035, '计算2', '1', '女', '行政人员', '信息技术学院', 0);
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04036, '软件2', '2', '男', '专任教师', '信息技术学院', 0);
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04037, '网络2', '3', '男', '专任教师', '信息技术学院', 0);
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04038, '计算3', '1', '男', '专任教师', '信息技术学院', 0);
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04039, '软件3', '2', '女', '教辅人员', '信息技术学院', 0);
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04040, '网络3', '3', '女', '兼任（职）教师', '信息技术学院', 0);
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04041, '计算4', '1', '女', '行政人员', '信息技术学院', 0);
+
 
 
 
@@ -65,6 +59,9 @@ INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, cour
 INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623381, '张三', '计算器科学与技术系', '男', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
 
 
+INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (1, '大纲1', '1-2017-11-11-01', '教学进度表1', '1-2017-11-11-02', '2017-11-11', '2017-11-11');
+INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (2, '大纲2', '2-2017-12-12-01', '教学进度表3', '2-2017-12-12-02', '2017-12-12', '2017-12-12');
+INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (3, '大纲3', '3-2017-03-03-01', '教学进度表3', '3-2017-03-03-02', '2017-03-03', '2017-03-03');
 
 
 
