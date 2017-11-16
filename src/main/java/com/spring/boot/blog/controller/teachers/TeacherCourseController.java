@@ -25,10 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.spring.boot.blog.domain.Course;
+import com.spring.boot.blog.domain.CourseStandard;
 import com.spring.boot.blog.domain.DepartmentList;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.domain.User;
 import com.spring.boot.blog.service.CourseService;
+import com.spring.boot.blog.service.CourseStandardService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
 
@@ -46,7 +48,9 @@ public class TeacherCourseController {
 	@Autowired
 	private CourseService courseService;
 	
-
+	@Autowired
+	private CourseStandardService courseStandardService;
+	
 	
 	/**
 	 * 查询所有课程
@@ -75,13 +79,25 @@ public class TeacherCourseController {
 		return new ModelAndView(async==true?"teachersCourse/list :: #mainContainerRepleace":"teachersCourse/list", "courseModel", model);
 	}
 	
-	
+	/**
+	 * 课程评分标准
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/editStandard/{id}")
 	public ModelAndView createFormeditStandard(@PathVariable("id") Long id, Model model) {
-
+		Course course= courseService.getCourseById(id);	
+		model.addAttribute("course", course);
 		return new ModelAndView("teachersCourse/edit", "teacherModel", model);
 	}
 	
+	/**
+	 * 上传文件
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/upload/{id}")
 	public ModelAndView createFormUpload(@PathVariable("id") Long id, Model model) {
 		
@@ -100,6 +116,37 @@ public class TeacherCourseController {
 			Course course= courseService.getCourseById(id);	
 			course.setStatus("2");
 			courseService.saveCourse(course);
+			
+		} catch (Exception e) {
+			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+		}
+		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
+	}
+	
+	/**
+	 * 保存课程评分标准
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/courseStandard")
+	public ResponseEntity<Response> saveCourseStandard(
+			@RequestParam(value="id",required=false,defaultValue="") Long id, 
+			List<CourseStandard> list) {
+		try {
+			for (CourseStandard courseStandard : list) {
+				System.out.println(courseStandard);
+			}
+			Course course= courseService.getCourseById(id);	
+			List<CourseStandard> standard =courseStandardService.listCourseStandardsByCourseId(id);
+			if(standard != null) {
+				courseStandardService.removeCourseStandardsInBatch(standard);
+			}
+			for (CourseStandard courseStandard : list) {
+				courseStandard.setCourse(course);
+				courseStandardService.saveCourseStandard(courseStandard);
+				
+			}
 			
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));

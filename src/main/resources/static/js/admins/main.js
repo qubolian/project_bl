@@ -22,7 +22,7 @@ $(function() {
 			 url: url, 
 			 //dataType:'JSONP',
 			 success: function(data){
-				
+
 				 $("#rightContainer").html(data);
 		 },
 		 error : function() {
