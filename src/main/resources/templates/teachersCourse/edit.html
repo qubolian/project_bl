@@ -1,16 +1,74 @@
 <div class="container">
 
-<form th:action="@{/teachers/}" method="post" id="teacherForm">
-	<div class="form-group ">
-		<label for="id" class="col-form-label">评分标准</label>
-		<input type="text" class="form-control" id="standard" name="standard" placeholder="请输课程评分标准">
-	</div>
-	
+<form th:action="@{/teachers/}" method="post" th:object="${teacherModel.course}" id="teacherForm">
 
-	
+	<input type="hidden" id="id" name="id" th:value="*{id}">
+
+
+		<div class="form-group ">
+		 <div class="input-group col-md-13 col-xl-13" id="1">
+			<label class="col-form-label">评分方式1:&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control" id="method1" name="method" placeholder="请输课程评分方式">
+			<label class="col-form-label">&nbsp;&nbsp;，占比&nbsp;&nbsp;</label>
+			<input type="text" class="form-control col-md-4 col-xl-4" id="percentage1" name="percentage" placeholder="请输百分比" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+			<label class="col-form-label">&nbsp;&nbsp;%</label>
+		</div>
+		</div>
+		
+		<div class="form-group ">
+		 <div class="input-group col-md-13 col-xl-13" id="2" style="display:none">
+			<label class="col-form-label">评分方式2:&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control" id="method2" name="method" placeholder="请输课程评分方式">
+			<label class="col-form-label">&nbsp;&nbsp;，占比&nbsp;&nbsp;</label>
+			<input type="text" class="form-control col-md-4 col-xl-4" id="percentage2" name="percentage" placeholder="请输百分比" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+			<label class="col-form-label">&nbsp;&nbsp;%</label>
+		</div>
+		</div>
+		
+		<div class="form-group ">
+		 <div class="input-group col-md-13 col-xl-13" id="3" style="display:none">
+			<label class="col-form-label">评分方式3:&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control" id="method3" name="method" placeholder="请输课程评分方式">
+			<label class="col-form-label">&nbsp;&nbsp;，占比&nbsp;&nbsp;</label>
+			<input type="text" class="form-control col-md-4 col-xl-4" id="percentage3" name="percentage" placeholder="请输百分比" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+			<label class="col-form-label">&nbsp;&nbsp;%</label>
+		</div>
+		</div>
+		
+		<div class="form-group ">
+		 <div class="input-group col-md-13 col-xl-13" id="4" style="display:none">
+			<label class="col-form-label">评分方式4:&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control" id="method4" name="method" placeholder="请输课程评分方式">
+			<label class="col-form-label">&nbsp;&nbsp;，占比&nbsp;&nbsp;</label>
+			<input type="text" class="form-control col-md-4 col-xl-4" id="percentage4" name="percentage" placeholder="请输百分比" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+			<label class="col-form-label">&nbsp;&nbsp;%</label>
+		</div>
+		</div>
+		
+		<div class="form-group ">
+		 <div class="input-group col-md-13 col-xl-13" id="5" style="display:none">
+			<label class="col-form-label">评分方式5:&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control" id="method5" name="method" placeholder="请输课程评分方式">
+			<label class="col-form-label">&nbsp;&nbsp;，占比&nbsp;&nbsp;</label>
+			<input type="text" class="form-control col-md-4 col-xl-4" id="percentage5" name="percentage" placeholder="请输百分比" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+			<label class="col-form-label">&nbsp;&nbsp;%</label>
+		</div>
+		</div>
+		
+		<div class="form-group ">
+		 <div class="input-group col-md-13 col-xl-13" id="6" style="display:none">
+			<label class="col-form-label">评分方式6:&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control" id="method6" name="method" placeholder="请输课程评分方式">
+			<label class="col-form-label">&nbsp;&nbsp;，占比&nbsp;&nbsp;</label>
+			<input type="text" class="form-control col-md-4 col-xl-4" id="percentage6" name="percentage" placeholder="请输百分比" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+			<label class="col-form-label">&nbsp;&nbsp;%</label>
+		</div>
+	</div>
 	
 </form>
  
 </div>
 <!-- /.container -->
  
+ <!-- JavaScript -->
+<script src="../../js/teachers/edit.js" th:src="@{/js/teachers/edit.js}"></script>

@@ -65,7 +65,6 @@ $(function() {
 		$.ajax({ 
 			 url: "/super/editWhatsNew/" + $(this).attr("whatsNewId"), 
 			 success: function(data){
-				 console.log(data);
 				 $("#formContainer").html(data);
 				 
 		     },
@@ -85,7 +84,6 @@ $(function() {
 			 type: 'POST',
 			 data:$('#whatsNewForm').serialize(),
 			 success: function(data){
-				 console.log($('#whatsNewForm'));
 				 $('#whatsNewForm')[0].reset();  
 				 
 				 if (data.success) {
