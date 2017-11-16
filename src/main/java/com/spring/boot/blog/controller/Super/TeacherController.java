@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -98,16 +99,23 @@ public class TeacherController {
 	
 	@PostMapping("/addTeacher")
 	public ResponseEntity<Response> saveOrUpdate(Teacher teacher,
-			@RequestParam(value="isDirector",required=false,defaultValue="") String isDirector) {
+			@RequestParam(value="isAuthority",required=false,defaultValue="") String isAuthority) {
 		try {
-			teacherService.saveTeacher(teacher);
-
-			//为Teacher新增一个User账户
-			User user = new User(teacher.getTeacherName(), (long)0, "teacher"+teacher.getId()+"@qq.com",teacher.getId().toString()); 
+			
+			
+			String s = String.valueOf(teacher.getId());
+			User  user = (User)userDetailsService.loadUserByUsername(s);
+			if(user==null) {
+				//为Teacher新增一个User账户
+				user = new User(teacher.getTeacherName(), (long)0, "teacher"+teacher.getId()+"@qq.com",teacher.getId().toString()); 
+			}
+			
+			user.setName(teacher.getTeacherName());
 			user.setPassword("123456");
 			List<Authority> authorities = new ArrayList<>();
-			if("1".equals(isDirector)) {
+			if("1".equals(isAuthority)) {
 				authorities.add(authorityService.getAuthorityById((long) 5));
+				teacher.setIsAuthority(1);
 			}
 			authorities.add(authorityService.getAuthorityById((long) 3));
 			user.setAuthorities(authorities);
@@ -127,6 +135,7 @@ public class TeacherController {
 				}
 			}
 			userService.saveUser(user);
+			teacherService.saveTeacher(teacher);
 		}catch (RuntimeException e)  {
 			return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
 		}catch (Exception e)  {
@@ -144,6 +153,21 @@ public class TeacherController {
 		List<DepartmentList> departmentLists = departmentListService.listDepartmentLists();
 		model.addAttribute("departmentLists", departmentLists);
 		
+		String s = String.valueOf(id);
+		User  user = (User)userDetailsService.loadUserByUsername(s);
+		
+		Authority authority = authorityService.getAuthorityById((long) 5);
+		boolean flag = false;
+		for (GrantedAuthority temp : user.getAuthorities()) {
+			if (temp.getAuthority().equals(authority.getAuthority())) {
+			flag = true;
+			break;
+			}
+			flag = false;
+		}
+		
+		model.addAttribute("authority", flag);		
+				
 		return new ModelAndView("teacher/edit", "teacherModel", model);
 	}
 	

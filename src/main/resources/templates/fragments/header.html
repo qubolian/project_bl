@@ -88,8 +88,8 @@
 					<div sec:authorize="hasRole('ROLE_TEACHER')">
 						<a class=" dropdown-item" href="/teachers/menu" th:href="@{~/teachers/menu}">课程进度</a> 
 					</div>
-					    <a class=" dropdown-item" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}">课程设置</a>
-						<a class="dropdown-item" href="/u/waylau/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人管理</a>
+<!-- 					    <a class=" dropdown-item" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}">课程设置</a>
+ -->						<a class="dropdown-item" href="/u/waylau/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人管理</a>
 					</div>
 				</div>
 				<form action="/logout" th:action="@{/logout}" method="post">
