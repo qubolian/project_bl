@@ -40,7 +40,7 @@ public class CourseStandard implements Serializable {
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String method;
 
-	@NotEmpty(message = "百分比不能为空")
+	@NotNull(message = "百分比不能为空")
 	@Column(nullable = false) // 映射为字段，值不能为空
 	private Long percentage;
 	
