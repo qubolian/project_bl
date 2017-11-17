@@ -37,32 +37,5 @@ $(function() {
 			toastr.error("上限不能低于下限");
 		}
 	});
-
-	
-	/*// 删除信息内容
-	$("#rightContainer").on("click",".director-delete-course", function () { 
-		// 获取 CSRF Token 
-		var csrfToken = $("meta[name='_csrf']").attr("content");
-		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-		$.ajax({ 
-			 url: "/director/course/" + $(this).attr("courseId") , 
-			 type: 'DELETE', 
-			 beforeSend: function(request) {
-                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
-             },
-			 success: function(data){
-				 if (data.success) {
-					 // 从新刷新主界面
-					 getCourseByName(0, _pageSize);
-				 } else {
-					 toastr.error(data.message);
-				 }
-		     },
-		     error : function() {
-		    	 toastr.error("error!");
-		     }
-		 });
-	});
-	*/
 	
 });

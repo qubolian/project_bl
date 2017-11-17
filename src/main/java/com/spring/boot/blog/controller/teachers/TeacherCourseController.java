@@ -28,10 +28,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.boot.blog.domain.Course;
 import com.spring.boot.blog.domain.CourseStandard;
 import com.spring.boot.blog.domain.DepartmentList;
+import com.spring.boot.blog.domain.SubmitFile;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.domain.User;
 import com.spring.boot.blog.service.CourseService;
 import com.spring.boot.blog.service.CourseStandardService;
+import com.spring.boot.blog.service.SubmitFileService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
 
@@ -51,6 +53,10 @@ public class TeacherCourseController {
 	
 	@Autowired
 	private CourseStandardService courseStandardService;
+	
+	@Autowired
+	private SubmitFileService submitFileService;
+	
 	
 	
 	/**
@@ -111,13 +117,22 @@ public class TeacherCourseController {
 	 * @param model
 	 * @return
 	 */
-	@PostMapping("/startCourse/{id}")
+	@GetMapping("/startCourse/{id}")
 	public ResponseEntity<Response> publish(@PathVariable("id") Long id, Model model) {
 		try {
+			List<CourseStandard> standard =courseStandardService.listCourseStandardsByCourseId(id);
+			SubmitFile submitFile =submitFileService.getSubmitFileById(id);
 			Course course= courseService.getCourseById(id);	
-			course.setStatus("2");
-			courseService.saveCourse(course);
-			
+			if(course.getSupervisor().isEmpty()) {
+				return  ResponseEntity.ok().body( new Response(false, "系主任必须先指派指导老师！"));
+			}else if(standard.isEmpty()) {
+					return  ResponseEntity.ok().body( new Response(false, "必须先设定评分标准！"));
+			}else if(submitFile == null) {
+				return  ResponseEntity.ok().body( new Response(false, "必须先提交大纲与教学进度表！"));
+			}else {
+				course.setStatus("2");
+				courseService.saveCourse(course);
+			}
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}
