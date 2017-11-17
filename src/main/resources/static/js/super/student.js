@@ -108,6 +108,7 @@ $(function() {
 		$.ajax({ 
 			 url: "/super/student/" + $(this).attr("id") , 
 			 type: 'DELETE', 
+			 async:false,
 			 beforeSend: function(request) {
                  request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
              },

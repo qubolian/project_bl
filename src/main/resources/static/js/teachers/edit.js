@@ -10,13 +10,26 @@
 // DOM 加载完再执行
 $(function() {
 	
-	
+	function addPercentage() {
+		var a = 0;
+		for(var i = 1;i<7;i++){
+			if($("#percentage"+i).val() != ""){
+				a += parseInt($("#percentage"+i).val());
+			}
+		}
+		return a;
+	}
 	
 	// 提交变更后，清空表单
 	$("#submitEdit").on("click",function(){
+		var a = addPercentage();
+		if(a !=100){
+			toastr.error("百分比之和必须为100");
+			return false;
+		}
 			$.ajax({ 
 				 url: "/teachers/courseStandard/", 
-				 type: 'POST',
+				 //type: 'POST',
 				 data:$('#courseForm').serialize(),
 				 success: function(data){
 					 
@@ -35,19 +48,6 @@ $(function() {
 			     }
 			 });
 	});
-	
-	
-
-	function addPercentage() {
-		var a = 0;
-		for(var i = 1;i<7;i++){
-			if($("#percentage"+i).val() != ""){
-				a += parseInt($("#percentage"+i).val());
-			}
-		}
-		return a;
-	}
-	
 	
 	$("#percentage1").change(function(){
 		var a = addPercentage();

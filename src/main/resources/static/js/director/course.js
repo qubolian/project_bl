@@ -115,6 +115,7 @@ $(function() {
 		$.ajax({ 
 			 url: "/director/course/" + $(this).attr("courseId") , 
 			 type: 'DELETE', 
+			 async:false,
 			 beforeSend: function(request) {
                  request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
              },
@@ -136,6 +137,7 @@ $(function() {
 	$("#rightContainer").on("click",".director-publish-course", function () { 
 		$.ajax({ 
 			 url: "/director/publishCourse/" + $(this).attr("courseId"), 
+			 async:false,
 			 success: function(data){
 				 if (data.success) {
 					 // 从新刷新主界面

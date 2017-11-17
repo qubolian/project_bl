@@ -1,6 +1,7 @@
 package com.spring.boot.blog.controller.teachers;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -110,7 +111,7 @@ public class TeacherCourseController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/startCourse/{id}")
+	@PostMapping("/startCourse/{id}")
 	public ResponseEntity<Response> publish(@PathVariable("id") Long id, Model model) {
 		try {
 			Course course= courseService.getCourseById(id);	
@@ -130,24 +131,26 @@ public class TeacherCourseController {
 	 * @return
 	 */
 	@GetMapping("/courseStandard")
-	public ResponseEntity<Response> saveCourseStandard(
-			@RequestParam(value="id",required=false,defaultValue="") Long id, 
-			List<CourseStandard> list) {
+	public ResponseEntity<Response> saveCourseStandard(			
+			@RequestParam(value="id",required=false,defaultValue="") Long id,
+			@RequestParam(value="method",required=false,defaultValue="") String[] method,
+			@RequestParam(value="percentage",required=false,defaultValue="") Long[] percentage
+			) {
 		try {
-			for (CourseStandard courseStandard : list) {
-				System.out.println(courseStandard);
-			}
 			Course course= courseService.getCourseById(id);	
 			List<CourseStandard> standard =courseStandardService.listCourseStandardsByCourseId(id);
-			if(standard != null) {
-				courseStandardService.removeCourseStandardsInBatch(standard);
+			for (CourseStandard courseStandard : standard) {
+				courseStandardService.removeCourseStandard(courseStandard.getId());
 			}
-			for (CourseStandard courseStandard : list) {
-				courseStandard.setCourse(course);
-				courseStandardService.saveCourseStandard(courseStandard);
-				
+			for(int i=0;i<6;i++) {
+				if(percentage[i] != null) {
+					CourseStandard courseStandard = new CourseStandard();
+					courseStandard.setCourse(course);
+					courseStandard.setMethod(method[i]);
+					courseStandard.setPercentage(percentage[i]);
+					courseStandardService.saveCourseStandard(courseStandard);
+				}
 			}
-			
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}
