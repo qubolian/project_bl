@@ -27,6 +27,13 @@ $(function() {
 			toastr.error("百分比之和必须为100");
 			return false;
 		}
+		for(var i = 1;i<7;i++){
+			if($("#percentage"+i).val() != "" || $("#method"+i).val() == ""){
+				toastr.error("评分方式不能为空");
+				return false;
+				break;
+			}
+		}
 			$.ajax({ 
 				 url: "/teachers/courseStandard/", 
 				 //type: 'POST',

@@ -70,7 +70,7 @@ $(function() {
 		$.ajax({ 
 			 url: "/teachers/editStandard/" + $(this).attr("courseId"), 
 			 success: function(data){
-				 $("#modalLabel").text("编辑课程评分标准");
+				 $("#modalLabel").text("编辑课程评分标准（最少一项，最多六项）");
 				 $("#formContainer").html(data);
 				 
 		     },
