@@ -1,16 +1,13 @@
 package com.spring.boot.blog.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 
 import com.spring.boot.blog.util.Menu;
 
@@ -23,26 +20,23 @@ import com.spring.boot.blog.util.Menu;
 @Controller
 @RequestMapping("/director/menu")
 public class DirectorController {
- 
 
 	/**
 	 * 获取后台管理主页面
+	 * 
 	 * @return
 	 */
 	@GetMapping
 	public ModelAndView listUsers(Model model) {
 		List<Menu> directorList = new ArrayList<>();
-		
-		directorList.add(new Menu("添加课程","/director/courseList"));
-		directorList.add(new Menu("课程管理","/director/publishCourseList"));
-		directorList.add(new Menu("上传文件","http://192.168.20.230:8080/gouploadimg"));
-		
+
+		directorList.add(new Menu("添加课程", "/director/courseList"));
+		directorList.add(new Menu("课程管理", "/director/publishCourseList"));
+		directorList.add(new Menu("上传文件", "http://192.168.20.230:8080/gouploadimg"));
+
 		model.addAttribute("directorList", directorList);
-		
+
 		return new ModelAndView("director/menu/index", "model", model);
 	}
 
-	
-
-	 
 }
