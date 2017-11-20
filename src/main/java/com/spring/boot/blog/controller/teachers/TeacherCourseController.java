@@ -96,6 +96,15 @@ public class TeacherCourseController {
 	public ModelAndView createFormeditStandard(@PathVariable("id") Long id, Model model) {
 		Course course= courseService.getCourseById(id);	
 		model.addAttribute("course", course);
+		List<CourseStandard> standard =courseStandardService.listCourseStandardsByCourseId(id);
+		for (int i = standard.size(); i < 7; i++) {
+			CourseStandard coursestandard = new CourseStandard();
+			coursestandard.setCourse(course);
+			coursestandard.setMethod("0");
+			coursestandard.setPercentage((long) 0);
+			standard.add(coursestandard);
+		}
+		model.addAttribute("standard", standard);
 		return new ModelAndView("teachersCourse/edit", "teacherModel", model);
 	}
 	
