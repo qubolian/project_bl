@@ -1,5 +1,5 @@
 
-INSERT INTO user (id, user_name, password, name, email) VALUES (1, 'admin', '123456', '管理员', 'i@sina.com');
+INSERT INTO user (id, user_name, password, name, email) VALUES (1, '10001', '123456', '管理员', 'i@sina.com');
 
 
 INSERT INTO authority (id, name,mark) VALUES (1, 'ROLE_ADMIN','系统管理员');
@@ -9,7 +9,9 @@ INSERT INTO authority (id, name,mark) VALUES (2, 'ROLE_SUPER','院办管理员')
 INSERT INTO authority (id, name,mark) VALUES (4, 'ROLE_STUDENT','学生');
 INSERT INTO authority (id, name,mark) VALUES (5, 'ROLE_DIRECTOR','系主任');
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
-
+INSERT INTO user_authority (user_id, authority_id) VALUES (1, 3);
+INSERT INTO user_authority (user_id, authority_id) VALUES (1, 5);
+INSERT INTO user_authority (user_id, authority_id) VALUES (1, 2);
 
 
 INSERT INTO project_mission (id, mark,misson) VALUES (1, '请输入宗旨的内容','测试一下');
@@ -59,7 +61,14 @@ INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, cour
 INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623381, '张三', '计算器科学与技术系', '男', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
 
 
+INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (1, '大纲1', '1-2017-11-11-01', '教学进度表1', '1-2017-11-11-02', '2017-11-11', '2017-11-11');
+INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (2, '大纲2', '2-2017-12-12-01', '教学进度表3', '2-2017-12-12-02', '2017-12-12', '2017-12-12');
+INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (3, '大纲3', '3-2017-03-03-01', '教学进度表3', '3-2017-03-03-02', '2017-03-03', '2017-03-03');
 
-
-
+INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (1, '上机测试', 30, '1');
+INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (2, '实验报告', 20, '1');
+INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (3, '平时成绩', 20, '1');
+INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (4, '期末答辩', 30, '1');
+INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (5, '平时成绩', 40, '2');
+INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (6, '期末答辩', 60, '2');
 

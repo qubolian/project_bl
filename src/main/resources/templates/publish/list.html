@@ -55,14 +55,18 @@
 								data-target="#flipFlop" role="button"
 								data-th-attr="courseId=${course.id}"> <i
 								th:class="${course.teacher}==null?'fa fa-user-plus':'fa fa-user'"
-								aria-hidden="true"></i>
+								aria-hidden="true" title="指派课程负责人"></i>
 							</a> 
 							<a class="director-add-supervisor" data-toggle="modal"
 								data-target="#flipFlop" role="button"
 								data-th-attr="courseId=${course.id}"> <i
 								th:class="${course.supervisor.isEmpty()}?'fa fa-user-plus':'fa fa-users'"
-								aria-hidden="true"></i>
+								aria-hidden="true" title="指派指导老师"></i>
 							</a> 
+							<a class="director-delete-course" role="button"
+								data-th-attr="courseId=${course.id}"> <i class="fa fa-times"
+								aria-hidden="true" title="删除课程"></i>
+							</a>
 		
 						</div>
 					</td>

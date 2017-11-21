@@ -1,6 +1,7 @@
 package com.spring.boot.blog.controller.teachers;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +26,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.spring.boot.blog.domain.Course;
+import com.spring.boot.blog.domain.CourseStandard;
 import com.spring.boot.blog.domain.DepartmentList;
+import com.spring.boot.blog.domain.SubmitFile;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.domain.User;
 import com.spring.boot.blog.service.CourseService;
+import com.spring.boot.blog.service.CourseStandardService;
+import com.spring.boot.blog.service.SubmitFileService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
 
@@ -46,7 +51,13 @@ public class TeacherCourseController {
 	@Autowired
 	private CourseService courseService;
 	
-
+	@Autowired
+	private CourseStandardService courseStandardService;
+	
+	@Autowired
+	private SubmitFileService submitFileService;
+	
+	
 	
 	/**
 	 * 查询所有课程
@@ -75,13 +86,34 @@ public class TeacherCourseController {
 		return new ModelAndView(async==true?"teachersCourse/list :: #mainContainerRepleace":"teachersCourse/list", "courseModel", model);
 	}
 	
-	
+	/**
+	 * 课程评分标准
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/editStandard/{id}")
 	public ModelAndView createFormeditStandard(@PathVariable("id") Long id, Model model) {
-
+		Course course= courseService.getCourseById(id);	
+		model.addAttribute("course", course);
+		List<CourseStandard> standard =courseStandardService.listCourseStandardsByCourseId(id);
+		for (int i = standard.size(); i < 7; i++) {
+			CourseStandard coursestandard = new CourseStandard();
+			coursestandard.setCourse(course);
+			coursestandard.setMethod("0");
+			coursestandard.setPercentage((long) 0);
+			standard.add(coursestandard);
+		}
+		model.addAttribute("standard", standard);
 		return new ModelAndView("teachersCourse/edit", "teacherModel", model);
 	}
 	
+	/**
+	 * 上传文件
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/upload/{id}")
 	public ModelAndView createFormUpload(@PathVariable("id") Long id, Model model) {
 		
@@ -97,10 +129,52 @@ public class TeacherCourseController {
 	@GetMapping("/startCourse/{id}")
 	public ResponseEntity<Response> publish(@PathVariable("id") Long id, Model model) {
 		try {
+			List<CourseStandard> standard =courseStandardService.listCourseStandardsByCourseId(id);
+			SubmitFile submitFile =submitFileService.getSubmitFileById(id);
 			Course course= courseService.getCourseById(id);	
-			course.setStatus("2");
-			courseService.saveCourse(course);
-			
+			if(course.getSupervisor().isEmpty()) {
+				return  ResponseEntity.ok().body( new Response(false, "系主任必须先指派指导老师！"));
+			}else if(standard.isEmpty()) {
+					return  ResponseEntity.ok().body( new Response(false, "必须先设定评分标准！"));
+			}else if(submitFile == null) {
+				return  ResponseEntity.ok().body( new Response(false, "必须先提交大纲与教学进度表！"));
+			}else {
+				course.setStatus("2");
+				courseService.saveCourse(course);
+			}
+		} catch (Exception e) {
+			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+		}
+		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
+	}
+	
+	/**
+	 * 保存课程评分标准
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/courseStandard")
+	public ResponseEntity<Response> saveCourseStandard(			
+			@RequestParam(value="id",required=false,defaultValue="") Long id,
+			@RequestParam(value="method",required=false,defaultValue="") String[] method,
+			@RequestParam(value="percentage",required=false,defaultValue="") Long[] percentage
+			) {
+		try {
+			Course course= courseService.getCourseById(id);	
+			List<CourseStandard> standard =courseStandardService.listCourseStandardsByCourseId(id);
+			for (CourseStandard courseStandard : standard) {
+				courseStandardService.removeCourseStandard(courseStandard.getId());
+			}
+			for(int i=0;i<6;i++) {
+				if(percentage[i] != null) {
+					CourseStandard courseStandard = new CourseStandard();
+					courseStandard.setCourse(course);
+					courseStandard.setMethod(method[i]);
+					courseStandard.setPercentage(percentage[i]);
+					courseStandardService.saveCourseStandard(courseStandard);
+				}
+			}
 		} catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}

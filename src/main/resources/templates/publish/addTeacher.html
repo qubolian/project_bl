@@ -9,7 +9,7 @@
 		
 	 	  <br>
 	 	  
-	 	<div th:if=*{teacher}==null>
+	 	<div th:if="*{teacher}==null">
 			<select id="teacherId" name="teacher.id"  class="form-control">  
 			
 				<option th:each="teacher : ${teacherModel.teacher}"  th:value="${teacher.id}" th:text="${teacher.teacherName}" >
@@ -18,7 +18,7 @@
 	        </select>  
         </div>
         
-        <div th:if=*{teacher}!=null>
+        <div th:if="*{teacher}!=null">
 			<select id="teacherId" name="teacher.id"  class="form-control">  
 			
 				<option th:each="teacher : ${teacherModel.teacher}"  th:value="${teacher.id}" th:text="${teacher.teacherName}" th:selected="(*{teacher.id} == ${teacher.id})">

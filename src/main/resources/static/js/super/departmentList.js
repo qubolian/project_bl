@@ -105,9 +105,11 @@ $(function() {
 		// 获取 CSRF Token 
 		var csrfToken = $("meta[name='_csrf']").attr("content");
 		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+		
 		$.ajax({ 
 			 url: "/super/departmentList/" + $(this).attr("departmentListId") , 
 			 type: 'DELETE', 
+			 async:false,
 			 beforeSend: function(request) {
                  request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
              },
@@ -123,6 +125,7 @@ $(function() {
 		    	 toastr.error("error!");
 		     }
 		 });
+		
 	});
 	
 });

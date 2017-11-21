@@ -103,6 +103,7 @@ $(function() {
 		$.ajax({ 
 			 url: "/users/" + $(this).attr("userId") , 
 			 type: 'DELETE', 
+			 async:false,
 			 beforeSend: function(request) {
                  request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
              },
