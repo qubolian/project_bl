@@ -49,13 +49,17 @@ $(function() {
 	
 	// 上传文件
 	$("#rightContainer").on("click",".teachers-upload-files", function () { 
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({ 
 			 url: "/teachers/upload/" + $(this).attr("courseId"), 
+			 beforeSend: function(request) {
+                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
+             },
 			 success: function(data){
-				 console.log(data);
 				 $("#modalLabel").text("上传文件");
+				 $("#submitEdit").hide();
 				 $("#formContainer").html(data);
-				 
 		     },
 		     error : function() {
 		    	 toastr.error("error!");

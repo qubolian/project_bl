@@ -3,6 +3,7 @@ package com.spring.boot.blog.controller.director;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 
 import com.spring.boot.blog.domain.Course;
 import com.spring.boot.blog.service.CourseService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
+import com.spring.boot.blog.util.FileUtil;
 import com.spring.boot.blog.vo.Response;
 
 /**
@@ -72,7 +76,6 @@ public class CourseController {
 	@PostMapping("/addCourse")
 	public ResponseEntity<Response> saveOrUpdate(Course course) {
 		try {
-			
 			courseService.saveCourse(course);
 			
 		}catch (RuntimeException e)  {
@@ -87,6 +90,7 @@ public class CourseController {
 	@GetMapping(value = "editCourse/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
 		Course course= courseService.getCourseById(id);	
+		
 		model.addAttribute("course", course);
 		return new ModelAndView("course/edit", "courseModel", model);
 	}

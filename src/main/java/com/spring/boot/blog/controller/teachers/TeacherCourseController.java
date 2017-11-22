@@ -1,7 +1,10 @@
 package com.spring.boot.blog.controller.teachers;
 
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -35,6 +39,7 @@ import com.spring.boot.blog.service.CourseService;
 import com.spring.boot.blog.service.CourseStandardService;
 import com.spring.boot.blog.service.SubmitFileService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
+import com.spring.boot.blog.util.FileUtil;
 import com.spring.boot.blog.vo.Response;
 
 /**
@@ -87,7 +92,7 @@ public class TeacherCourseController {
 	}
 	
 	/**
-	 * 课程评分标准
+	 * 课程评分标准页面
 	 * @param id
 	 * @param model
 	 * @return
@@ -109,15 +114,26 @@ public class TeacherCourseController {
 	}
 	
 	/**
-	 * 上传文件
+	 * 上传文件页面
 	 * @param id
 	 * @param model
 	 * @return
 	 */
 	@GetMapping("/upload/{id}")
 	public ModelAndView createFormUpload(@PathVariable("id") Long id, Model model) {
+		Course course= courseService.getCourseById(id);	
+		model.addAttribute("course", course);
 		
-		return new ModelAndView("teachersCourse/upload", "teacherModel", model);
+		String outlineName ="0";
+		String scheduleName ="0";
+		SubmitFile submitFile =submitFileService.getSubmitFileById(id);
+		if(submitFile !=null) {
+			outlineName = submitFile.getOutlineName();
+			scheduleName = submitFile.getScheduleName();
+		}
+		model.addAttribute("outlineName", outlineName);
+		model.addAttribute("scheduleName", scheduleName);
+		return new ModelAndView("teachersCourse/upload", "courseModel", model);
 	}
 	
 	/**
@@ -180,5 +196,140 @@ public class TeacherCourseController {
 		}
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
 	}
+	
+	/**
+	 * 上传大纲
+	 * @param file
+	 * @return
+	 */
+	@PostMapping("/uploadOutline")
+	public ResponseEntity<Response> saveOutline(
+			@RequestParam(value="id",required=false,defaultValue="") Long id,
+			@RequestParam("file") MultipartFile file) {
+	    String fileName = file.getOriginalFilename();
+	    String filePath = "D:/fileupload/";
+	    SimpleDateFormat tempDate = new SimpleDateFormat("HH:mm:ss"); 
+	    String datetime = tempDate.format(new Date(System.currentTimeMillis()));
+	    try {
+            FileUtil.uploadFile(file.getBytes(), filePath, fileName);
+            SubmitFile submitFile;
+            submitFile = submitFileService.getSubmitFileById(id);
+            if(submitFile == null) {
+            	submitFile = new SubmitFile();
+            	submitFile.setId(id);
+            	submitFile.setScheduleName("0");
+            }
+            submitFile.setId(id);
+            submitFile.setOutlineName(fileName);
+            submitFile.setOutlineSaveName(datetime+id+"1");
+            submitFile.setOutlineUpdateTime(datetime);
+            submitFileService.saveSubmitFile(submitFile);
+        } catch (Exception e) {
+        	return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+        }
+	    return ResponseEntity.ok().body(new Response(true, "处理成功",fileName));
+	
+	}
+	
+	/**
+	 * 上传教学进度表
+	 * @param file
+	 * @return
+	 */
+	@PostMapping("/uploadSchedule")
+	public ResponseEntity<Response> saveSchedule(
+			@RequestParam(value="id",required=false,defaultValue="") Long id,
+			@RequestParam("file") MultipartFile file) {
+	    String fileName = file.getOriginalFilename();
+	    String filePath = "D:/fileupload/";
+	    SimpleDateFormat tempDate = new SimpleDateFormat("HH:mm:ss"); 
+	    String datetime = tempDate.format(new Date(System.currentTimeMillis())); 
+	    try {
+            FileUtil.uploadFile(file.getBytes(), filePath, fileName);
+            SubmitFile submitFile;
+            submitFile = submitFileService.getSubmitFileById(id);
+            if(submitFile == null) {
+            	submitFile = new SubmitFile();
+            	submitFile.setId(id);
+            	submitFile.setOutlineName("0");
+            }
+            submitFile.setScheduleName(fileName);
+            submitFile.setScheduleSaveName(datetime+id+"2");
+            submitFile.setScheduleUpdateTime(datetime);
+            submitFileService.saveSubmitFile(submitFile);
+        } catch (Exception e) {
+        	return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+        }
+	    return ResponseEntity.ok().body(new Response(true, "处理成功",fileName));
+	
+	}
+	
+	
+	/**
+	 * 删除大纲
+	 * @param file
+	 * @return
+	 */
+	@GetMapping("/deleteOutline")
+	public ResponseEntity<Response> deleteOutline(
+			@RequestParam(value="id",required=false,defaultValue="") String id,
+			@RequestParam(value="outlineName",required=false,defaultValue="") String outlineName) {
+	    try {
+	    	Long it = Long.valueOf(id);
+	    	SubmitFile submitFile = submitFileService.getSubmitFileById(it);
+	    	submitFile.setOutlineName("0");
+	    	submitFile.setOutlineSaveName("0");
+	    	submitFile.setOutlineUpdateTime("0");
+	    	
+	    	File folder = new File("D:/fileupload/");
+			File[] files = folder.listFiles();
+			for(File file:files){
+				if(file.getName().equals(outlineName)){
+					file.delete();
+				}
+			}
+	    	
+        } catch (Exception e) {
+        	return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+        }
+	    return ResponseEntity.ok().body(new Response(true, "处理成功"));
+	
+	}
+	
+	
+	/**
+	 * 删除教学进度表
+	 * @param file
+	 * @return
+	 */
+	@GetMapping("/deleteSchedule")
+	public ResponseEntity<Response> deleteSchedule(
+			@RequestParam(value="id",required=false,defaultValue="") String id,
+			@RequestParam(value="scheduleName",required=false,defaultValue="") String scheduleName) {
+	    try {
+	    	Long it = Long.valueOf(id);
+	    	SubmitFile submitFile = submitFileService.getSubmitFileById(it);
+	    	submitFile.setScheduleName("0");
+	    	submitFile.setScheduleSaveName("0");
+	    	submitFile.setScheduleUpdateTime("0");
+	    	
+	    	File folder = new File("D:/fileupload/");
+			File[] files = folder.listFiles();
+			for(File file:files){
+				if(file.getName().equals(scheduleName)){
+					file.delete();
+				}
+			}
+
+        } catch (Exception e) {
+        	return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+        }
+	    return ResponseEntity.ok().body(new Response(true, "处理成功"));
+	
+	}
+	
+	
+	
+	
 	 
 }

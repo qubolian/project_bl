@@ -10,20 +10,37 @@
 // DOM 加载完再执行
 $(function() {
 	
-	// 提交变更后，清空表单
-	$("#submitEdit").on("click",function(){
-		if($("#upperLimit").val() > $("#lowerLimit").val()){
+	
+	// 上传大纲
+	$("#submitOutline").on("click",function(){
+		var div = $('#outlineDiv');
+		if($("#1").length > 0){
+				toastr.error("请先删除现有大纲！");
+		}else if($("#file1").val() == null){
+			toastr.error("请先上传大纲！");
+		}else{
+			var formData = new FormData($( "#outlineForm" )[0]);
 			$.ajax({ 
-				 url: "/director/addCourse", 
+				 url: "/teachers/uploadOutline", 
 				 type: 'POST',
-				 data:$('#courseForm').serialize(),
+				 data:formData,
+				 cache: false,  
+		         processData: false,  
+		         contentType: false,
 				 success: function(data){
-					 
-					 $('#courseForm')[0].reset();  
-					 
+					 console.log(data.body);
+					 $('#outlineForm')[0].reset(); 
 					 if (data.success) {
-						 // 从新刷新主界面
-						 getCourseByName(0, _pageSize);
+						 div.append(
+								 "<div style='margin-left:15px' id='1'>" +
+									 "<label class='col-form-label'><strong style='color:red'>*&thinsp;</strong><i id='outlineName'>"+data.body+"</i></label>" +
+									 "&nbsp;&nbsp;" +
+									 "<a class='teachers-delete-outline' role='button'> " +
+									 "<i class='fa fa-times-circle fa-lg text-danger' title='删除大纲'></i>" +
+									 "</a>" +
+								 "</div>"
+						 );
+						 
 					 } else {
 						 toastr.error(data.message);
 					 }
@@ -33,9 +50,104 @@ $(function() {
 			    	 toastr.error("error!");
 			     }
 			 });
-		}else{
-			toastr.error("上限不能低于下限");
 		}
 	});
 	
+	
+
+	// 上传教学进度表
+	$("#submitSchedule").on("click",function(){
+		var div = $('#scheduleDiv');
+		if($("#2").length > 0){
+				toastr.error("请先删除现有教学进度表！");
+		}else if($("#file2").val() == null){
+			toastr.error("请先上传教学进度表！");
+		}else{
+			var formData = new FormData($( "#scheduleForm" )[0]);
+			$.ajax({ 
+				 url: "/teachers/uploadSchedule", 
+				 type: 'POST',
+				 data:formData,
+				 cache: false,  
+		         processData: false,  
+		         contentType: false,
+				 success: function(data){
+					 
+					 $('#scheduleForm')[0].reset(); 
+					 
+					 if (data.success) {
+						 div.append(
+								 "<div style='margin-left:15px' id='2'>" +
+									 "<label class='col-form-label'><strong style='color:red'>*&thinsp;</strong><i id='outlineName'>"+data.body+"</i></label>" +
+									 "&nbsp;&nbsp;" +
+									 "<a class='teachers-delete-schedule' role='button'> " +
+									 "<i class='fa fa-times-circle fa-lg text-danger' title='删除教学进度表'></i>" +
+									 "</a>" +
+								 "</div>"
+						 );
+					 } else {
+						 toastr.error(data.message);
+					 }
+	
+			     },
+			     error : function() {
+			    	 toastr.error("error!");
+			     }
+			 });
+		}
+	});
+	
+	// 删除大纲
+	$(".teachers-delete-outline").on("click",function(){
+		$.ajax({ 
+			 url: "/teachers/deleteOutline", 
+			 //type: 'POST',
+			 data:{
+				 "outlineName":$("#outlineName").text(),
+				 "id":$("#id1").val()
+			 },
+			 success: function(data){
+				 
+				 $('#scheduleForm')[0].reset(); 
+				 
+				 if (data.success) {
+					 // 从新刷新主界面
+					 $("#1").remove();
+				 } else {
+					 toastr.error(data.message);
+				 }
+
+		     },
+		     error : function() {
+		    	 toastr.error("error!");
+		     }
+		 });
+	});
+	
+	// 删除教学进度表
+	$(".teachers-delete-schedule").on("click",function(){
+		$.ajax({ 
+			 url: "/teachers/deleteSchedule", 
+			 //type: 'POST',
+			 data:{
+				 "scheduleName":$("#scheduleName").text(),
+				 "id":$("#id2").val()
+			 },
+			 success: function(data){
+				 
+				 $('#scheduleForm')[0].reset(); 
+				 
+				 if (data.success) {
+					 // 从新刷新主界面
+					 $("#2").remove();
+				 } else {
+					 toastr.error(data.message);
+				 }
+
+		     },
+		     error : function() {
+		    	 toastr.error("error!");
+		     }
+		 });
+	});
 });
