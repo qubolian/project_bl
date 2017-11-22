@@ -1,7 +1,9 @@
 package com.spring.boot.blog.controller.teachers;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -35,6 +38,7 @@ import com.spring.boot.blog.service.CourseService;
 import com.spring.boot.blog.service.CourseStandardService;
 import com.spring.boot.blog.service.SubmitFileService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
+import com.spring.boot.blog.util.FileUtil;
 import com.spring.boot.blog.vo.Response;
 
 /**
@@ -87,7 +91,7 @@ public class TeacherCourseController {
 	}
 	
 	/**
-	 * 课程评分标准
+	 * 课程评分标准页面
 	 * @param id
 	 * @param model
 	 * @return
@@ -109,15 +113,25 @@ public class TeacherCourseController {
 	}
 	
 	/**
-	 * 上传文件
+	 * 上传文件页面
 	 * @param id
 	 * @param model
 	 * @return
 	 */
 	@GetMapping("/upload/{id}")
 	public ModelAndView createFormUpload(@PathVariable("id") Long id, Model model) {
+		Course course= courseService.getCourseById(id);	
+		model.addAttribute("course", course);
 		
-		return new ModelAndView("teachersCourse/upload", "teacherModel", model);
+		String outlineName ="0";
+		String scheduleName ="0";
+		SubmitFile submitFile =submitFileService.getSubmitFileById(id);
+		/*if(submitFile !=null) {
+			
+		}*/
+		model.addAttribute("outlineName", outlineName);
+		model.addAttribute("scheduleName", scheduleName);
+		return new ModelAndView("teachersCourse/upload", "courseModel", model);
 	}
 	
 	/**
@@ -179,6 +193,61 @@ public class TeacherCourseController {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
+	}
+	
+	/**
+	 * 上传大纲
+	 * @param file
+	 * @return
+	 */
+	@PostMapping("/uploadOutline")
+	public ResponseEntity<Response> saveOutline(
+			@RequestParam(value="id",required=false,defaultValue="") Long id,
+			@RequestParam("file") MultipartFile file) {
+	    String fileName = file.getOriginalFilename();
+	    String filePath = "D:/imgupload/";
+	    SimpleDateFormat tempDate = new SimpleDateFormat("HH:mm:ss"); 
+	    String datetime = tempDate.format(new Date(System.currentTimeMillis()));
+	    System.out.println(datetime);
+	    try {
+            FileUtil.uploadFile(file.getBytes(), filePath, fileName);
+            SubmitFile submitFile = new SubmitFile();
+            submitFile.setId(id);
+            submitFile.setOutlineName(fileName);
+            submitFile.setOutlineSaveName(datetime+id+"1");
+            submitFile.setOutlineUpdateTime(datetime);
+            submitFileService.saveSubmitFile(submitFile);
+        } catch (Exception e) {
+        }
+	    return ResponseEntity.ok().body(new Response(true, "处理成功"));
+	
+	}
+	
+	/**
+	 * 上传教学进度表
+	 * @param file
+	 * @return
+	 */
+	@PostMapping("/uploadSchedule")
+	public ResponseEntity<Response> saveSchedule(
+			@RequestParam(value="id",required=false,defaultValue="") Long id,
+			@RequestParam("file") MultipartFile file) {
+	    String fileName = file.getOriginalFilename();
+	    String filePath = "D:/imgupload/";
+	    SimpleDateFormat tempDate = new SimpleDateFormat("HH:mm:ss"); 
+	    String datetime = tempDate.format(new Date(System.currentTimeMillis())); 
+	    try {
+            FileUtil.uploadFile(file.getBytes(), filePath, fileName);
+            SubmitFile submitFile = new SubmitFile();
+            submitFile.setId(id);
+            submitFile.setOutlineName(fileName);
+            submitFile.setOutlineSaveName(datetime+id+"2");
+            submitFile.setOutlineUpdateTime(datetime);
+            submitFileService.saveSubmitFile(submitFile);
+        } catch (Exception e) {
+        }
+	    return ResponseEntity.ok().body(new Response(true, "处理成功"));
+	
 	}
 	 
 }

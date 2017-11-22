@@ -10,20 +10,25 @@
 // DOM 加载完再执行
 $(function() {
 	
-	// 提交变更后，清空表单
-	$("#submitEdit").on("click",function(){
-		if($("#upperLimit").val() > $("#lowerLimit").val()){
+	// 上传大纲
+	$("#submitOutline").on("click",function(){
+		if($("#outlineName").val() == 0){
+			toastr.error("请先删除现有大纲");
+		}else{
+			var formData = new FormData($( "#outlineForm" )[0]);
 			$.ajax({ 
-				 url: "/director/addCourse", 
+				 url: "/teachers/uploadOutline", 
 				 type: 'POST',
-				 data:$('#courseForm').serialize(),
+				 data:formData,
+				 cache: false,  
+		         processData: false,  
+		         contentType: false,
 				 success: function(data){
 					 
-					 $('#courseForm')[0].reset();  
+					 $('#outlineForm')[0].reset(); 
 					 
 					 if (data.success) {
 						 // 从新刷新主界面
-						 getCourseByName(0, _pageSize);
 					 } else {
 						 toastr.error(data.message);
 					 }
@@ -33,9 +38,42 @@ $(function() {
 			    	 toastr.error("error!");
 			     }
 			 });
-		}else{
-			toastr.error("上限不能低于下限");
 		}
 	});
+	
+	
+
+	// 上传教学进度表
+	$("#submitSchedule").on("click",function(){
+		if($("#scheduleName").val() == 0){
+			toastr.error("请先删除现有教学进度表");
+		}else{
+			var formData = new FormData($( "#scheduleForm" )[0]);
+			$.ajax({ 
+				 url: "/teachers/uploadSchedule", 
+				 type: 'POST',
+				 data:formData,
+				 cache: false,  
+		         processData: false,  
+		         contentType: false,
+				 success: function(data){
+					 
+					 $('#scheduleForm')[0].reset(); 
+					 
+					 if (data.success) {
+						 // 从新刷新主界面
+					 } else {
+						 toastr.error(data.message);
+					 }
+	
+			     },
+			     error : function() {
+			    	 toastr.error("error!");
+			     }
+			 });
+		}
+	});
+	
+	
 	
 });
