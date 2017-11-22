@@ -62,8 +62,7 @@ INSERT INTO student (id, name, department, sex, grade, length_of_schooling, trai
 
 
 INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (1, '大纲1', '1-2017-11-11-01', '教学进度表1', '1-2017-11-11-02', '2017-11-11', '2017-11-11');
-INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (2, '大纲2', '2-2017-12-12-01', '教学进度表3', '2-2017-12-12-02', '2017-12-12', '2017-12-12');
-INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (3, '大纲3', '3-2017-03-03-01', '教学进度表3', '3-2017-03-03-02', '2017-03-03', '2017-03-03');
+INSERT INTO Submit_File(id, outline_Name, outline_Save_Name, schedule_Name, schedule_Save_Name, outline_Update_Time, schedule_Update_Time) VALUES (2, '大纲2', '2-2017-12-12-01', '教学进度表2', '2-2017-12-12-02', '2017-12-12', '2017-12-12');
 
 INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (1, '上机测试', 30, '1');
 INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (2, '实验报告', 20, '1');
