@@ -34,33 +34,17 @@ public class SubmitFile implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
 	private Long id; // 用户的唯一标识
 
-	@NotEmpty(message = "大纲原文件名不能为空")
-	@Column(nullable = false) // 映射为字段，值不能为空
-	private String outlineName;
+	private String outlineName;		//大纲原文件名
 
-	@NotEmpty(message = "大纲保存文件名不能为空")
-	@Size(min = 1, message = "大纲保存文件名长度必须在1到50之间")
-	@Column(nullable = false) // 映射为字段，值不能为空
-	private String outlineSaveName;
+	private String outlineSaveName;		//大纲保存文件名
 
-	@NotEmpty(message = "教学进度表原文件名不能为空")
-	@Column(nullable = false) // 映射为字段，值不能为空
-	private String scheduleName;
+	private String scheduleName;		//教学进度表原文件名
 
-	@NotEmpty(message = "教学进度表保存文件名不能为空")
-	@Size(min = 1, message = "教学进度表保存文件名长度必须在1到50之间")
-	@Column(nullable = false) // 映射为字段，值不能为空
-	private String scheduleSaveName;
+	private String scheduleSaveName;		//教学进度表保存文件名
 
-	@NotEmpty(message = "大纲上传时间不能为空")
-	@Size(min = 1, message = "大纲上传时间长度必须在1到50之间")
-	@Column(nullable = false) // 映射为字段，值不能为空
-	private String outlineUpdateTime;
+	private String outlineUpdateTime;		//大纲上传时间长度
 
-	@NotEmpty(message = "教学进度表上传时间不能为空")
-	@Size(min = 1, message = "教学进度表上传时间长度必须在1到50之间")
-	@Column(nullable = false) // 映射为字段，值不能为空
-	private String scheduleUpdateTime;
+	private String scheduleUpdateTime;		//教学进度表上传时间
 
 	public Long getId() {
 		return id;

@@ -3,37 +3,49 @@
 <div class="container blog-content-container">
 
     <div class="row">
-
-       
-        
-   
-
         <!-- 右侧栏目 -->
-
-
         <div class="col-md-11 col-xl-11">
- 
 
-            <!-- 个人设置 -->
+            <!-- 上传文件 -->
             <div class="card ">
  				<h5 class="card-header"><i class="fa fa-cog" aria-hidden="true"></i>上传文件</h5>
                     <div class="card-block">
-						<form th:action="@{/director/upload}" enctype="multipart/form-data" method="post" id="userForm" >
-
-							<div class="form-group">
-								<input type="file" name="file" />
-							</div>
+                    
+<!-- 	                    <table>
+	                    <tr>
+		                    <td> -->
+								<form th:action="@{/director/upload}" enctype="multipart/form-data" method="post" id="uploadForm" >
+									<input type="hidden" id="outline" name="outline" value="outline">
+									
+									<div class="form-group">
+										<input type="file" name="file" />
+									</div>
+									
+									<div class="form-group">
+										<button id="submit" type="button" class="btn btn-primary" >上传</button>
+									</div>
+								</form>
+<!-- 							</td>
 							
-							<div class="form-group">
-								<button id="submit" type="submit" class="btn btn-primary" >上传</button>
-							</div>
-							
-						</form>
-                        
+							<td>
+								<form th:action="@{/director/upload}" enctype="multipart/form-data" method="post" id="uploadForm" >
+									<input type="hidden" id="schedule" name="schedule" value="schedule">
+									
+									<div class="form-group">
+										<input type="file" name="file" />
+									</div>
+									
+									<div class="form-group">
+										<button id="submit" type="button" class="btn btn-primary" >上传</button>
+									</div>
+								</form>
+							</td>
+						</tr>
+						</table> -->
+						
                     </div>
             </div>
 
-        
         </div>
     </div>
     <!-- /.row -->
@@ -41,29 +53,5 @@
 </div>
 <!-- /.container -->
 
-<!-- The modal -->
-<div class="modal fade" id="flipFlop" tabindex="-1" role="dialog"
-	aria-labelledby="modalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="modalLabel">编辑头像</h4>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-
-			</div>
-			<div class="modal-body" id="avatarFormContainer"></div>
-			<div class="modal-footer">
-				<button class="btn btn-primary" data-dismiss="modal" id="submitEditAvatar">提交</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-
- 
 <!-- JavaScript -->
-<script src="../../js/director/upload.js" th:src="@{/js/director/upload.js}"></script>
+ <script src="../../js/director/upload.js" th:src="@{/js/director/upload.js}"></script> 
