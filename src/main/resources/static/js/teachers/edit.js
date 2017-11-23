@@ -25,12 +25,10 @@ $(function() {
 		var a = addPercentage();
 		if(a !=100){
 			toastr.error("百分比之和必须为100");
-			return false;
 		}
 		for(var i = 1;i<7;i++){
-			if($("#percentage"+i).val() != "" || $("#method"+i).val() == ""){
+			if($("#percentage"+i).val() == "" && $("#method"+i).val() == null){
 				toastr.error("评分方式不能为空");
-				return false;
 				break;
 			}
 		}
@@ -38,13 +36,14 @@ $(function() {
 				 url: "/teachers/courseStandard/", 
 				 //type: 'POST',
 				 data:$('#courseForm').serialize(),
+				 async:false,
 				 success: function(data){
 					 
 					 $('#courseForm')[0].reset();  
 					 
 					 if (data.success) {
 						 // 从新刷新主界面
-						 getCourseByName(0, _pageSize);
+						// getCourseByName(0, _pageSize);
 					 } else {
 						 toastr.error(data.message);
 					 }
@@ -94,7 +93,6 @@ $(function() {
 			toastr.error("百分比上限为100");
 		}else{
 			$("#6").show();
-			$("#percentage6").val(100-a);
 		}
 	});
 	$("#percentage6").change(function(){

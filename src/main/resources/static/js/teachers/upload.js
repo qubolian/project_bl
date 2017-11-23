@@ -10,14 +10,15 @@
 // DOM 加载完再执行
 $(function() {
 	
-	
 	// 上传大纲
 	$("#submitOutline").on("click",function(){
-		var div = $('#outlineDiv');
-		if($("#1").length > 0){
-				toastr.error("请先删除现有大纲！");
-		}else if($("#file1").val() == null){
-			toastr.error("请先上传大纲！");
+		var div = $('#1');
+		var del = $(".teachers-delete-outline");
+
+		if($("#outlinelabel").length > 0){
+			toastr.error("请先删除现有大纲！");
+		}else if($("#file1").val() == ""){
+			toastr.error("请先选择大纲！");
 		}else{
 			var formData = new FormData($( "#outlineForm" )[0]);
 			$.ajax({ 
@@ -28,18 +29,12 @@ $(function() {
 		         processData: false,  
 		         contentType: false,
 				 success: function(data){
-					 console.log(data.body);
 					 $('#outlineForm')[0].reset(); 
 					 if (data.success) {
-						 div.append(
-								 "<div style='margin-left:15px' id='1'>" +
-									 "<label class='col-form-label'><strong style='color:red'>*&thinsp;</strong><i id='outlineName'>"+data.body+"</i></label>" +
-									 "&nbsp;&nbsp;" +
-									 "<a class='teachers-delete-outline' role='button'> " +
-									 "<i class='fa fa-times-circle fa-lg text-danger' title='删除大纲'></i>" +
-									 "</a>" +
-								 "</div>"
+						 div.prepend(
+									 "<label id='outlinelabel' class='col-form-label'><strong style='color:red'>*&thinsp;</strong><i id='outlineName'>"+data.body+"</i></label>" 
 						 );
+						 del.show();
 						 
 					 } else {
 						 toastr.error(data.message);
@@ -57,11 +52,12 @@ $(function() {
 
 	// 上传教学进度表
 	$("#submitSchedule").on("click",function(){
-		var div = $('#scheduleDiv');
-		if($("#2").length > 0){
+		var div = $('#2');
+		var del = $(".teachers-delete-schedule");
+		if($("#schedulelabel").length > 0){
 				toastr.error("请先删除现有教学进度表！");
-		}else if($("#file2").val() == null){
-			toastr.error("请先上传教学进度表！");
+		}else if($("#file2").val() == ""){
+			toastr.error("请先选择教学进度表！");
 		}else{
 			var formData = new FormData($( "#scheduleForm" )[0]);
 			$.ajax({ 
@@ -76,15 +72,10 @@ $(function() {
 					 $('#scheduleForm')[0].reset(); 
 					 
 					 if (data.success) {
-						 div.append(
-								 "<div style='margin-left:15px' id='2'>" +
-									 "<label class='col-form-label'><strong style='color:red'>*&thinsp;</strong><i id='outlineName'>"+data.body+"</i></label>" +
-									 "&nbsp;&nbsp;" +
-									 "<a class='teachers-delete-schedule' role='button'> " +
-									 "<i class='fa fa-times-circle fa-lg text-danger' title='删除教学进度表'></i>" +
-									 "</a>" +
-								 "</div>"
+						 div.prepend(
+							"<label id='schedulelabel' class='col-form-label'><strong style='color:red'>*&thinsp;</strong><i id='outlineName'>"+data.body+"</i></label>" 
 						 );
+						 del.show();
 					 } else {
 						 toastr.error(data.message);
 					 }
@@ -103,7 +94,6 @@ $(function() {
 			 url: "/teachers/deleteOutline", 
 			 //type: 'POST',
 			 data:{
-				 "outlineName":$("#outlineName").text(),
 				 "id":$("#id1").val()
 			 },
 			 success: function(data){
@@ -112,7 +102,8 @@ $(function() {
 				 
 				 if (data.success) {
 					 // 从新刷新主界面
-					 $("#1").remove();
+					 $("#outlinelabel").remove();
+					 $(".teachers-delete-outline").hide();
 				 } else {
 					 toastr.error(data.message);
 				 }
@@ -130,7 +121,6 @@ $(function() {
 			 url: "/teachers/deleteSchedule", 
 			 //type: 'POST',
 			 data:{
-				 "scheduleName":$("#scheduleName").text(),
 				 "id":$("#id2").val()
 			 },
 			 success: function(data){
@@ -139,7 +129,9 @@ $(function() {
 				 
 				 if (data.success) {
 					 // 从新刷新主界面
-					 $("#2").remove();
+					 $("#schedulelabel").remove();
+					 $(".teachers-delete-schedule").hide();
+					 
 				 } else {
 					 toastr.error(data.message);
 				 }
