@@ -64,7 +64,7 @@ public class UserspaceController {
 		User user = (User) userDetailsService.loadUserByUsername(username);
 		model.addAttribute("user", user);
 		model.addAttribute("fileServerUrl", fileServerUrl);
-		return new ModelAndView("/userspace/profile", "userModel", model);
+		return new ModelAndView("userspace/profile", "userModel", model);
 	}
 
 	@PostMapping("/{username}/profile")
