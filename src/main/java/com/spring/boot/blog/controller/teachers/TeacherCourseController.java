@@ -242,7 +242,7 @@ public class TeacherCourseController {
 			@RequestParam("file") MultipartFile file) {
 	    String fileName = file.getOriginalFilename();
 	    String filePath = "D:/fileupload/";
-	    SimpleDateFormat tempDate = new SimpleDateFormat("HHmmss"); 
+	    SimpleDateFormat tempDate = new SimpleDateFormat("YYYYMMddHHmmss"); 
 	    String datetime = tempDate.format(new Date(System.currentTimeMillis())); 
 	    try {
             FileUtil.uploadFile(file.getBytes(), filePath, datetime+id+"2"+fileName.substring(fileName.lastIndexOf(".")));
