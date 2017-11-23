@@ -59,7 +59,7 @@ public class UserspaceController {
 	}
 
 	@GetMapping("/{username}/profile")
-	// @PreAuthorize("authentication.name.equals(#username)")
+	@PreAuthorize("authentication.name.equals(#username)")
 	public ModelAndView profile(@PathVariable("username") String username, Model model) {
 		User user = (User) userDetailsService.loadUserByUsername(username);
 		model.addAttribute("user", user);
@@ -68,7 +68,7 @@ public class UserspaceController {
 	}
 
 	@PostMapping("/{username}/profile")
-	// @PreAuthorize("authentication.name.equals(#username)")
+	@PreAuthorize("authentication.name.equals(#username)")
 	public String saveProfile(User user, @PathVariable("username") String username,
 			@RequestParam(value = "newPassword", required = false) String newPassword) {
 
