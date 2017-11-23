@@ -107,7 +107,14 @@ public class CourseController {
 			if(courseService.getCourseById(id)!=null){
 				courseService.removeCourse(id);
 			}
+		}catch (RuntimeException e) {
+			Throwable cause = e.getCause();
+			System.out.println(cause);
+		    if(cause instanceof org.hibernate.exception.ConstraintViolationException) {
+		    	return  ResponseEntity.ok().body( new Response(false, "该课程已设定评分标准，无法删除"));
+		    }
 		} catch (Exception e) {
+			//org.hibernate.exception.ConstraintViolationException
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
@@ -126,7 +133,7 @@ public class CourseController {
 			course.setStatus("1");
 			courseService.saveCourse(course);
 			
-		} catch (Exception e) {
+		}catch (Exception e) {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
