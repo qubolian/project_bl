@@ -135,6 +135,7 @@ public class TeacherController {
 				}
 			}
 			userService.saveUser(user);
+			teacher.setResume("0");
 			teacherService.saveTeacher(teacher);
 		}catch (RuntimeException e)  {
 			return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));

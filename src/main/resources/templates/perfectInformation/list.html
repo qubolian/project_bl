@@ -1,0 +1,88 @@
+
+<form th:action="@{/supervisor}" enctype="multipart/form-data" method="post" th:object="${model.supervisor}" id="perfectInformationForm">
+
+	<input  type="hidden" name="id" th:value="*{id}">
+
+	<div class="form-group">
+		<div id="mainContainer" class="container">
+			<table align="center" width="100%">
+				<tr>
+					<td>
+						<label class="col-form-label" style="color:DarkBlue"><strong>专长：</strong></label>
+					</td>
+					<td>
+						<label class="col-form-label" style="color:DarkBlue"><strong>对学生的期待：</strong></label>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<textarea rows="22px" cols="47px" id="expert" style="resize:none;" >[[${model.supervisor.expert}]]</textarea> 
+					</td>
+					<td>
+						<textarea rows="22px" cols="47px" id="expectStudent" style="resize:none;" >[[${model.supervisor.expectStudent}]]</textarea> 
+					</td>
+				</tr>
+				</table>
+		</div>
+	</div>
+</form>	
+<form th:action="@{/supervisor}" enctype="multipart/form-data" method="post" th:object="${model.supervisor}" id="resumeForm">
+	<input  type="hidden" name="id" th:value="*{id}">
+
+	<div class="form-group">
+		<table>
+			<tr>
+				<td colspan="2">
+					<label class="col-form-label" style="color:DarkBlue"><strong>提交履历表：</strong></label>
+					<div th:if="*{resume}!=0">
+						<input type="text" name="resume" id="resume" th:value="*{resume}"/>
+						&nbsp;&nbsp;
+						<a class="supervisor-delete-resume" role="button"> 
+						<i class="fa fa-times-circle fa-lg text-danger" title="删除履历表"></i>
+						</a>
+					</div>
+					<div th:if="*{resume}==0">
+						<input type="file" name="resume" id="resume"/>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+			
+</form>	
+	<!-- 按钮 -->
+	<div class="card-footer bg-dark font-white">
+	<table align="center">
+		<tr>
+
+		<td>
+
+		<a class="btn btn-primary" 
+				 role="button" id="Update"><i
+				class="fa fa-edit" aria-hidden="true">修改</i></a>
+				
+		<a class="btn btn-info" 
+				role="button" id="Reload"><i
+				class="fa fa-refresh" aria-hidden="true">重置</i></a>
+
+		</td>
+		</tr>
+
+	</table>
+
+	</div>
+	
+
+
+
+
+
+
+
+<!-- JavaScript -->
+
+<!--  <!-- 配置文件 -->
+ <script src="../../ckeditor/ckeditor.js"></script>
+ <script src="../../js/supervisor/supervisor.js" th:src="@{/js/supervisor/supervisor.js}"></script>
+

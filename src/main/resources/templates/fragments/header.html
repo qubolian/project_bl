@@ -89,7 +89,7 @@
 							<a class=" dropdown-item" href="/teachers/menu" th:href="@{~/teachers/menu}">课程进度</a> 
 						</div>
 						<div sec:authorize="hasRole('ROLE_TEACHER')">
-							<a class="dropdown-item" href="/supervisor" th:href="@{~/supervisor}" >指导管理</a>
+							<a class="dropdown-item" href="/supervisor" th:href="@{~/supervisor}" >课程指导</a>
 						</div>
 						<a class="dropdown-item" href="/u/waylau/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人管理</a>
 					</div>

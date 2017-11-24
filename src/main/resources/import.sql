@@ -45,8 +45,8 @@ insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibi
 
 
 
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04032, '计算1', '1', '男', '专任教师', '信息技术学院', 0);
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority)  VALUES (04033, '软件1', '2', '女', '教辅人员', '信息技术学院', 0);
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume)  VALUES (04032, '计算1', '1', '男', '专任教师', '信息技术学院', 0, '0');
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume)  VALUES (04033, '软件1', '2', '女', '教辅人员', '信息技术学院', 0, '0');
 
 
 

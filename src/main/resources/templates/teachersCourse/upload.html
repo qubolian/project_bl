@@ -13,7 +13,7 @@
 		</div>
 		
 		<div style="margin-left:15px" id="1">
-			<label id="outlinelabel" th:if="${courseModel.outlineName}!='0'" class="col-form-label"><strong style="color:red">*&thinsp;</strong><i id="outlineName" th:text="${courseModel.outlineName}">大纲</i></label>
+			<label id="outlinelabel" th:if="${courseModel.outlineName}!='0'" class="col-form-label"><strong style="color:red">*&thinsp;</strong><a href="#" id="outlineName" th:text="${courseModel.outlineName}">大纲</a></label>
 			&nbsp;&nbsp;
 			<a th:style="${courseModel.outlineName}=='0'?'display:none'" class="teachers-delete-outline" role="button"> 
 			<i class="fa fa-times-circle fa-lg text-danger" title="删除大纲"></i>
@@ -33,7 +33,7 @@
 		</div>
 		
 		<div style="margin-left:15px" id="2">
-			<label id="schedulelabel" th:if="${courseModel.scheduleName}!='0'" class="col-form-label"><strong style="color:red">*&thinsp;</strong><i id="scheduleName" th:text="${courseModel.scheduleName}">教学进度表</i></label>
+			<label id="schedulelabel" th:if="${courseModel.scheduleName}!='0'" class="col-form-label"><strong style="color:red">*&thinsp;</strong><a href="#" id="scheduleName" th:text="${courseModel.scheduleName}">大纲</a></label>
 			&nbsp;&nbsp;
 			<a th:style="${courseModel.scheduleName}=='0'?'display:none'" class="teachers-delete-schedule" role="button"> 
 			<i class="fa fa-times-circle fa-lg text-danger" title="删除教学进度表"></i>
