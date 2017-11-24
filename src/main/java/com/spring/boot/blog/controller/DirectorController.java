@@ -32,7 +32,7 @@ public class DirectorController {
 
 		directorList.add(new Menu("添加课程", "/director/courseList"));
 		directorList.add(new Menu("课程管理", "/director/publishCourseList"));
-		directorList.add(new Menu("上传文件", "/director/upload"));
+		// directorList.add(new Menu("上传文件", "/director/upload"));
 
 		model.addAttribute("directorList", directorList);
 
