@@ -30,8 +30,9 @@ public class UploadimgController {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
 	private static final String localURL = "/usr/local/image/";
+
+	private static final String ServerURL = "http://192.168.20.140/";
 
 	/**
 	 * 上传头像
@@ -52,7 +53,7 @@ public class UploadimgController {
 			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
 		return ResponseEntity.ok()
-				.body(new Response(true, "处理成功", datetime + fileName.substring(fileName.lastIndexOf("."))));
+				.body(new Response(true, "处理成功", ServerURL + datetime + fileName.substring(fileName.lastIndexOf("."))));
 
 	}
 

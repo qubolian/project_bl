@@ -23,7 +23,7 @@ $(function() {
 			 success: function(data){
 				 
 				 if (data.success) {
-					 img.attr("src", "http://127.0.0.1/"+data.body);
+					 img.attr("src", data.body);
 				 } else {
 					 toastr.error(data.message);
 				 }
