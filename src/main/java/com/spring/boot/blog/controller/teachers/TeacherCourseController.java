@@ -51,6 +51,9 @@ public class TeacherCourseController {
 	@Autowired
 	private SubmitFileService submitFileService;
 
+	@Autowired
+	private static final String localURL = "/usr/local/upload/";
+
 	/**
 	 * 查询所有课程
 	 * 
@@ -200,7 +203,7 @@ public class TeacherCourseController {
 			@RequestParam(value = "id", required = false, defaultValue = "") Long id,
 			@RequestParam("file") MultipartFile file) {
 		String fileName = file.getOriginalFilename();
-		String filePath = "/usr/local/image/";
+		String filePath = localURL;
 		SimpleDateFormat tempDate = new SimpleDateFormat("YYYYMMddHHmmss");
 		String datetime = tempDate.format(new Date(System.currentTimeMillis()));
 		try {
@@ -235,28 +238,29 @@ public class TeacherCourseController {
 	public ResponseEntity<Response> saveSchedule(
 			@RequestParam(value = "id", required = false, defaultValue = "") Long id,
 			@RequestParam("file") MultipartFile file) {
-	    String fileName = file.getOriginalFilename();
-	    String filePath = "D:/fileupload/";
-	    SimpleDateFormat tempDate = new SimpleDateFormat("YYYYMMddHHmmss"); 
-	    String datetime = tempDate.format(new Date(System.currentTimeMillis())); 
-	    try {
-            FileUtil.uploadFile(file.getBytes(), filePath, datetime+id+"2"+fileName.substring(fileName.lastIndexOf(".")));
-            SubmitFile submitFile;
-            submitFile = submitFileService.getSubmitFileById(id);
-            if(submitFile == null) {
-            	submitFile = new SubmitFile();
-            	submitFile.setId(id);
-            	submitFile.setOutlineName("0");
-            }
-            submitFile.setScheduleName(fileName);
-            submitFile.setScheduleSaveName(datetime+id+"2"+fileName.substring(fileName.lastIndexOf(".")));
-            submitFile.setScheduleUpdateTime(datetime);
-            submitFileService.saveSubmitFile(submitFile);
-        } catch (Exception e) {
-        	return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
-        }
-	    return ResponseEntity.ok().body(new Response(true, "处理成功",fileName));
-	
+		String fileName = file.getOriginalFilename();
+		String filePath = localURL;
+		SimpleDateFormat tempDate = new SimpleDateFormat("YYYYMMddHHmmss");
+		String datetime = tempDate.format(new Date(System.currentTimeMillis()));
+		try {
+			FileUtil.uploadFile(file.getBytes(), filePath,
+					datetime + id + "2" + fileName.substring(fileName.lastIndexOf(".")));
+			SubmitFile submitFile;
+			submitFile = submitFileService.getSubmitFileById(id);
+			if (submitFile == null) {
+				submitFile = new SubmitFile();
+				submitFile.setId(id);
+				submitFile.setOutlineName("0");
+			}
+			submitFile.setScheduleName(fileName);
+			submitFile.setScheduleSaveName(datetime + id + "2" + fileName.substring(fileName.lastIndexOf(".")));
+			submitFile.setScheduleUpdateTime(datetime);
+			submitFileService.saveSubmitFile(submitFile);
+		} catch (Exception e) {
+			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
+		}
+		return ResponseEntity.ok().body(new Response(true, "处理成功", fileName));
+
 	}
 
 	/**
@@ -272,7 +276,7 @@ public class TeacherCourseController {
 			Long it = Long.valueOf(id);
 			SubmitFile submitFile = submitFileService.getSubmitFileById(it);
 
-			File folder = new File("/usr/local/image/");
+			File folder = new File(localURL);
 			File[] files = folder.listFiles();
 			for (File file : files) {
 				if (file.getName().equals(submitFile.getOutlineSaveName())) {
@@ -305,7 +309,7 @@ public class TeacherCourseController {
 			Long it = Long.valueOf(id);
 			SubmitFile submitFile = submitFileService.getSubmitFileById(it);
 
-			File folder = new File("/usr/local/image/");
+			File folder = new File(localURL);
 			File[] files = folder.listFiles();
 			for (File file : files) {
 				if (file.getName().equals(submitFile.getScheduleSaveName())) {

@@ -142,6 +142,7 @@ $(function() {
 				 if (data.success) {
 					 // 从新刷新主界面
 					 getCourseByName(0, _pageSize);
+					 toastr.info("发布成功！");
 				 } else {
 					 toastr.error(data.message);
 				 }

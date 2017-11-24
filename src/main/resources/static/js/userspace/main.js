@@ -24,12 +24,12 @@ $(function() {
 		     }
 		 });
 	});
-	
-	/**  
+/*	
+	*//**  
 	 * 将以base64的图片url数据转换为Blob  
 	 * @param urlData  
 	 *            用url方式表示的base64图片数据  
-	 */  
+	 *//*  
 	function convertBase64UrlToBlob(urlData){  
 	      
 	    var bytes=window.atob(urlData.split(',')[1]);        //去掉url的头，并转换为byte  
@@ -42,9 +42,9 @@ $(function() {
 	    }  
 	  
 	    return new Blob( [ab] , {type : 'image/png'});  
-	} 
+	} */
 	
-	// 提交用户头像的图片数据
+	/*// 提交用户头像的图片数据
 	$("#submitEditAvatar").on("click", function () { 
 		var form = $('#avatarformid')[0];  
 	    var formData = new FormData(form);   //这里连带form里的其他参数也一起提交了,如果不需要提交其他参数可以直接FormData无参数的构造函数  
@@ -92,7 +92,7 @@ $(function() {
 		    	 toastr.error("error!");
 		    }
 		})
-	});
+	});*/
 	
 	$('#userForm').submit(function(){
 		if($("#confirmPassword").val() != $("#newPassword").val()){
@@ -110,8 +110,34 @@ $(function() {
 		}
 	});
 	
-	
-	
+	$("#submitEditAvatar").on("click", function () { 
+		var avatar = $("#avatarImg")[0].src.split("/"); 
+		
+		// 获取 CSRF Token 
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+		$.ajax({ 
+			 url: "/uploadimg/saveAvatar", 
+			 type: 'POST',
+			 beforeSend: function(request) {
+                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
+             },
+			 data:{
+				 "avatar":avatar[3]
+			 },
+			 success: function(data){
+				 
+				 if (data.success) {
+					 $(".blog-avatar").attr("src", $("#avatarImg")[0].src);
+				 } else {
+					 toastr.error(data.message);
+				 }
+		     },
+		     error : function() {
+		    	 toastr.error("error!");
+		     }
+		 });
+	});
 	
 	
 	

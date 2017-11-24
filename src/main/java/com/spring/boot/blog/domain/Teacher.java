@@ -79,6 +79,43 @@ public class Teacher implements Serializable {
 	//是否为系主任
 	private int isAuthority;
 	
+	@Size(min=2, max=1024, message="专长长度必须在2到32之间")
+	@Column(length = 1024) 
+	private String expert;
+	
+	@Size(min=2, max=1024, message="对学生的期待长度必须在2到32之间")
+	@Column(length = 1024) 
+	private String expectStudent;
+	
+	private String resume;	//履历表
+	
+	
+	
+	
+	public String getExpert() {
+		return expert;
+	}
+
+	public void setExpert(String expert) {
+		this.expert = expert;
+	}
+
+	public String getExpectStudent() {
+		return expectStudent;
+	}
+
+	public void setExpectStudent(String expectStudent) {
+		this.expectStudent = expectStudent;
+	}
+
+	public String getResume() {
+		return resume;
+	}
+
+	public void setResume(String resume) {
+		this.resume = resume;
+	}
+
 	public int getIsAuthority() {
 		return isAuthority;
 	}
