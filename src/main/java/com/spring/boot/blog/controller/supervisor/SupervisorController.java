@@ -1,4 +1,4 @@
-package com.spring.boot.blog.controller.teachers;
+/*package com.spring.boot.blog.controller.supervisor;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -33,14 +33,14 @@ import com.spring.boot.blog.service.SubmitFileService;
 import com.spring.boot.blog.util.FileUtil;
 import com.spring.boot.blog.vo.Response;
 
-/**
+*//**
  * 后台页面控制器.
  * 
  * @date 2017年9月26日
- */
+ *//*
 @RestController
 @RequestMapping("/teachers")
-public class TeacherCourseController {
+public class SupervisorController {
 
 	@Autowired
 	private CourseService courseService;
@@ -51,14 +51,11 @@ public class TeacherCourseController {
 	@Autowired
 	private SubmitFileService submitFileService;
 
-	@Autowired
-	private static final String localURL = "D:/image/";
-	
-	/**
+	*//**
 	 * 查询所有课程
 	 * 
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/courseList")
 	public ModelAndView listCourse(HttpServletRequest request,
 			@RequestParam(value = "async", required = false) boolean async,
@@ -83,13 +80,13 @@ public class TeacherCourseController {
 				"courseModel", model);
 	}
 
-	/**
+	*//**
 	 * 课程评分标准页面
 	 * 
 	 * @param id
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/editStandard/{id}")
 	public ModelAndView createFormeditStandard(@PathVariable("id") Long id, Model model) {
 		Course course = courseService.getCourseById(id);
@@ -106,13 +103,13 @@ public class TeacherCourseController {
 		return new ModelAndView("teachersCourse/edit", "teacherModel", model);
 	}
 
-	/**
+	*//**
 	 * 上传文件页面
 	 * 
 	 * @param id
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/upload/{id}")
 	public ModelAndView createFormUpload(@PathVariable("id") Long id, Model model) {
 		Course course = courseService.getCourseById(id);
@@ -130,13 +127,13 @@ public class TeacherCourseController {
 		return new ModelAndView("teachersCourse/upload", "courseModel", model);
 	}
 
-	/**
+	*//**
 	 * 开启课程
 	 * 
 	 * @param id
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/startCourse/{id}")
 	public ResponseEntity<Response> publish(@PathVariable("id") Long id, Model model) {
 		try {
@@ -159,13 +156,13 @@ public class TeacherCourseController {
 		return ResponseEntity.ok().body(new Response(true, "处理成功"));
 	}
 
-	/**
+	*//**
 	 * 保存课程评分标准
 	 * 
 	 * @param id
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/courseStandard")
 	public ResponseEntity<Response> saveCourseStandard(
 			@RequestParam(value = "id", required = false, defaultValue = "") Long id,
@@ -192,18 +189,18 @@ public class TeacherCourseController {
 		return ResponseEntity.ok().body(new Response(true, "处理成功"));
 	}
 
-	/**
+	*//**
 	 * 上传大纲
 	 * 
 	 * @param file
 	 * @return
-	 */
+	 *//*
 	@PostMapping("/uploadOutline")
 	public ResponseEntity<Response> saveOutline(
 			@RequestParam(value = "id", required = false, defaultValue = "") Long id,
 			@RequestParam("file") MultipartFile file) {
 		String fileName = file.getOriginalFilename();
-		String filePath = localURL;
+		String filePath = "/usr/local/image/";
 		SimpleDateFormat tempDate = new SimpleDateFormat("YYYYMMddHHmmss");
 		String datetime = tempDate.format(new Date(System.currentTimeMillis()));
 		try {
@@ -228,18 +225,18 @@ public class TeacherCourseController {
 
 	}
 
-	/**
+	*//**
 	 * 上传教学进度表
 	 * 
 	 * @param file
 	 * @return
-	 */
+	 *//*
 	@PostMapping("/uploadSchedule")
 	public ResponseEntity<Response> saveSchedule(
 			@RequestParam(value = "id", required = false, defaultValue = "") Long id,
 			@RequestParam("file") MultipartFile file) {
 	    String fileName = file.getOriginalFilename();
-	    String filePath = localURL;
+	    String filePath = "D:/fileupload/";
 	    SimpleDateFormat tempDate = new SimpleDateFormat("YYYYMMddHHmmss"); 
 	    String datetime = tempDate.format(new Date(System.currentTimeMillis())); 
 	    try {
@@ -262,12 +259,12 @@ public class TeacherCourseController {
 	
 	}
 
-	/**
+	*//**
 	 * 删除大纲
 	 * 
 	 * @param file
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/deleteOutline")
 	public ResponseEntity<Response> deleteOutline(
 			@RequestParam(value = "id", required = false, defaultValue = "") String id) {
@@ -275,7 +272,7 @@ public class TeacherCourseController {
 			Long it = Long.valueOf(id);
 			SubmitFile submitFile = submitFileService.getSubmitFileById(it);
 
-			File folder = new File(localURL);
+			File folder = new File("/usr/local/image/");
 			File[] files = folder.listFiles();
 			for (File file : files) {
 				if (file.getName().equals(submitFile.getOutlineSaveName())) {
@@ -295,12 +292,12 @@ public class TeacherCourseController {
 
 	}
 
-	/**
+	*//**
 	 * 删除教学进度表
 	 * 
 	 * @param file
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/deleteSchedule")
 	public ResponseEntity<Response> deleteSchedule(
 			@RequestParam(value = "id", required = false, defaultValue = "") String id) {
@@ -308,7 +305,7 @@ public class TeacherCourseController {
 			Long it = Long.valueOf(id);
 			SubmitFile submitFile = submitFileService.getSubmitFileById(it);
 
-			File folder = new File(localURL);
+			File folder = new File("/usr/local/image/");
 			File[] files = folder.listFiles();
 			for (File file : files) {
 				if (file.getName().equals(submitFile.getScheduleSaveName())) {
@@ -329,3 +326,4 @@ public class TeacherCourseController {
 	}
 
 }
+*/

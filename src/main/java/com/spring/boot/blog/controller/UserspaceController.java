@@ -127,6 +127,18 @@ public class UserspaceController {
 		return new ModelAndView("/userspace/avatar", "userModel", model);
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param order
+	 * @param category
+	 * @param keyword
+	 * @param async
+	 * @param pageIndex
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/{username}/blogs")
 	public String listBlogsByOrder(@PathVariable("username") String username,
 			@RequestParam(value = "order", required = false, defaultValue = "new") String order,

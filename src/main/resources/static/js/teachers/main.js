@@ -53,6 +53,7 @@ $(function() {
 		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({ 
 			 url: "/teachers/upload/" + $(this).attr("courseId"), 
+			 async:false,
 			 beforeSend: function(request) {
                  request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
              },
@@ -92,6 +93,7 @@ $(function() {
 				 if (data.success) {
 					 // 从新刷新主界面
 					 getCourseByName(0, _pageSize);
+					 toastr.info("开启成功！");
 				 } else {
 					 toastr.error(data.message);
 				 }
