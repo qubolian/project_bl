@@ -25,6 +25,7 @@ $(function() {
 				 $('#uploadStudentForm')[0].reset();  
 				 
 				 if (data.success) {
+					 getStudentByName(0, _pageSize);
 				 } else {
 					 toastr.error(data.message);
 				 }

@@ -59,16 +59,20 @@ public class UserspaceController {
 	}
 
 	@GetMapping("/{username}/profile")
-	// @PreAuthorize("authentication.name.equals(#username)")
+	@PreAuthorize("authentication.name.equals(#username)")
 	public ModelAndView profile(@PathVariable("username") String username, Model model) {
 		User user = (User) userDetailsService.loadUserByUsername(username);
+		if (user.getAvatar() != null || !"".equals(user.getAvatar())) {
+			user.setAvatar(fileServerUrl + user.getAvatar());
+		}
+
 		model.addAttribute("user", user);
 		model.addAttribute("fileServerUrl", fileServerUrl);
 		return new ModelAndView("userspace/profile", "userModel", model);
 	}
 
 	@PostMapping("/{username}/profile")
-	// @PreAuthorize("authentication.name.equals(#username)")
+	@PreAuthorize("authentication.name.equals(#username)")
 	public String saveProfile(User user, @PathVariable("username") String username,
 			@RequestParam(value = "newPassword", required = false) String newPassword) {
 
@@ -124,7 +128,7 @@ public class UserspaceController {
 	public ModelAndView avatar(@PathVariable("username") String username, Model model) {
 		User user = (User) userDetailsService.loadUserByUsername(username);
 		model.addAttribute("user", user);
-		return new ModelAndView("/userspace/avatar", "userModel", model);
+		return new ModelAndView("userspace/avatar", "userModel", model);
 	}
 
 	/**
