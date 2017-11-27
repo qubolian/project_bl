@@ -1,11 +1,15 @@
 package com.spring.boot.blog.controller.teachers;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -328,5 +332,85 @@ public class TeacherCourseController {
 		return ResponseEntity.ok().body(new Response(true, "处理成功"));
 
 	}
+	
+	/**
+	 * 下载大纲
+	 * 
+	 * @param file
+	 * @return
+	 */
+	@GetMapping("/downloadOutline/{id}")
+	public void downloadOutline(
+			@PathVariable("id") Long id,
+			HttpServletResponse response
+			){
+
+			Long it = Long.valueOf(id);
+			SubmitFile submitFile = submitFileService.getSubmitFileById(it);
+
+
+		
+		String realPath = localURL+submitFile.getOutlineSaveName();//获取要下载的文件的绝对路径
+		
+		String fileName = submitFile.getOutlineName();//获取要下载的文件名
+		
+		//设置content-disposition响应头控制浏览器以下载的形式打开文件，中文文件名要使用URLEncoder.encode方法进行编码，否则会出现文件名乱码
+		try{
+			response.reset();  
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("gbk"),"iso-8859-1") + "\""); 
+	        response.setContentType("application/octet-stream;charset=UTF-8");
+			InputStream in;
+			//获取文件输入流	
+			in = new FileInputStream(realPath);
+			int len = 0;
+			byte[] buffer = new byte[1024];
+			OutputStream out = response.getOutputStream();
+			while ((len = in.read(buffer)) > 0) {
+				out.write(buffer,0,len);//将缓冲区的数据输出到客户端浏览器
+			}
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	/**
+	 * 下载教学进度表
+	 * 
+	 * @param file
+	 * @return
+	 */
+	@GetMapping("/downloadSchedule/{id}")
+	public void downloadSchedule(@PathVariable("id") Long id,HttpServletResponse response)
+	{
+		Long it = Long.valueOf(id);
+		SubmitFile submitFile = submitFileService.getSubmitFileById(it);
+			
+		String realPath = localURL+submitFile.getOutlineSaveName();//获取要下载的文件的绝对路径
+		
+		String fileName = submitFile.getOutlineName();//获取要下载的文件名
+		try{
+			//设置content-disposition响应头控制浏览器以下载的形式打开文件，中文文件名要使用URLEncoder.encode方法进行编码，否则会出现文件名乱码
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("gbk"),"iso-8859-1") + "\""); 
+	        response.setContentType("application/octet-stream;charset=UTF-8");
+			InputStream in;
+			//获取文件输入流	
+			in = new FileInputStream(realPath);
+			int len = 0;
+			byte[] buffer = new byte[1024];
+			OutputStream out = response.getOutputStream();
+			while ((len = in.read(buffer)) > 0) {
+				out.write(buffer,0,len);//将缓冲区的数据输出到客户端浏览器
+			}
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	
 
 }

@@ -32,7 +32,7 @@ public class UploadimgController {
 
 	private static final String localURL = "/usr/local/image/";
 
-	private static final String ServerURL = "http://192.168.20.140/";
+	private static final String serverURL = "http://192.168.20.140/";
 
 	/**
 	 * 上传头像
@@ -52,8 +52,9 @@ public class UploadimgController {
 		} catch (Exception e) {
 			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
+
 		return ResponseEntity.ok()
-				.body(new Response(true, "处理成功", ServerURL + datetime + fileName.substring(fileName.lastIndexOf("."))));
+				.body(new Response(true, "处理成功", serverURL + datetime + fileName.substring(fileName.lastIndexOf("."))));
 
 	}
 

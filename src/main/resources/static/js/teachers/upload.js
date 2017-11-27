@@ -6,7 +6,8 @@
  */
 "use strict";
 //# sourceURL=main.js
- 
+$('#outlineName').attr('href','/teachers/downloadOutline/'+$("#id1").val());
+$('#scheduleName').attr('href','/teachers/downloadSchedule/'+$("#id2").val());
 // DOM 加载完再执行
 $(function() {
 	
@@ -14,7 +15,7 @@ $(function() {
 	$("#submitOutline").on("click",function(){
 		var div = $('#1');
 		var del = $(".teachers-delete-outline");
-
+		var id = $("#id1").val();
 		if($("#outlinelabel").length > 0){
 			toastr.error("请先删除现有大纲！");
 		}else if($("#file1").val() == ""){
@@ -32,7 +33,7 @@ $(function() {
 					 $('#outlineForm')[0].reset(); 
 					 if (data.success) {
 						 div.prepend(
-									 "<label id='outlinelabel' class='col-form-label'><strong style='color:red'>*&thinsp;</strong><i id='outlineName'>"+data.body+"</i></label>" 
+									 "<label id='outlinelabel' class='col-form-label'><strong style='color:red'>*&thinsp;</strong><a href='/teachers/downloadOutline/"+id+"' id='outlineName'>"+data.body+"</a></label>" 
 						 );
 						 del.show();
 						 
@@ -46,14 +47,13 @@ $(function() {
 			     }
 			 });
 		}
-	});
-	
-	
+	});	
 
 	// 上传教学进度表
 	$("#submitSchedule").on("click",function(){
 		var div = $('#2');
 		var del = $(".teachers-delete-schedule");
+		var id = $("#id2").val();
 		if($("#schedulelabel").length > 0){
 				toastr.error("请先删除现有教学进度表！");
 		}else if($("#file2").val() == ""){
@@ -73,7 +73,7 @@ $(function() {
 					 
 					 if (data.success) {
 						 div.prepend(
-							"<label id='schedulelabel' class='col-form-label'><strong style='color:red'>*&thinsp;</strong><i id='outlineName'>"+data.body+"</i></label>" 
+							"<label id='schedulelabel' class='col-form-label'><strong style='color:red'>*&thinsp;</strong><a href='/teachers/downloadSchedule/"+id+"' id='scheduleName'>"+data.body+"</a></label>" 
 						 );
 						 del.show();
 					 } else {
@@ -142,4 +142,5 @@ $(function() {
 		     }
 		 });
 	});
+	
 });

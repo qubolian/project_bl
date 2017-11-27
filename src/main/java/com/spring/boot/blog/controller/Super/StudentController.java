@@ -1,7 +1,9 @@
 package com.spring.boot.blog.controller.Super;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.ConstraintViolationException;
@@ -22,11 +24,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.boot.blog.domain.Authority;
 import com.spring.boot.blog.domain.DepartmentList;
 import com.spring.boot.blog.domain.Student;
+import com.spring.boot.blog.domain.SubmitFile;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.domain.User;
 import com.spring.boot.blog.service.AuthorityService;
@@ -35,6 +39,7 @@ import com.spring.boot.blog.service.StudentService;
 import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.service.UserService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
+import com.spring.boot.blog.util.FileUtil;
 import com.spring.boot.blog.vo.Response;
 
 /**
@@ -58,7 +63,8 @@ public class StudentController {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
-	
+	@Autowired
+	private static final String localURL = "D:/image/";
 	
 	
 	/**
@@ -165,6 +171,39 @@ public class StudentController {
 			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
 		}
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
+	}
+	
+	
+	/**
+	 * 上传学生名单页面
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/uploadStudentList")
+	public ModelAndView uploadStudent(Model model) {
+		
+		return new ModelAndView("student/upload", "studentModel", model);
+	}
+	
+	 /**
+	 * 上传学生名单
+	 * 
+	 * @param file
+	 * @return
+	 */
+	@PostMapping("/uploadStudent")
+	public ResponseEntity<Response> uploadStudent(@RequestParam("file") MultipartFile file) {
+	    String fileName = file.getOriginalFilename();
+	    String filePath = localURL;
+	    
+	    try {
+            FileUtil.uploadFile(file.getBytes(), filePath, fileName);
+
+        } catch (Exception e) {
+        	return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+        }
+	    return ResponseEntity.ok().body(new Response(true, "处理成功"));
+	
 	}
 	
 	 

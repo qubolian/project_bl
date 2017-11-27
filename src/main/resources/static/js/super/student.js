@@ -76,30 +76,6 @@ $(function() {
 	});
 	
 	
-	
-	// 提交变更后，清空表单
-	$("#submitEdit").on("click",function(){
-		$.ajax({ 
-			 url: "/super/addStudent", 
-			 type: 'POST',
-			 data:$('#studentForm').serialize(),
-			 success: function(data){
-				 $('#studentForm')[0].reset();  
-				 
-				 if (data.success) {
-					 // 从新刷新主界面
-					 getStudentByName(0, _pageSize);
-				 } else {
-					 toastr.error(data.message);
-				 }
-
-		     },
-		     error : function() {
-		    	 toastr.error("error!");
-		     }
-		 });
-	});
-	
 	// 删除信息内容
 	$("#rightContainer").on("click",".super-delete-student", function () { 
 		// 获取 CSRF Token 
@@ -125,4 +101,41 @@ $(function() {
 		     }
 		 });
 	});
+	
+	// 获取上传学生名单
+	$("#uploadStudentList").on("click",function(){
+		$.ajax({ 
+			 url: "/super/uploadStudentList/", 
+			 success: function(data){
+				 $("#formContainer").html(data);
+		     },
+		     error : function() {
+		    	 toastr.error("error!");
+		     }
+		 });
+	});
+	
+
+	// 提交变更后，清空表单
+	$("#submitEdit").on("click",function(){
+		$.ajax({ 
+			 url: "/super/addStudent", 
+			 type: 'POST',
+			 data:$('#studentForm').serialize(),
+			 success: function(data){
+				 $('#studentForm')[0].reset();  
+				 
+				 if (data.success) {
+					 // 从新刷新主界面
+					 getStudentByName(0, _pageSize);
+				 } else {
+					 toastr.error(data.message);
+				 }
+		     },
+		     error: function() {
+		    	 toastr.error("error!");
+		     }
+		 });
+	});
+	
 });

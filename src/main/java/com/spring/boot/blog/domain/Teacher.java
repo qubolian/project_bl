@@ -87,7 +87,8 @@ public class Teacher implements Serializable {
 	@Column(length = 1024) 
 	private String expectStudent;
 	
-	private String resume;	//履历表
+	@NotEmpty(message = "履历表不能为空")
+	private String resume;	//履历表，默认为0
 	
 	
 	
