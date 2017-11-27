@@ -55,8 +55,7 @@ public class TeacherCourseController {
 	@Autowired
 	private SubmitFileService submitFileService;
 
-	@Autowired
-	private static final String localURL = "/usr/local/upload/";
+	private static final String localURL = "D:/image/";
 
 	/**
 	 * 查询所有课程

@@ -1,34 +1,33 @@
 <div>
 	<form th:action="@{/supervisor}" enctype="multipart/form-data" method="post" th:object="${model.supervisor}" id="resumeForm">
-		<input type="hidden" name="id" th:value="*{id}">
 	
 		<div class="form-group" style="margin-left:13px">
-			<table>
+			<table class="supervisor-table">
 				<tr>
-					<td colspan="2">
+					<td>
 						<label class="col-form-label" style="color:DarkBlue"><strong>履历表：</strong></label>
-					
-						<div th:if="*{resume}!=0" style="display:inline">
-							<label class="col-form-label"><strong style="color:red">*&thinsp;</strong><a href="#" id="resume" th:text="*{resume}"></a></label>
-							&nbsp;&nbsp;
-							<a class="supervisor-delete-resume" role="button"> 
-							<i class="fa fa-times-circle fa-lg text-danger" title="删除履历表"></i>
-							</a>
-						</div>
 					</td>
+
 				</tr>	
 				<tr>
 					<td>
-						<div>
-							<input type="file" name="resume" id="resume"/>
-						</div>
-					</td>
-				
-					<td>
-						<a class="btn btn-primary" 
-						 role="button" id="upload"><i
+						<input type="file" name="resume" id="resume"/>
+						
+						<a class="btn btn-primary"  style="margin-left:0"
+						 role="button" id="uploadResume"><i
 						class="fa fa-upload" aria-hidden="true">上传</i></a>
 					</td>
+					
+					<td>
+						<div style="display:inline" id="1">
+							<label id="resumelabel" th:if="*{resume}!=0" class="col-form-label"><strong style="color:red">*&thinsp;</strong><a href="#" id="resumeName" th:text="*{resume}">大纲</a></label>
+							&nbsp;&nbsp;
+							<a th:style="*{resume}==0?'display:none'" class="supervisor-delete-resume" role="button"> 
+							<i class="fa fa-times-circle fa-lg text-danger" title="删除大纲"></i>
+							</a>
+						</div>
+					</td>
+					
 				</tr>
 			</table>
 		</div>
@@ -37,10 +36,9 @@
 	<hr>
 </div>
 
+
 <div>
 	<form th:action="@{/supervisor}"  method="post" th:object="${model.supervisor}" id="perfectInformationForm">
-	
-		<input type="hidden" name="id" th:value="*{id}">
 	
 		<div class="form-group">
 			<div id="mainContainer" class="container">

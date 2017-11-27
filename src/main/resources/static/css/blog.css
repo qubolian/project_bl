@@ -118,4 +118,9 @@ article img {
 	height:400px;	
 }
 
-
+.supervisor-table{
+	width: 1080px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	table-layout: fixed;
+}

@@ -1,5 +1,6 @@
 
 INSERT INTO user (id, user_name, password, name, email) VALUES (1, '10001', '123456', '管理员', 'i@sina.com');
+INSERT INTO user (id, user_name, password, name, email) VALUES (2, '111', '123456', '111', '111@sina.com');
 
 
 INSERT INTO authority (id, name,mark) VALUES (1, 'ROLE_ADMIN','系统管理员');
@@ -12,7 +13,7 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 3);
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 5);
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 2);
-
+INSERT INTO user_authority (user_id, authority_id) VALUES (2, 3);
 
 INSERT INTO project_mission (id, mark,misson) VALUES (1, '请输入宗旨的内容','测试一下');
 
@@ -47,6 +48,7 @@ insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibi
 
 INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name)  VALUES (04032, '计算1', '1', '男', '专任教师', '信息技术学院', 0, '0', '0');
 INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name)  VALUES (04033, '软件1', '2', '女', '教辅人员', '信息技术学院', 0, '0', '0');
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name)  VALUES (111, '软件1', '2', '女', '教辅人员', '信息技术学院', 0, '0', '0');
 
 
 

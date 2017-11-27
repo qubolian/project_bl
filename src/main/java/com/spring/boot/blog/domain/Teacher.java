@@ -78,14 +78,10 @@ public class Teacher implements Serializable {
 	
 	//是否为系主任
 	private int isAuthority;
+
+	private String expert;	//专长
 	
-	@Size(min=2, max=1024, message="专长长度必须在2到32之间")
-	@Column(length = 1024) 
-	private String expert;
-	
-	@Size(min=2, max=1024, message="对学生的期待长度必须在2到32之间")
-	@Column(length = 1024) 
-	private String expectStudent;
+	private String expectStudent;	//对学生的期待
 	
 	@NotEmpty(message = "履历表不能为空")
 	private String resume;	//履历表，默认为0
