@@ -90,8 +90,10 @@ $(function() {
              },
 			 success: function(data){
 				 if (data.success) {
+					 console.log(data);
+					 toastr.error(data.body);
 					 // 从新刷新主界面
-					 getStudentByName(0, _pageSize);
+					 //getStudentByName(0, _pageSize);
 				 } else {
 					 toastr.error(data.message);
 				 }
@@ -116,26 +118,6 @@ $(function() {
 	});
 	
 
-	// 提交变更后，清空表单
-	$("#submitEdit").on("click",function(){
-		$.ajax({ 
-			 url: "/super/addStudent", 
-			 type: 'POST',
-			 data:$('#studentForm').serialize(),
-			 success: function(data){
-				 $('#studentForm')[0].reset();  
-				 
-				 if (data.success) {
-					 // 从新刷新主界面
-					 getStudentByName(0, _pageSize);
-				 } else {
-					 toastr.error(data.message);
-				 }
-		     },
-		     error: function() {
-		    	 toastr.error("error!");
-		     }
-		 });
-	});
+
 	
 });

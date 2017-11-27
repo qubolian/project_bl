@@ -23,7 +23,7 @@ $(function() {
 				 
 				 if (data.success) {
 					 // 从新刷新主界面
-					 getStudentByName(0, _pageSize);
+					// getStudentByName(0, _pageSize);
 				 } else {
 					 toastr.error(data.message);
 				 }
