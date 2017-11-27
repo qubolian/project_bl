@@ -115,27 +115,54 @@ $(function() {
 		 });
 	});
 	
-
 	// 提交变更后，清空表单
 	$("#submitEdit").on("click",function(){
-		$.ajax({ 
-			 url: "/super/addStudent", 
-			 type: 'POST',
-			 data:$('#studentForm').serialize(),
-			 success: function(data){
-				 $('#studentForm')[0].reset();  
-				 
-				 if (data.success) {
-					 // 从新刷新主界面
-					 getStudentByName(0, _pageSize);
-				 } else {
-					 toastr.error(data.message);
-				 }
-		     },
-		     error: function() {
-		    	 toastr.error("error!");
-		     }
-		 });
+		
+		if($("#id").length > 0){
+			$.ajax({ 
+				 url: "/super/addStudent", 
+				 type: 'POST',
+				 data:$('#studentForm').serialize(),
+				 success: function(data){
+					 $('#studentForm')[0].reset();  
+					 
+					 if (data.success) {
+						 // 从新刷新主界面
+						 getStudentByName(0, _pageSize);
+					 } else {
+						 toastr.error(data.message);
+					 }
+			     },
+			     error: function() {
+			    	 toastr.error("error!");
+			     }
+			 });
+		}else{
+			var formData = new FormData($( "#uploadStudentForm" )[0]);
+			$.ajax({ 
+				 url: "/super/uploadStudent", 
+				 type: 'POST',
+				 data:formData,
+				 cache: false,  
+		         processData: false,  
+		         contentType: false,
+				 success: function(data){
+					 $('#uploadStudentForm')[0].reset();  
+					 
+					 if (data.success) {
+						 // 从新刷新主界面
+						 getStudentByName(0, _pageSize);
+					 } else {
+						 toastr.error(data.message);
+					 }
+
+			     },
+			     error : function() {
+			    	 toastr.error("error!");
+			     }
+			 });
+		}
 	});
+	
 	
 });
