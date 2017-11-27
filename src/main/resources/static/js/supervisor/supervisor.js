@@ -12,7 +12,7 @@ $(function() {
 	
     CKEDITOR.replace( 'expert',{ height: '400px', width: 'auto' } );
     CKEDITOR.replace( 'expectStudent',{ height: '400px', width: 'auto' } );
-    
+    getTeacherInformation();
 
 	
 	// 提交变更后，清空表单
@@ -51,20 +51,14 @@ $(function() {
 	
 	function getTeacherInformation() {
 		 $.ajax({ 
-			 url: "/super/leaderMemberResponsibilityList", 
-			
+			 url: "/supervisor/teacherInformation", 
 			 contentType : 'application/json',
-			 
-			 data:{
-				 "leader":$("#leader").val(),
-				 "member":$("#member").val()
-			 },
 			 success: function(data){
 				 console.log(data);
-				 CKEDITOR.instances.leader.setData(data.body.leaderResponsibility);
-				 CKEDITOR.instances.member.setData(data.body.memberResponsibility);
-				 $("#leader").val(data.body.leaderResponsibility);
-				 $("#member").val(data.body.memberResponsibility);
+				 CKEDITOR.instances.expert.setData(data.body.expert);
+				 CKEDITOR.instances.expectStudent.setData(data.body.expectStudent);
+				 $("#expert").val(data.body.expert);
+				 $("#expectStudent").val(data.body.expectStudent);
 		     },
 		     error : function() {
 		    	 toastr.error("error!");

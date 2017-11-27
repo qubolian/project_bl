@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.boot.blog.domain.LeaderMemberResponsibility;
+import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.domain.User;
-import com.spring.boot.blog.service.LeaderMemberResponsibilityService;
+import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.spring.boot.blog.vo.Response;
@@ -46,33 +46,35 @@ public class PerfectInformationController {
 		return new ModelAndView("perfectInformation/list", "model", model);
 	}
 	
-/*	@GetMapping("/leaderMemberResponsibilityList")
-	public ResponseEntity<Response> LeaderResponsibilityShow() {
-		LeaderMemberResponsibility lmr ;
+	@GetMapping("/teacherInformation")
+	public ResponseEntity<Response> TeacherShow() {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Long id = Long.valueOf(user.getUsername());
+		Teacher teacher ;
 		try {
-			lmr = leaderMemberResponsibilityService.getLeaderMemberResponsibilityById(1L);
+			teacher = teacherService.getTeacherById(id);
 		}  catch (ConstraintViolationException e)  {
 			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
 		}
-		return ResponseEntity.ok().body(new Response(true, "显示成功", lmr));
+		return ResponseEntity.ok().body(new Response(true, "显示成功", teacher));
 	}
 	
-	@GetMapping("/leaderMemberResponsibilityEdit")
-	public ResponseEntity<Response> LeaderResponsibilityEdit(String leader,String member){
-		
-		LeaderMemberResponsibility lmr = new  LeaderMemberResponsibility();
-		lmr.setId(1L);
-		lmr.setLeaderResponsibility(leader);
-		lmr.setMemberResponsibility(member);
+	@GetMapping("/updateTeacherInformation")
+	public ResponseEntity<Response> TeacherEdit(String expert,String expectStudent){
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Long id = Long.valueOf(user.getUsername());
+		Teacher teacher = teacherService.getTeacherById(id);
+		teacher.setExpert(expert);
+		teacher.setExpectStudent(expectStudent);
 		try {
-			lmr = leaderMemberResponsibilityService.saveLeaderMemberResponsibility(lmr);
+			teacherService.saveTeacher(teacher);
 		}catch (RuntimeException e)  {
 			return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
 		}catch (Exception e)  {
 			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
 		}
-		return ResponseEntity.ok().body(new Response(true, "更新成功", lmr));
+		return ResponseEntity.ok().body(new Response(true, "更新成功", teacher));
 	}
-	*/
+	
 	
 }
