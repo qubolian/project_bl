@@ -46,7 +46,33 @@ public class PerfectInformationController {
 		return new ModelAndView("perfectInformation/list", "model", model);
 	}
 	
+/*	@GetMapping("/leaderMemberResponsibilityList")
+	public ResponseEntity<Response> LeaderResponsibilityShow() {
+		LeaderMemberResponsibility lmr ;
+		try {
+			lmr = leaderMemberResponsibilityService.getLeaderMemberResponsibilityById(1L);
+		}  catch (ConstraintViolationException e)  {
+			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+		}
+		return ResponseEntity.ok().body(new Response(true, "显示成功", lmr));
+	}
 	
-	
+	@GetMapping("/leaderMemberResponsibilityEdit")
+	public ResponseEntity<Response> LeaderResponsibilityEdit(String leader,String member){
+		
+		LeaderMemberResponsibility lmr = new  LeaderMemberResponsibility();
+		lmr.setId(1L);
+		lmr.setLeaderResponsibility(leader);
+		lmr.setMemberResponsibility(member);
+		try {
+			lmr = leaderMemberResponsibilityService.saveLeaderMemberResponsibility(lmr);
+		}catch (RuntimeException e)  {
+			return ResponseEntity.ok().body(new Response(false, "更改值有误，请重试！"));
+		}catch (Exception e)  {
+			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
+		}
+		return ResponseEntity.ok().body(new Response(true, "更新成功", lmr));
+	}
+	*/
 	
 }

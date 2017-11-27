@@ -90,9 +90,18 @@ public class Teacher implements Serializable {
 	@NotEmpty(message = "履历表不能为空")
 	private String resume;	//履历表，默认为0
 	
+	@NotEmpty(message = "履历表保存名不能为空")
+	private String resumeSaveName;	//履历表保存名，默认为0
 	
 	
-	
+	public String getResumeSaveName() {
+		return resumeSaveName;
+	}
+
+	public void setResumeSaveName(String resumeSaveName) {
+		this.resumeSaveName = resumeSaveName;
+	}
+
 	public String getExpert() {
 		return expert;
 	}

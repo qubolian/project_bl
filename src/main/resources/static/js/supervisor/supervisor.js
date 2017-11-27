@@ -14,46 +14,42 @@ $(function() {
     CKEDITOR.replace( 'expectStudent',{ height: '400px', width: 'auto' } );
     
 
-/*	
+	
 	// 提交变更后，清空表单
 	$("#Update").on("click",function(){
-		var formData = new FormData($( "#scheduleForm" )[0]);
-		var leader = CKEDITOR.instances.leader.getData();
-		var member = CKEDITOR.instances.member.getData();
+		var expert = CKEDITOR.instances.expert.getData();
+		var expectStudent = CKEDITOR.instances.expectStudent.getData();
 		$.ajax({ 
-			 url: "/super/leaderMemberResponsibilityEdit", 
+			 url: "/supervisor/updateTeacherInformation", 
 			 data:{
-				 "leader":leader,
-				 "member":member
+				 "expert":expert,
+				 "expectStudent":expectStudent
 			 },
 			 success: function(data){
 
 				 if (data.success) {
 					 // 更新内容
 					 toastr.info("更新成功");
-					 //getLeaderMemberResponsibility();
+					 //getTeacherInformation();
 				 } else {
 					 toastr.error("更新失败");
-					 getLeaderMemberResponsibility();
+					 getTeacherInformation();
 				 }
 
 		     },
 		     error : function() {
 		    	 toastr.error("更新失败!");
-		    	 getLeaderMemberResponsibility();
+		    	 getTeacherInformation();
 		     }
 		 });
 	});
 	
 	
 	$("#Reload").on("click",function(){
-		getLeaderMemberResponsibility();
+		getTeacherInformation();
 	});
 	
-	
-	
-	
-	function getLeaderMemberResponsibility() {
+	function getTeacherInformation() {
 		 $.ajax({ 
 			 url: "/super/leaderMemberResponsibilityList", 
 			
@@ -74,7 +70,7 @@ $(function() {
 		    	 toastr.error("error!");
 		     }
 		 });
-	}*/
+	}
 	
 	
 	
