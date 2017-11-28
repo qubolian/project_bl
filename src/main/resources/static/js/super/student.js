@@ -152,6 +152,7 @@ $(function() {
 					 if (data.success) {
 						 // 从新刷新主界面
 						 getStudentByName(0, _pageSize);
+						 toastr.info("更新成功！");
 					 } else {
 						 toastr.error(data.message);
 					 }
@@ -161,6 +162,8 @@ $(function() {
 			    	 toastr.error("error!");
 			     }
 			 });
+			toastr.info("正在更新学生名单，请等待！");
+			setInterval(function () { getStudentByName(0, _pageSize); },1000);
 		}
 	});
 	
