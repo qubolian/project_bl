@@ -80,7 +80,7 @@ button {
     height: 44px;
     margin-top: 25px;
     padding: 0;
-    background: #00008B;
+    background: #ef4300;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
@@ -180,5 +180,15 @@ button:active {
 
 .connect a:hover { background-position: center bottom; }
 
-
+.container{
+	position: fixed;
+ 	top: 50%;
+  	left: 50%;
+  	width:50%;
+  	height: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+}
 

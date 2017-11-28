@@ -6,13 +6,14 @@
  */
 "use strict";
 //# sourceURL=main.js
- 
+
 // DOM 加载完再执行
 $(function() {
 	
     CKEDITOR.replace( 'mark',{ height: '400px', width: 'auto' } );
-	
-	// 提交变更后，清空表单
+    
+    
+    // 提交变更后，清空表单
 	$("#update").on("click",function(){
 		
 		  var editor_data = CKEDITOR.instances.mark.getData();

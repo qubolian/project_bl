@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
@@ -178,6 +179,7 @@ public class PerfectInformationController {
 	 */
 	@GetMapping("/downloadResume")
 	public void downloadSchedule(HttpServletResponse response){
+		
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Long id = Long.valueOf(user.getUsername());
 		
