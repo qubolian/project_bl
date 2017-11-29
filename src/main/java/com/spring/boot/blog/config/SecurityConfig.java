@@ -61,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 																		// 403
 																		// 页面
 		http.csrf().ignoringAntMatchers("/h2-console/**"); // 禁用 H2 控制台的 CSRF 防护
+		http.csrf().ignoringAntMatchers("/ckeditor/upload"); // 禁用 H2 控制台的 CSRF 防护
 		http.headers().frameOptions().sameOrigin(); // 允许来自同一来源的H2 控制台的请求
 	}
 

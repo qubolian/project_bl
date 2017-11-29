@@ -1,11 +1,24 @@
 package com.spring.boot.blog.controller.ckeditor;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.spring.boot.blog.domain.Teacher;
+import com.spring.boot.blog.util.FileUtil;
 
 
 
@@ -17,6 +30,11 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/ckeditor")
 public class ImageUpload {
+	
+	private static final String localURL = "D:/image/";
+	
+	
+	
 	/**
 	 * 上传图片
 	 * @param file
@@ -24,21 +42,28 @@ public class ImageUpload {
 	 */
 
 	@PostMapping("/upload")
-	public String ckeditorUpload(@RequestParam("upload")MultipartFile file,String CKEditorFuncNum)throws Exception{
-	    // 获取文件名
-	    String fileName = file.getOriginalFilename();
-	    // 获取文件的后缀名
-	    String suffixName = fileName.substring(fileName.lastIndexOf("."));
-	    
-	    
-/*	    String newFileName=DateUtil.getCurrentDateStr()+suffixName;
-	    FileUtils.copyInputStreamToFile(file.getInputStream(), new File(imageFilePath+newFileName));
-	     
-	    StringBuffer sb=new StringBuffer();
-	    sb.append("<script type=\"text/javascript\">");
-	    sb.append("window.parent.CKEDITOR.tools.callFunction("+ CKEditorFuncNum + ",'" +"/static/filmImage/"+ newFileName + "','')");
-	    sb.append("</script>");*/
-	     System.out.println(fileName+suffixName);
-	    return null;
+	public String ckeditorUpload(@RequestParam("upload")MultipartFile file,
+			HttpServletResponse response,
+			HttpServletRequest request
+			)throws Exception{
+		
+		 PrintWriter out = response.getWriter();  
+		 
+		 String callback = request.getParameter("CKEditorFuncNum"); 
+		 
+		 String fileName = file.getOriginalFilename();
+		 String filePath = localURL;
+		 SimpleDateFormat tempDate = new SimpleDateFormat("YYYYMMddHHmmss");
+		 String datetime = tempDate.format(new Date(System.currentTimeMillis()));
+		 String fileSaveName = datetime + java.util.UUID.randomUUID().toString() + fileName.substring(fileName.lastIndexOf("."));
+		 try {
+				FileUtil.uploadFile(file.getBytes(), filePath,fileSaveName);
+			} catch (Exception e) {
+			} 
+		 out.println("<script type=\"text/javascript\">");  
+	     out.println("window.parent.CKEDITOR.tools.callFunction(" + callback  
+	                + ",'" + request.getContextPath() + "http://127.0.0.1/" + fileSaveName + "','')");  
+	     out.println("</script>");  
+	     return null;
 	}
 }
