@@ -12,7 +12,6 @@ $(function() {
 	var _pageSize; // 存储用于搜索
 	
 	
-	
 	// 根据年级、页面索引、页面大小获取组队方法列表
 	function getStudentByName(pageIndex, pageSize) {
 		

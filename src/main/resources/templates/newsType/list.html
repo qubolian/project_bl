@@ -21,6 +21,9 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>
+						<input id="allboxs" type="checkbox"/>
+					</th>
 					<th data-field="id">编号</th>
 					<th data-field="messageType">信息类别</th>
 					<th data-field="operation">操作</th>
@@ -29,6 +32,9 @@
 			<tbody>
 
 				<tr th:each="newsType : ${newsTypeModel.newsTypeList}">
+					<td>
+						<input type="checkbox" value="newsTypeId=${newsType.id}" name="boxs" class="input-group-btn">
+					</td>
 					<td th:text="${newsType.id}">编号</td>
 					<td th:text="${newsType.messageType}">信息类别</td>
 					<td>
