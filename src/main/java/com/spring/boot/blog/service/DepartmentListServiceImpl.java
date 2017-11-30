@@ -17,7 +17,7 @@ public class DepartmentListServiceImpl implements DepartmentListService {
 
 	@Autowired
 	DepartmentListRepository DepartmentListRepository;
-	
+
 	@Override
 	@Transactional
 	public DepartmentList saveDepartmentList(DepartmentList DepartmentList) {
@@ -29,8 +29,9 @@ public class DepartmentListServiceImpl implements DepartmentListService {
 	@Transactional
 	public void removeDepartmentList(Long id) {
 		// TODO Auto-generated method stub
-		DepartmentListRepository.delete(id);
-
+		DepartmentList departmentList = DepartmentListRepository.findOne(id);
+		departmentList.setDr(1);
+		DepartmentListRepository.save(departmentList);
 	}
 
 	@Override
@@ -65,8 +66,9 @@ public class DepartmentListServiceImpl implements DepartmentListService {
 	@Transactional
 	public Page<DepartmentList> listDepartmentListsByDepartmentLike(String department, Pageable pageable) {
 		// TODO Auto-generated method stub
-		department= "%"+department+"%";
-		Page<DepartmentList> DepartmentLists = DepartmentListRepository.findByDepartmentLike(department, pageable);
+		department = "%" + department + "%";
+		Page<DepartmentList> DepartmentLists = DepartmentListRepository.findByDepartmentLikeAndDr(department, 0,
+				pageable);
 		return DepartmentLists;
 	}
 

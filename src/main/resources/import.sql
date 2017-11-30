@@ -17,22 +17,22 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (2, 3);
 
 INSERT INTO project_mission (id, mark,misson) VALUES (1, '请输入宗旨的内容','测试一下');
 
-insert into Department_List(Code,Department) values(080901,'计算器科学与技术系');
-insert into Department_List(Code,Department) values(080902,'软件工程系');
-insert into Department_List(Code,Department) values(080903,'网络工程系');
-insert into Department_List(Code,Department) values(080905,'物联网工程系');
-insert into Department_List(Code,Department) values(080906,'数字媒体技术系');
-insert into News_Type(Message_Type) values('竞赛消息（contest）');
-insert into News_Type(Message_Type) values('得奖消息（Match message）');
-insert into News_Type(Message_Type) values('业界&学校交流（Discuss）');
+insert into Department_List(Code,Department,dr) values(080901,'计算器科学与技术系',0);
+insert into Department_List(Code,Department,dr) values(080902,'软件工程系',0);
+insert into Department_List(Code,Department,dr) values(080903,'网络工程系',0);
+insert into Department_List(Code,Department,dr) values(080905,'物联网工程系',0);
+insert into Department_List(Code,Department,dr) values(080906,'数字媒体技术系',0);
+insert into News_Type(Message_Type,dr) values('竞赛消息（contest）',0);
+insert into News_Type(Message_Type,dr) values('得奖消息（Match message)',0);
+insert into News_Type(Message_Type,dr) values('业界&学校交流（Discuss)',0);
 
 
 
 
 
-INSERT INTO WHATS_NEW VALUES ('1', '2012-12-01', '几天呢他', 'note', '2012-11-01', '3', '2');
-INSERT INTO WHATS_NEW VALUES ('2', '2013-12-01', '商谈信息', 'note', '2013-11-01', '3', '2');
-INSERT INTO WHATS_NEW VALUES ('3', '2014-12-01', '掉头就像', 'note', '2014-11-01', '3', '2');
+INSERT INTO WHATS_NEW VALUES ('1',0, '2012-12-01', '几天呢他', 'note', '2012-11-01', '3', '2');
+INSERT INTO WHATS_NEW VALUES ('2',0, '2013-12-01', '商谈信息', 'note', '2013-11-01', '3', '2');
+INSERT INTO WHATS_NEW VALUES ('3',0, '2014-12-01', '掉头就像', 'note', '2014-11-01', '3', '2');
 
 INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage)  VALUES('1', '大一上', '开学前2 Weeks', '开学前3 Weeks', '整学期');
 INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage)  VALUES('2', '大一下', '开学前2 Weeks', '开学前3 Weeks', '整学期');
