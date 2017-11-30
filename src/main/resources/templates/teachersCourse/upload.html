@@ -5,11 +5,28 @@
 	
 	<div class="form-group">
 		<div class="col-md-12 col-xl-12" id="outlineDiv">
+		
 			<label class="col-form-label"><strong>提交大纲：</strong></label>
-			<input type="file" name="file" id="file1" />
-			<div>
-				<button id="submitOutline" type="button" class="btn btn-primary" style="margin-left:0">上传</button>
-			</div>
+			<table>
+ 				<tr>
+ 				<td>
+		 			<div class="input-group">
+				  			<span class="input-group-addon"><i class="fa fa-file "></i> </span>
+				  			<input id="fileName1" class="form-control" onkeydown="return false;" onpaste="return false;" placeholder="请选择学生名单" />
+				  		<div class="input-group-btn">
+						<div tabindex="500" class="btn btn-info btn-file">
+			    			<i class="fa fa-folder-open"></i>  <span class="hidden-xs">浏览</span><input type="file" name="file" id="file1" multiple="" onchange="showFileName(this.value,1)">
+						</div>
+						</div>
+					</div>
+			 	</td>
+			 	<td>
+		 			<div>
+						<button id="submitOutline" type="button" class="btn btn-primary" style="margin-left:0">上传</button>
+					</div>
+				</td>
+				</tr>
+			</table>
 		</div>
 		
 		<div style="margin-left:15px" id="1">
@@ -25,11 +42,29 @@
 		<input type="hidden" id="id2" name="id" th:value="*{id}">
 		
 		<div class="col-md-12 col-xl-12" id="scheduleDiv">
-			<label class="col-form-label"><strong>提交教学进度表：</strong></label>
-			<input type="file" name="file" id="file2" />
-			<div>
-				<button id="submitSchedule" type="button" class="btn btn-primary" style="margin-left:0">上传</button>
-			</div>	
+			<label class="col-form-label"><strong>提交教学进度表：</strong></label>		
+ 			<table>
+ 				<tr>
+ 				<td>
+		 			<div class="input-group">
+				  			<span class="input-group-addon"><i class="fa fa-file "></i> </span>
+				  			<input id="fileName2" class="form-control" onkeydown="return false;" onpaste="return false;" placeholder="请选择学生名单" />
+				  		<div class="input-group-btn">
+						<div tabindex="500" class="btn btn-info btn-file">
+			    			<i class="fa fa-folder-open"></i>  <span class="hidden-xs">浏览</span><input type="file" name="file" id="file2" multiple="" onchange="showFileName(this.value,2)">
+						</div>
+						</div>
+					</div>
+			 	</td>
+			 	<td>
+		 			<div>
+					<button id="submitSchedule" type="button" class="btn btn-primary" style="margin-left:0">上传</button>
+					</div>	
+				</td>
+				</tr>
+			</table>	
+ 
+
 		</div>
 		
 		<div style="margin-left:15px" id="2">

@@ -8,6 +8,10 @@
 //# sourceURL=main.js
 $('#outlineName').attr('href','/teachers/downloadOutline/'+$("#id1").val());
 $('#scheduleName').attr('href','/teachers/downloadSchedule/'+$("#id2").val());
+function showFileName(file,i) {
+	var a = file.split("\\");
+	$("#fileName"+i).val(a[2]);
+}
 // DOM 加载完再执行
 $(function() {
 	

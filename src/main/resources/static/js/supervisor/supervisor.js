@@ -7,6 +7,10 @@
 "use strict";
 //# sourceURL=main.js
 $('#resumeName').attr('href','/supervisor/downloadResume/');
+function showFileName(file) {
+	var a = file.split("\\");
+	$("#fileName").val(a[2]);
+}
 // DOM 加载完再执行
 $(function() {
 	

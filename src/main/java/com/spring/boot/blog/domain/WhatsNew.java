@@ -34,14 +34,6 @@ public class WhatsNew  implements Serializable {
 	@Column(nullable = false, length = 2048) // 映射为字段，值不能为空
 	private String note;
 	
-	/*@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-	@JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
-		inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
-	private List<Authority> authorities;*/
-	
-	
-
-	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "departmentId")
 	@NotNull(message = "必须选择发布单位")

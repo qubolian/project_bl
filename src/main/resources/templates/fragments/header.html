@@ -53,7 +53,8 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/" th:href="@{/}">建桥学院专题管理系统</a>
+        <a class="navbar-brand" href="/" th:href="@{/}">
+        <i class="fa fa-home" title="首页"></i>&nbsp;建桥学院专题管理系统</a>
         
         <div class="collapse navbar-collapse" id="navbarsContainer">
 
@@ -78,6 +79,9 @@
 					<a class=" dropdown-toggle" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}" data-toggle="dropdown"><span sec:authentication="principal.name"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
 					
 					<div class="dropdown-menu" >
+						<div>
+							<a class=" dropdown-item" href="/" th:href="@{~/}">首页</a> 
+						</div>
 						<div sec:authorize="hasRole('ROLE_ADMIN')">
 							<a class=" dropdown-item" href="/admins" th:href="@{~/admins}">用户管理</a> 
 						</div>

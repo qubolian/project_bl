@@ -4,19 +4,16 @@
 	
 	<div class="form-group">
 		<div class="col-md-12 col-xl-12" id=uploadStudent>
-		
-			<div class="input-group file-caption-main">
-				<div class="file-caption form-control kv-fileinput-caption icon-visible" tabindex="500">
-		  			<span class="file-caption-icon"><i class="fa fa-file kv-caption-icon"></i> </span>
-		  			<input class="file-caption-name" onkeydown="return false;" onpaste="return false;" placeholder="请选择学生名单" />
-		  		</div>
+			<div class="input-group">
+		  			<span class="input-group-addon"><i class="fa fa-file "></i> </span>
+		  			<input id="fileName" class="form-control" onkeydown="return false;" onpaste="return false;" placeholder="请选择学生名单" />
 		  		<div class="input-group-btn">
-				<div tabindex="500" class="btn btn-primary btn-file">
-	    			<i class="fa fa-folder-open"></i>  <span class="hidden-xs">Browse …</span><input type="file" name="file" id="file" multiple="">
+				<div tabindex="500" class="btn btn-info btn-file">
+	    			<i class="fa fa-folder-open"></i>  <span class="hidden-xs">浏览</span><input type="file" name="file" id="file" multiple="" onchange="showFileName(this.value)">
 				</div>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 </form>

@@ -11,7 +11,7 @@
 $(function() {
 	var _pageSize; // 存储用于搜索
 	
-	
+
 	
 	// 根据公告标题、页面索引、页面大小获取用户列表
 	function getWhatsNewByEvents(pageIndex, pageSize) {
@@ -79,6 +79,7 @@ $(function() {
 	
 	// 提交变更后，清空表单
 	$("#submitEdit").on("click",function(){
+		$("#note").val(CKEDITOR.instances.note.getData());
 		$.ajax({ 
 			 url: "/super/addWhatsNew", 
 			 type: 'POST',

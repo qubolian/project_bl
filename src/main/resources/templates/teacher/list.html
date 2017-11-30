@@ -9,10 +9,14 @@
 			<button class="btn btn-secondary" type="button" id="searchNameBtn">
 				<i class="fa fa-search" aria-hidden="true"></i>
 			</button>
-		</span> <a class="btn btn-primary" data-toggle="modal"
-			data-target="#flipFlop" role="button" id="addTeacher"><i
+		</span> 
+		<a class="btn btn-primary" data-toggle="modal"
+			data-target="#flipFlop" role="button" id="addTeacher" title="添加教师"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
-
+		
+		<a class="btn btn-danger" role="button" id="deleteTeacher" title="批量删除教师">
+			<i class="fa fa-minus"></i>
+		</a>
 	</div>
 </div>
 
@@ -21,6 +25,9 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>
+						<input id="allboxs" type="checkbox" onclick="allboxs()"/>
+					</th>
 					<th data-field="id">教师工号</th>
 					<th data-field="teacherName">教师名称</th>
 					<th data-field="sex">教师性别</th>
@@ -34,6 +41,9 @@
 			<tbody>
 
 				<tr th:each="Teacher : ${teacherModel.teacherList}">
+					<td>
+						<input type="checkbox" th:value="${Teacher.id}" name="boxs" onclick="boxs()">
+					</td>
 					<td th:text="${Teacher.id}">教师工号</td>
 					<td th:text="${Teacher.teacherName}">教师名称</td>
 					<td th:text="${Teacher.sex}">教师性别</td>

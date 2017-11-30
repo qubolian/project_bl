@@ -15,7 +15,7 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (1, 5);
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 2);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 3);
 
-INSERT INTO project_mission (id, mark,misson) VALUES (1, '请输入宗旨的内容','测试一下');
+INSERT INTO project_mission (id, mark,misson) VALUES (1, '《奥林匹克宪章》中的“基本原则”部分指出，奥林匹克运动的宗旨是：通过没有任何歧视、具有奥林匹克精神——以友谊、团结和公平竞争的精神相互理解的体育活动来教育青年，从而为建立一个和平的更美好的世界做出贡献。可高度概括为“和平、友谊、进步”。','测试一下');
 
 insert into Department_List(Code,Department) values(080901,'计算器科学与技术系');
 insert into Department_List(Code,Department) values(080902,'软件工程系');
@@ -30,9 +30,18 @@ insert into News_Type(Message_Type) values('业界&学校交流（Discuss）');
 
 
 
-INSERT INTO WHATS_NEW VALUES ('1', '2012-12-01', '几天呢他', 'note', '2012-11-01', '3', '2');
+INSERT INTO WHATS_NEW VALUES ('1', '2012-12-01', '日前，团中央学校部于2016年秋季学期开展了高校“活力团支部”创建遴选活动。', 'note', '2012-11-01', '3', '2');
 INSERT INTO WHATS_NEW VALUES ('2', '2013-12-01', '商谈信息', 'note', '2013-11-01', '3', '2');
-INSERT INTO WHATS_NEW VALUES ('3', '2014-12-01', '掉头就像', 'note', '2014-11-01', '3', '2');
+INSERT INTO WHATS_NEW VALUES ('3', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2');
+INSERT INTO WHATS_NEW VALUES ('4', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2');
+INSERT INTO WHATS_NEW VALUES ('5', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2');
+INSERT INTO WHATS_NEW VALUES ('6', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2');
+INSERT INTO WHATS_NEW VALUES ('7', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2');
+
+
+
+
+
 
 INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage)  VALUES('1', '大一上', '开学前2 Weeks', '开学前3 Weeks', '整学期');
 INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage)  VALUES('2', '大一下', '开学前2 Weeks', '开学前3 Weeks', '整学期');
@@ -48,7 +57,7 @@ insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibi
 
 INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name)  VALUES (04032, '计算1', '1', '男', '专任教师', '信息技术学院', 0, '0', '0');
 INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name)  VALUES (04033, '软件1', '2', '女', '教辅人员', '信息技术学院', 0, '0', '0');
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name)  VALUES (111, '软件1', '2', '女', '教辅人员', '信息技术学院', 0, '0', '0');
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name)  VALUES (111, '111', '2', '女', '教辅人员', '信息技术学院', 0, '0', '0');
 
 
 

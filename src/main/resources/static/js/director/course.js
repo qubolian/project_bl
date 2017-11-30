@@ -6,7 +6,26 @@
  */
 "use strict";
 //# sourceURL=main.js
- 
+var a = $("input[name='boxs']").length;//用于全选
+
+function allboxs() {
+	var nn = $("#allboxs").is(":checked"); //判断th中的checkbox是否被选中，如果被选中则nn为true，反之为false
+	if(nn == true) {
+		$("input[name='boxs']").prop("checked",true); 
+    }else{
+    	$("input[name='boxs']").prop("checked",false); 
+    }
+}
+
+function boxs() {
+	var b = $("input[name='boxs']:checked").length;
+	
+	if(a==b){
+		 $("#allboxs").prop("checked",true); 
+	}else{
+		 $("#allboxs").prop("checked",false); 
+	}
+}
 // DOM 加载完再执行
 $(function() {
 	var _pageSize; // 存储用于搜索
@@ -154,5 +173,55 @@ $(function() {
 		
 	});
 	
+	//批量删除课程
+	$("#deleteCourse").on("click",function(){
+		$("input[name='boxs']:checked").each(function(){
+			// 获取 CSRF Token 
+			var csrfToken = $("meta[name='_csrf']").attr("content");
+			var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+			$.ajax({ 
+				 url: "/director/course/" + $(this).val() , 
+				 type: 'DELETE', 
+				 async:false,
+				 beforeSend: function(request) {
+	                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
+	             },
+				 success: function(data){
+					 if (data.success) {
+						 // 从新刷新主界面
+						 getCourseByName(0, _pageSize);
+					 } else {
+						 toastr.error(data.message);
+					 }
+			     },
+			     error : function() {
+			    	 toastr.error("error!");
+			     }
+			 });
+		});
+		
+	});
+	
+	//批量发布课程
+	$("#publishCourse").on("click",function(){
+		$("input[name='boxs']:checked").each(function(){
+			$.ajax({ 
+				 url: "/director/publishCourse/" + $(this).val(), 
+				 async:false,
+				 success: function(data){
+					 if (data.success) {
+						 // 从新刷新主界面
+						 getCourseByName(0, _pageSize);
+						 toastr.info("发布成功！");
+					 } else {
+						 toastr.error(data.message);
+					 }
+			     },
+			     error : function() {
+			    	 toastr.error("error!");
+			     }
+			 });
+		});
+	});
 	
 });

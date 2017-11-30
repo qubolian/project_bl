@@ -40,8 +40,8 @@ public class ProjectMission implements Serializable {
 	private String misson;
 	
 	@NotEmpty(message = "备注不能为空")
-	@Size(min=2, max=2048, message="备注长度必须在2到2048之间")
-	@Column(nullable = false, length = 2048) // 映射为字段，值不能为空
+	@Size(min=2, max=8000, message="备注长度必须在2到8000之间")
+	@Column(nullable = false, length = 8000) // 映射为字段，值不能为空
 	private String mark;
 
 	public Long getId() {

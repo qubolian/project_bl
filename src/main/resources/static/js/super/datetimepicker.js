@@ -10,6 +10,8 @@
 // DOM 加载完再执行
 $(function() {
 	
+    CKEDITOR.replace( 'note',{ height: '200px', width: 'auto' } );
+    
 	$('.form_date1').datetimepicker({
 	    language:  'zh-CN',
 	   

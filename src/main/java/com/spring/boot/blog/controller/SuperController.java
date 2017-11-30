@@ -64,7 +64,7 @@ public class SuperController {
 		return ResponseEntity.ok().body(new Response(true, "显示成功", pm));
 	}
 	
-	@GetMapping("/missionEdit")
+	@PostMapping("/missionEdit")
 	public ResponseEntity<Response> missionEdit(String mark) {
 		
 		

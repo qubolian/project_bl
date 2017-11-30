@@ -9,13 +9,18 @@
 			<button class="btn btn-secondary" type="button" id="searchNameBtn">
 				<i class="fa fa-search" aria-hidden="true"></i>
 			</button>
-		</span> <a class="btn btn-primary" data-toggle="modal"
-			data-target="#flipFlop" role="button" id="addStudent"><i
+		</span>
+		<a class="btn btn-primary" data-toggle="modal"
+			data-target="#flipFlop" role="button" id="addStudent" title="添加学生"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
 			
  		<a class="btn btn-info" data-toggle="modal"
-			data-target="#flipFlop" role="button" id="uploadStudentList"><i
+			data-target="#flipFlop" role="button" id="uploadStudentList" title="批量添加学生"><i
 			class="fa fa-upload " aria-hidden="true"></i></a>
+			
+		<a class="btn btn-danger" role="button" id="deleteStudent" title="批量删除学生">
+			<i class="fa fa-minus"></i>
+		</a>
 			
 	</div>
 </div>
@@ -25,6 +30,9 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>
+						<input id="allboxs" type="checkbox" onclick="allboxs()"/>
+					</th>
 					<th data-field="id">学号</th>
 					<th data-field="name">姓名</th>
 					<th data-field="sex">性别</th>
@@ -42,6 +50,9 @@
 			<tbody>
 
 				<tr th:each="Student : ${studentModel.studentList}">
+					<td>
+						<input type="checkbox" th:value="${Student.id}" name="boxs" onclick="boxs()">
+					</td>
 					<td th:text="${Student.id}">学号</td>
 					<td th:text="${Student.name}">姓名</td>
 					<td th:text="${Student.sex}">性别</td>

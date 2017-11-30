@@ -48,7 +48,6 @@ public class Course implements Serializable {
 	private Long id; // 用户的唯一标识
 
 	@NotEmpty(message = "课程名称不能为空")
-
 	@Size(min = 2, max = 32, message = "课程名称长度必须在2到32之间")
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String name;

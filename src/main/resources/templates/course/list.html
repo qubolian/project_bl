@@ -10,9 +10,17 @@
 				<i class="fa fa-search" aria-hidden="true"></i>
 			</button>
 		</span> <a class="btn btn-primary" data-toggle="modal"
-			data-target="#flipFlop" role="button" id="addCourse"><i
+			data-target="#flipFlop" role="button" 
+			id="addCourse" title="添加课程"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
-
+		<a class="btn btn-danger" role="button" id="deleteCourse" title="删除课程">
+			<i class="fa fa-minus"></i>
+		</a>
+		<a class="btn btn-info" role="button" id="publishCourse" title="发布课程">
+			<i class="fa fa-level-up"></i>
+		</a>
+		
+		
 	</div>
 </div>
 
@@ -21,6 +29,9 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>
+						<input id="allboxs" type="checkbox" onclick="allboxs()"/>
+					</th>
 					<th data-field="name">课程名称</th>
 					<th data-field="term">学年度学期</th>
 				    <th data-field="courseId">代码</th> 
@@ -39,6 +50,9 @@
 			<tbody>
 
 				<tr th:each="course : ${courseModel.courseList}">
+					<td>
+						<input type="checkbox" th:value="${course.id}" name="boxs" onclick="boxs()">
+					</td>
 					<td th:text="${course.name}">课程名称</td>
 					<td th:text="${course.term}">学年度学期</td>
 				    <td th:text="${course.courseId}">代码</td>

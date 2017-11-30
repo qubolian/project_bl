@@ -126,18 +126,7 @@ $(function() {
 	});
 	
 	
-	$("#allboxs").on("click",function(){
-		var nn = $("#allboxs").is(":checked"); //判断th中的checkbox是否被选中，如果被选中则nn为true，反之为false
-		if(nn == true) {
-            $('table:checkbox').each(function(){
-            	alert(123);
-            	alert($(this).val());
-            	$(this).attr("checked",true); 
-         　　		}) ;
-        }else{
-        	$('table:checkbox').each(function(){
-            	$(this).prop("checked",false); 
-         　　		}) ;
-        }
-	});
+
+	
+
 });

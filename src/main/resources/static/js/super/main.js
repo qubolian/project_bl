@@ -15,16 +15,20 @@ $(function() {
     
     // 提交变更后，清空表单
 	$("#update").on("click",function(){
-		
-		  var editor_data = CKEDITOR.instances.mark.getData();
-		  
+		var editor_data = CKEDITOR.instances.mark.getData();
+		// 获取 CSRF Token 
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({ 
 			 url: "/super/missionEdit", 
+			 type: 'POST',
+			 beforeSend: function(request) {
+                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
+             },
 			 data:{
 				 "mark":editor_data
 			 },
 			 success: function(data){
-				
 				 
 				 if (data.success) {
 					 // 更新内容
