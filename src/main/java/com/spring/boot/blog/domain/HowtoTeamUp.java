@@ -56,6 +56,16 @@ public class HowtoTeamUp  implements Serializable {
 	@Size(min=2, max=32, message="专题执行期长度必须在2到32之间")
 	@Column(nullable = false, length = 32) // 映射为字段，值不能为空
 	private String projectConductionStage;
+	
+	private int dr;
+
+	public int getDr() {
+		return dr;
+	}
+
+	public void setDr(int dr) {
+		this.dr = dr;
+	}
 
 	public Long getId() {
 		return id;

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.spring.boot.blog.domain.HowtoTeamUp;
 import com.spring.boot.blog.domain.WhatsNew;
 import com.spring.boot.blog.repository.WhatsNewRepository;
 
@@ -28,7 +30,9 @@ public class WhatsNewServiceImpl implements WhatsNewService {
 	@Transactional
 	public void removeWhatsNew(Long id) {
 		// TODO Auto-generated method stub
-		WhatsNewRepository.delete(id);
+		WhatsNew WhatsNew = WhatsNewRepository.findOne(id);
+		WhatsNew.setDr(1);
+		WhatsNewRepository.save(WhatsNew);
 
 	}
 
@@ -65,7 +69,7 @@ public class WhatsNewServiceImpl implements WhatsNewService {
 	public Page<WhatsNew> listWhatsNewsByEventsLike(String events, Pageable pageable) {
 		// TODO Auto-generated method stub
 		events= "%"+events+"%";
-		Page<WhatsNew> WhatsNews = WhatsNewRepository.findByEventsLike(events, pageable);
+		Page<WhatsNew> WhatsNews = WhatsNewRepository.findByEventsLikeAndDr(events, 0, pageable);
 		return WhatsNews;
 	}
 

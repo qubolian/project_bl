@@ -12,6 +12,11 @@
 		</span> <a class="btn btn-primary" data-toggle="modal"
 			data-target="#flipFlop" role="button" id="addWhatsNew" title="添加最新消息"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
+			
+		<a class="btn btn-danger" role="button" id="deleteWhatsNew" title="批量删除最新消息">
+			<i class="fa fa-minus"></i>
+		</a>
+
 
 	</div>
 </div>
@@ -21,6 +26,9 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>
+						<input id="allboxs" type="checkbox" onclick="allboxs()"/>
+					</th>
 					<th data-field="id">曝光开始时间</th>
 					<th data-field="code">曝光结束时间</th>
 				    <th data-field="departmentList">发布单位</th> 
@@ -32,6 +40,9 @@
 			<tbody>
 
 				<tr th:each="whatsNew : ${whatsNewModel.whatsNewList}">
+					<td>
+						<input type="checkbox" th:value="${whatsNew.id}" name="boxs" onclick="boxs()">
+					</td>
 					<td th:text="${whatsNew.startTime}">编号</td>
 					<td th:text="${whatsNew.endTime}">代码</td>
 				    <td th:text="${whatsNew.departmentList.department}">发布单位</td>

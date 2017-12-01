@@ -43,6 +43,7 @@ public class WhatsNew implements Serializable {
 	@JoinColumn(name = "newsTypeId")
 	@NotNull(message = "必须选择信息类别")
 	private NewsType newsType;
+	
 
 	public DepartmentList getDepartmentList() {
 		return departmentList;

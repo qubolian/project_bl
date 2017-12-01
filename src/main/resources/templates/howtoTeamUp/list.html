@@ -12,6 +12,10 @@
 		</span> <a class="btn btn-primary" data-toggle="modal"
 			data-target="#flipFlop" role="button" id="addHowtoTeamUp" title="添加组队方法"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
+			
+		<a class="btn btn-danger" role="button" id="deleteHowtoTeamUp" title="批量删除组队方法">
+			<i class="fa fa-minus"></i>
+		</a>
 
 	</div>
 </div>
@@ -21,6 +25,9 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>
+						<input id="allboxs" type="checkbox" onclick="allboxs()"/>
+					</th>
 					<th data-field="gradeId">年级</th>
 					<th data-field="teamUpStage">组队期</th>
 				    <th data-field="seekAdvisorStage">寻找指导老师期</th> 
@@ -31,6 +38,9 @@
 			<tbody>
 
 				<tr th:each="howtoTeamUp : ${howtoTeamUpModel.howtoTeamUpList}">
+					<td>
+						<input type="checkbox" th:value="${howtoTeamUp.id}" name="boxs" onclick="boxs()">
+					</td>
 					<td th:text="${howtoTeamUp.gradeId}">年级</td>
 					<td th:text="${howtoTeamUp.teamUpStage}">组队期</td>
 				    <td th:text="${howtoTeamUp.seekAdvisorStage}">寻找指导老师期</td>

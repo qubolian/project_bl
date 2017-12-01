@@ -60,8 +60,8 @@ public class Student implements Serializable {
 	private String lengthOfSchooling;
 	
 	@NotEmpty(message = "培养层次不能为空")
-	@Size(min=2, max=6, message="培养层次长度必须在2到6之间")
-	@Column(nullable = false, length = 6) // 映射为字段，值不能为空
+	@Size(min=2, max=8, message="培养层次长度必须在2到6之间")
+	@Column(nullable = false, length = 8) // 映射为字段，值不能为空
 	private String trainingLevel;
 
 	@NotEmpty(message = "院系不能为空")

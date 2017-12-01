@@ -12,6 +12,10 @@
 		</span> <a class="btn btn-primary" data-toggle="modal"
 			data-target="#flipFlop" role="button" id="addDepartmentList" title="添加发布单位"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
+		
+		<a class="btn btn-danger" role="button" id="deleteDepartmentList" title="批量删除发布单位">
+			<i class="fa fa-minus"></i>
+		</a>
 
 	</div>
 </div>
@@ -21,6 +25,9 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>
+						<input id="allboxs" type="checkbox" onclick="allboxs()"/>
+					</th>
 					<th data-field="id">编号</th>
 					<th data-field="code">代码</th>
 					<th data-field="department">发布单位</th>
@@ -30,6 +37,9 @@
 			<tbody>
 
 				<tr th:each="departmentList : ${departmentListModel.departmentListList}">
+					<td>
+						<input type="checkbox" th:value="${departmentList.id}" name="boxs" onclick="boxs()">
+					</td>
 					<td th:text="${departmentList.id}">编号</td>
 					<td th:text="${departmentList.code}">代码</td>
 					<td th:text="${departmentList.department}">发布单位</td>

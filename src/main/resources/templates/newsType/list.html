@@ -13,7 +13,10 @@
 		<a class="btn btn-primary" data-toggle="modal"
 			data-target="#flipFlop" role="button" id="addNewsType" title="添加信息类别"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
-
+		
+		<a class="btn btn-danger" role="button" id="deleteNewsType" title="批量删除信息类别">
+			<i class="fa fa-minus"></i>
+		</a>
 
 	</div>
 </div>
@@ -23,7 +26,9 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					
+					<th>
+						<input id="allboxs" type="checkbox" onclick="allboxs()"/>
+					</th>
 					<th data-field="id">编号</th>
 					<th data-field="messageType">信息类别</th>
 					<th data-field="operation">操作</th>
@@ -32,6 +37,9 @@
 			<tbody>
 
 				<tr th:each="newsType : ${newsTypeModel.newsTypeList}">
+					<td>
+						<input type="checkbox" th:value="${newsType.id}" name="boxs" onclick="boxs()">
+					</td>
 					<td th:text="${newsType.id}">编号</td>
 					<td th:text="${newsType.messageType}">信息类别</td>
 					<td>

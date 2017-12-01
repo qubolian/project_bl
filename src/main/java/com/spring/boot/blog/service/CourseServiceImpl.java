@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.spring.boot.blog.domain.Course;
+import com.spring.boot.blog.domain.HowtoTeamUp;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.repository.CourseRepository;
 
@@ -29,8 +30,9 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public void removeCourse(Long id) {
 		// TODO Auto-generated method stub
-		CourseRepository.delete(id);
-
+		Course Course = CourseRepository.findOne(id);
+		Course.setStatus("99");
+		CourseRepository.save(Course);
 	}
 
 	@Override

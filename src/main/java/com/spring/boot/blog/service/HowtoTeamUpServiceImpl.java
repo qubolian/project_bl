@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.spring.boot.blog.domain.HowtoTeamUp;
+import com.spring.boot.blog.domain.NewsType;
 import com.spring.boot.blog.repository.HowtoTeamUpRepository;
 
 @Service
@@ -28,8 +29,9 @@ public class HowtoTeamUpServiceImpl implements HowtoTeamUpService {
 	@Transactional
 	public void removeHowtoTeamUp(Long id) {
 		// TODO Auto-generated method stub
-		HowtoTeamUpRepository.delete(id);
-
+		HowtoTeamUp howtoTeamUp = HowtoTeamUpRepository.findOne(id);
+		howtoTeamUp.setDr(1);
+		HowtoTeamUpRepository.save(howtoTeamUp);
 	}
 
 	@Override
@@ -65,7 +67,7 @@ public class HowtoTeamUpServiceImpl implements HowtoTeamUpService {
 	public Page<HowtoTeamUp> listHowtoTeamUpByGradeIdLike(String gradeId, Pageable pageable) {
 		// TODO Auto-generated method stub
 		gradeId= "%"+gradeId+"%";
-		Page<HowtoTeamUp> HowtoTeamUp = HowtoTeamUpRepository.findByGradeIdLike(gradeId, pageable);
+		Page<HowtoTeamUp> HowtoTeamUp = HowtoTeamUpRepository.findByGradeIdLikeAndDr(gradeId, 0, pageable);
 		return HowtoTeamUp;
 	}
 
