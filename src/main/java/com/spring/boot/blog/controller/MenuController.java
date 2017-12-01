@@ -19,7 +19,7 @@ import com.spring.boot.blog.util.Menu;
  * @date 2017年2月26日
  */
 @Controller
-@RequestMapping("/menu")
+@RequestMapping("/super")
 public class MenuController {
  
 
@@ -27,7 +27,7 @@ public class MenuController {
 	 * 获取后台管理主页面
 	 * @return
 	 */
-	@GetMapping
+	@GetMapping("/menu")
 	public ModelAndView listUsers(Model model) {
 		List<Menu> superList = new ArrayList<>();
 		superList.add(new Menu("编辑宗旨","/super/misson"));

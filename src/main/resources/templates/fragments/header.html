@@ -86,7 +86,7 @@
 							<a class=" dropdown-item" href="/admins" th:href="@{~/admins}">用户管理</a> 
 						</div>
 						<div sec:authorize="hasRole('ROLE_SUPER')">
-							<a class=" dropdown-item" href="/menu" th:href="@{~/menu}">院办管理</a> 
+							<a class=" dropdown-item" href="/super/menu" th:href="@{~/menu}">院办管理</a> 
 						</div>
 						<div sec:authorize="hasRole('ROLE_DIRECTOR')">
 							<a class=" dropdown-item" href="/director/menu" th:href="@{~/director/menu}">系部管理</a> 

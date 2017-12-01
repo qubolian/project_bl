@@ -54,6 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/admins/**").hasRole("ADMIN") // 需要相应的角色才能访问
 				.antMatchers("/super/**").hasRole("SUPER") // 需要相应的角色才能访问
 				.antMatchers("/director/**").hasRole("DIRECTOR") // 需要相应的角色才能访问
+				.antMatchers("/teachers/**").hasRole("TEACHER") // 需要相应的角色才能访问
+				.antMatchers("/supervisor/**").hasRole("TEACHER") // 需要相应的角色才能访问
 				.and().formLogin() // 基于 Form 表单登录验证
 				.loginPage("/login").failureUrl("/login-error") // 自定义登录界面
 				.and().rememberMe().key(KEY) // 启用 remember me
