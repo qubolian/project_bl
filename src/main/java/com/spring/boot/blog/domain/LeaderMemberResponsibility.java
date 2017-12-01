@@ -35,13 +35,13 @@ public class LeaderMemberResponsibility implements Serializable {
 	private Long id; // 用户的唯一标识
 	
 	@NotEmpty(message = "组长的责任不能为空")
-	@Size(min=2, max=2048, message="组长的责任长度必须在2到2048之间")
-	@Column(nullable = false, length = 2048) // 映射为字段，值不能为空
+	@Size(min=2, max=8000, message="组长的责任长度必须在2到8000之间")
+	@Column(nullable = false, length = 8000) // 映射为字段，值不能为空
 	private String LeaderResponsibility;
 	
 	@NotEmpty(message = "组员的责任不能为空")
-	@Size(min=2, max=2048, message="组员的责任长度必须在2到2048之间")
-	@Column(nullable = false, length = 2048) // 映射为字段，值不能为空
+	@Size(min=2, max=8000, message="组员的责任长度必须在2到8000之间")
+	@Column(nullable = false, length = 8000) // 映射为字段，值不能为空
 	private String MemberResponsibility;
 
 	public Long getId() {

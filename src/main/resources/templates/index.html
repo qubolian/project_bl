@@ -19,10 +19,10 @@
             <!-- 宗旨 -->
             <div class="card mb-4">
             	
-            	<h2 class="card-header"  style="text-align:center"><i class="fa fa-lightbulb-o"></i>&nbsp;宗旨</h2>
+            	<h2 class="card-header" style="text-align:center"><i class="fa fa-lightbulb-o"></i>&nbsp;宗旨</h2>
             
-                <div class="card-block" id="mark">
-                    <p id="pmark" th:text="${Model.pm.mark}" style="display:none">
+                <div class="card-block">
+                    <p th:utext="${Model.pm.mark}" >
 					</p>
                 </div>
             </div>
@@ -90,7 +90,8 @@
                     <h5 class="card-header"><i class="fa fa-fire" aria-hidden="true"></i> 热门课程</h5>
 
                     <ul class="list-group" th:each="course : ${Model.courseList}">
-                        <a href="javascript:;" class="list-group-item" th:text="${course.name}"></a>
+                    	
+                        <a href="javascript:;" class="list-group-item" th:utext="'<i class=\'fa fa-book\'></i>&nbsp;'+${course.name}"></a>
                     </ul>
 
                 </div>
@@ -100,17 +101,31 @@
                     <div class="card-block">
                         <div class="row">
                             <div class="col-lg-12">
-	                            <ul class="list-group" th:each="teacher : ${Model.teacher}">
+	                            <!-- <ul class="list-group" th:each="teacher : ${Model.teacher}">
 									<span>
 					                  <a href="javascript:;">
 					                    <img th:src="${teacher.avatar}" class="blog-avatar-50">
 					                  </a>
+					                  <a href="javascript:;" th:text="${teacher.name}"></a>
 					                </span>	
-									<span>
-									<a href="javascript:;" th:text="${teacher.name}"></a>
-									</span>              
-					            </ul>
+             
+					            </ul> -->
+					            <table th:each="teacher : ${Model.teacher}">
+					            <tr  class="list-group">
+						            <td>
+						            <span>
+					                  <a href="javascript:;">
+					                    <img th:src="${teacher.avatar}" class="blog-avatar-50">
+					                  </a>
+					                  &nbsp;
+					                  <a href="javascript:;" th:text="${teacher.name}"></a>
+					                </span>
+						            </td>
+						            <td>
 
+						            </td>
+					            </tr>
+					            </table>
                             </div>
                         </div>
                     </div>
@@ -118,31 +133,37 @@
 
 
 
-                <!-- 最新发布 -->
+                <!-- 组长责任 -->
                 <div class="card my-4">
-                    <h5 class="card-header"><i class="fa fa-line-chart" aria-hidden="true"></i> 最新发布</h5>
-                    <div class="list-group">
-                        <ul class="list-group">
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
-                                Spring Data + Thymeleaf 3 + Bootstrap 4 实现分页器
-                            </a>
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
-                                用大白话聊聊分布式系统
-                            </a>
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
-                                用大白话聊聊分布式系统>
-                            </a>
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
-                                使用 Eclipse Checkstyle Plugin
-                            </a>
-
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
-                                使用 Eclipse Checkstyle Plugin
-                            </a>
-                        </ul>
+                    <h5 class="card-header"><i class="fa fa-address-book-o" aria-hidden="true"></i> 组长责任</h5>
+                    <div class="card-block">
+                        <p th:utext="${Model.lmr.LeaderResponsibility}" >
+					</p>
                     </div>
 
                 </div>
+                
+                <!-- 组员责任 -->
+                <div class="card my-4">
+                    <h5 class="card-header"><i class="fa fa-address-book" aria-hidden="true"></i> 组员责任</h5>
+                    <div class="card-block">
+                        <p th:utext="${Model.lmr.MemberResponsibility}" >
+					</p>
+                    </div>
+
+                </div>
+                
+                <!-- 最新小队 -->
+                <div class="card my-4">
+                    <h5 class="card-header"><i class="fa fa-address-card" aria-hidden="true"></i> 最新小队</h5>
+                    <div class="card-block">
+                        <!-- <p th:utext="" > -->
+					</p>
+                    </div>
+
+                </div>
+                
+                
             </div>
         </div>
 
@@ -155,7 +176,4 @@
 
 <div th:replace="~{fragments/footer :: footer}">...</div>
 </body>
-<!-- JavaScript -->
- <script src="../../ckeditor/ckeditor.js"></script>
-<script src="../js/index/main.js" th:src="@{js/index/main.js}"></script>
 </html>
