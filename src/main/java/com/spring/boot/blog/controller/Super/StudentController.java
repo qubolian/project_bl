@@ -247,7 +247,7 @@ public class StudentController {
 			String status = cell.getStringCellValue();
 			student.setStatus(status);
 
-			cell = row.getCell(5);
+			cell = row.getCell(10);
 			String classes = cell.getStringCellValue();
 			student.setClasses(classes);
 

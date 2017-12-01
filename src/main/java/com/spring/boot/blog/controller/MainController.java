@@ -46,8 +46,6 @@ private static final Long ROLE_USER_AUTHORITY_ID = 2L;
 	private UserService userService;
 	@Autowired
 	private AuthorityService  authorityService;
-	/*@Autowired
-	private AuthorityService  authorityService;*/
 	
 	@Autowired
 	private ProjectMissionService projectMissionService;
@@ -104,19 +102,17 @@ private static final Long ROLE_USER_AUTHORITY_ID = 2L;
 		//教师
 		Page<Teacher> Tpage = teacherService.listTeacherByTeacherNameLike("", pageable);
 		List<Teacher> teacherList = Tpage.getContent();	// 当前所在页面数据列表
-		List<String> teacherAvatar = new ArrayList<String>();
-		List<Teacher> teacher = new ArrayList<Teacher>();
+		List<User> teacher = new ArrayList<User>();
 		for (Teacher t : teacherList) {
 			String s = String.valueOf(t.getId());
 			User  user = (User)userDetailsService.loadUserByUsername(s);
-			if(user!=null && user.getAvatar()!=null) {
-				teacherAvatar.add("http://127.0.0.1/"+user.getAvatar());
+			if(user.getAvatar()!=null) {
+				user.setAvatar("http://127.0.0.1/"+user.getAvatar());
 			}else {
-				teacherAvatar.add("../images/avatar-defualt.jpg");
+				user.setAvatar("../images/avatar-defualt.jpg");
 			}
-			teacher.add(t);
+			teacher.add(user);
 		}
-		model.addAttribute("teacherAvatar", teacherAvatar);
 		model.addAttribute("teacher", teacher);
 		
 		//组长组员责任

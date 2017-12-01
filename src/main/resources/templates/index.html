@@ -100,15 +100,14 @@
                     <div class="card-block">
                         <div class="row">
                             <div class="col-lg-12">
-	                            <ul class="list-group" th:each="course : ${Model.courseList}">
-									<span th:each="teacherAvatar : ${Model.teacherAvatar}">
+	                            <ul class="list-group" th:each="teacher : ${Model.teacher}">
+									<span>
 					                  <a href="javascript:;">
-					                    <img th:src="${teacherAvatar}" class="blog-avatar-50">
+					                    <img th:src="${teacher.avatar}" class="blog-avatar-50">
 					                  </a>
 					                </span>	
-									<span th:each="teacher : ${Model.teacher}">
-									<a href="javascript:;" th:text="${teacher.teacherName}">
-					                  </a>
+									<span>
+									<a href="javascript:;" th:text="${teacher.name}"></a>
 									</span>              
 					            </ul>
 

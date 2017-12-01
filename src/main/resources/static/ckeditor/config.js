@@ -22,6 +22,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeButtons = 'Source,Iframe,About,Language,CreateDiv,Scayt,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,Unlink,Link,Anchor,NewPage,Save,Flash,Maximize,ShowBlocks,Print,Preview,Templates';
 	config.image_previewText=' ';
 	config.resize_enabled = false;
+
 	config.filebrowserUploadUrl="/ckeditor/upload";
 	
 };

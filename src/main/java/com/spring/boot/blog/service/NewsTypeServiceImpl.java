@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import com.spring.boot.blog.domain.NewsType;
 import com.spring.boot.blog.repository.NewsTypeRepository;
 
@@ -16,7 +17,7 @@ public class NewsTypeServiceImpl implements NewsTypeService {
 
 	@Autowired
 	NewsTypeRepository newsTypeRepository;
-	
+
 	@Override
 	@Transactional
 	public NewsType saveNewsType(NewsType newsType) {
@@ -28,8 +29,9 @@ public class NewsTypeServiceImpl implements NewsTypeService {
 	@Transactional
 	public void removeNewsType(Long id) {
 		// TODO Auto-generated method stub
-		newsTypeRepository.delete(id);
-
+		NewsType newsType = newsTypeRepository.findOne(id);
+		newsType.setDr(1);
+		newsTypeRepository.save(newsType);
 	}
 
 	@Override
@@ -64,8 +66,8 @@ public class NewsTypeServiceImpl implements NewsTypeService {
 	@Transactional
 	public Page<NewsType> listNewsTypesByMessageTypeLike(String messageType, Pageable pageable) {
 		// TODO Auto-generated method stub
-		messageType= "%"+messageType+"%";
-		Page<NewsType> newsTypes = newsTypeRepository.findByMessageTypeLike(messageType, pageable);
+		messageType = "%" + messageType + "%";
+		Page<NewsType> newsTypes = newsTypeRepository.findByMessageTypeLikeAndDr(messageType, 0, pageable);
 		return newsTypes;
 	}
 
