@@ -14,9 +14,13 @@
 			data-target="#flipFlop" role="button" id="addTeacher" title="添加教师"><i
 			class="fa fa-plus" aria-hidden="true"></i></a>
 		
-		<a class="btn btn-danger" role="button" id="deleteTeacher" title="批量删除教师">
+		<a class="btn btn-danger" role="button" id="deleteTeacher" title="批量注销教师">
 			<i class="fa fa-minus"></i>
 		</a>
+		<a class="btn btn-warning" role="button" id="undoTeacher" title="批量恢复教师">
+			<i class="fa fa-undo"></i>
+		</a>
+		
 	</div>
 </div>
 
@@ -34,6 +38,7 @@
 				    <th data-field="teacherType">教师类型</th> 
 				 	<th data-field="college">学院</th>
 				 	<th data-field="department">系部</th>
+				 	<th data-field="statusInt">工作状态</th>
 				 	<th data-field="isAuthority">是否为系主任</th>
 				 	<th data-field="operation">操作</th>
 				</tr>
@@ -50,6 +55,7 @@
 				    <td th:text="${Teacher.teacherType}">教师类型</td>
 					<td th:text="${Teacher.college}">学院</td> 
 					<td th:text="${Teacher.department.department}">系部</td> 
+					<td th:text="${Teacher.statusInt==0}?'在职':'离职'">工作状态</td> 
 					<td th:text="${Teacher.isAuthority==1}?是">是否为系主任</td>
 					<td>
 						<div>

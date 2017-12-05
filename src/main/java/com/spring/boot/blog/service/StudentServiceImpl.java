@@ -65,7 +65,7 @@ public class StudentServiceImpl implements StudentService {
 	public Page<Student> listStudentByNameLike(String Name, Pageable pageable) {
 		// TODO Auto-generated method stub
 		Name= "%"+Name+"%";
-		Page<Student> Student = StudentRepository.findByNameLike(Name, pageable);
+		Page<Student> Student = StudentRepository.findByNameLikeOrderByStatusIntAsc(Name, pageable);
 		return Student;
 	}
 

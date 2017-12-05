@@ -34,15 +34,15 @@ INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type
 INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('7', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
 
 
-INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage)  VALUES('1', '大一上', '开学前2 Weeks', '开学前3 Weeks', '整学期');
-INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage)  VALUES('2', '大一下', '开学前2 Weeks', '开学前3 Weeks', '整学期');
-INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage)  VALUES('3', '大二上', '开学前2 Weeks', '开学前3 Weeks', '整学期');
-INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage)  VALUES('4', '大二下', '开学前2 Weeks', '开学前3 Weeks', '整学期');
-INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage)  VALUES('5', '大三上', '不得变更团队', '不得变更指导老师', '整学期');
+INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage,dr)  VALUES('1', '大一上', '开学前2 Weeks', '开学前3 Weeks', '整学期', 0);
+INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage,dr)  VALUES('2', '大一下', '开学前2 Weeks', '开学前3 Weeks', '整学期', 0);
+INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage,dr)  VALUES('3', '大二上', '开学前2 Weeks', '开学前3 Weeks', '整学期', 0);
+INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage,dr)  VALUES('4', '大二下', '开学前2 Weeks', '开学前3 Weeks', '整学期', 0);
+INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage,dr)  VALUES('5', '大三上', '不得变更团队', '不得变更指导老师', '整学期', 0);
 
 insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibility) values('专题档案管理&规划，开会讨论题目，定期问题讨论及询问进度，制定时间&缴交作业，分工管理，成本计算，与老师的沟通&组员','将档案整理好给组长，提出有兴趣的题目，向组长回报问题与进度，在时间内缴交作业，执行被指派的任务，提出所需的物品&价格，良好的沟通行为');
 
-INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name)  VALUES (111, '111', '2', '女', '教辅人员', '信息技术学院', 0, '0', '0');
+INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name, status_Int)  VALUES (111, '111', '2', '女', '教辅人员', '信息技术学院', 0, '0', '0', '0');
 
 INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (1, '1124', '2', '计科B17-1', '专业领域课程组', '英语', '2017-2018-1', '2050587', '考试', '32', '2', '4', '1');
 INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (2, '2124', '4', '计科B17-1', '必修', '数学', '2017-2018-1', '2050588', '考查', '32', '2', '5', '1');
@@ -50,7 +50,7 @@ INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, cour
 INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (4, '4124', '1', '计科B17-1', '专业限选课', '界面制作', '2017-2018-1', '2050590', '考查', '32', '2', '3', '1');
 INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (5, '5123', '2', '计科B17-1', '选修', '语文', '2017-2018-1', '2050591', '考查', '32', '2', '5', '1');
 
-INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes) VALUES (1623381, '张三', '计算器科学与技术系', '男', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '在籍', '计科B17-1');
+INSERT INTO student (id, name, department, sex, grade, length_of_schooling, training_level, major, entrance_time, status, classes, status_Int) VALUES (1623381, '张三', '计算器科学与技术系', '男', '2016-9', '4', '本科', '计算机科学与技术', '2016-09-01', '注册学籍', '计科B17-1', 0);
 
 INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (1, '上机测试', 30, '1');
 INSERT INTO Course_Standard (id, method, percentage, course_Id) VALUES (2, '实验报告', 20, '1');

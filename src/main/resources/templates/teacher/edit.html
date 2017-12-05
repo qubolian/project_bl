@@ -43,6 +43,15 @@
 
 	</div> 
 	
+	<div class="form-group ">
+		<label for="status" class="col-form-label">工作状态</label>
+	 	  <br>
+		<select id="statusInt" name="statusInt" class="form-control">  
+			<option value ="0" th:selected="(*{statusInt} == '0')">在职</option>
+			<option value ="1" th:selected="(*{statusInt} == '1')">离职</option>  
+        </select> 	
+    </div> 
+	
 	<div class="form-group">
 		<label class="col-form-label">是否为系主任</label>
 		<input type="checkbox" id="isAuthority" name="isAuthority" th:checked="${teacherModel.authority}" value="1">

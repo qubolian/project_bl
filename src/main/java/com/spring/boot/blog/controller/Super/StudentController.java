@@ -92,7 +92,15 @@ public class StudentController {
 	@PostMapping("/addStudent")
 	public ResponseEntity<Response> saveOrUpdate(Student student) {
 		try {
-
+			if(student.getStatus().equals("注册学籍")){
+				student.setStatusInt(0);
+			}else if(student.getStatus().equals("休学")) {
+				student.setStatusInt(1);
+			}else if(student.getStatus().equals("退学")) {
+				student.setStatusInt(2);
+			}else if(student.getStatus().equals("保留学籍")) {
+				student.setStatusInt(3);
+			}
 			studentService.saveStudent(student);
 
 			String s = String.valueOf(student.getId());
@@ -150,12 +158,48 @@ public class StudentController {
 	public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
 		try {
 			if (studentService.getStudentById(id) != null) {
-				studentService.removeStudent(id);
+				Student student = studentService.getStudentById(id);
+				student.setStatusInt(2);
+				student.setStatus("退学");
+				studentService.saveStudent(student);
+				//studentService.removeStudent(id);
 				String s = String.valueOf(id);
 				User user = (User) userDetailsService.loadUserByUsername(s);
 				if (user != null) {
-					userService.removeUser(user.getId());
+					List<Authority> authorities = new ArrayList<>();
+					user.setAuthorities(authorities);
+					userService.saveUser(user);
 				}
+			}
+		} catch (Exception e) {
+			return ResponseEntity.ok().body(new Response(false, e.getMessage()));
+		}
+		return ResponseEntity.ok().body(new Response(true, "处理成功"));
+	}
+	
+	/**
+	 * 恢复学生
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@PostMapping(value = "/undoStudent/{id}")
+	public ResponseEntity<Response> undoStudent(@PathVariable("id") Long id, Model model) {
+		try {
+			if (studentService.getStudentById(id) != null) {
+				
+				
+				Student student = studentService.getStudentById(id);
+				student.setStatusInt(0);
+				student.setStatus("注册学籍");
+				studentService.saveStudent(student);
+				//studentService.removeStudent(id);
+				String s = String.valueOf(id);
+				User user = (User) userDetailsService.loadUserByUsername(s);
+				List<Authority> authorities = new ArrayList<>();
+				authorities.add(authorityService.getAuthorityById((long) 4));
+				user.setAuthorities(authorities);
+				userService.saveUser(user);
 			}
 		} catch (Exception e) {
 			return ResponseEntity.ok().body(new Response(false, e.getMessage()));

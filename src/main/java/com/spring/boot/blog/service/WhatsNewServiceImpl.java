@@ -69,7 +69,7 @@ public class WhatsNewServiceImpl implements WhatsNewService {
 	public Page<WhatsNew> listWhatsNewsByEventsLike(String events, Pageable pageable) {
 		// TODO Auto-generated method stub
 		events= "%"+events+"%";
-		Page<WhatsNew> WhatsNews = WhatsNewRepository.findByEventsLikeAndDr(events, 0, pageable);
+		Page<WhatsNew> WhatsNews = WhatsNewRepository.findByEventsLikeAndDrOrderByStartTimeDesc(events, 0, pageable);
 		return WhatsNews;
 	}
 

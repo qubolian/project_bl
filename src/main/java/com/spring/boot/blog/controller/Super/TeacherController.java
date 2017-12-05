@@ -29,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.boot.blog.domain.Authority;
 import com.spring.boot.blog.domain.DepartmentList;
+import com.spring.boot.blog.domain.Student;
 import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.domain.User;
 import com.spring.boot.blog.service.AuthorityService;
@@ -183,12 +184,16 @@ public class TeacherController {
     public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
 		try {
 			if(teacherService.getTeacherById(id)!=null){
-				teacherService.removeTeacher(id);
+				
+				//teacherService.removeTeacher(id);
+				Teacher teacher = teacherService.getTeacherById(id);
+				teacher.setStatusInt(1);
+				teacherService.saveTeacher(teacher);
 				String s = String.valueOf(id);
 				User  user = (User)userDetailsService.loadUserByUsername(s);
-				if(user!=null){
-					userService.removeUser(user.getId());
-				}
+				List<Authority> authorities = new ArrayList<>();
+				user.setAuthorities(authorities);
+				userService.saveUser(user);
 			}
 		}catch (RuntimeException e) {
 			Throwable cause = e.getCause();
@@ -201,5 +206,34 @@ public class TeacherController {
 		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
 	}
 	
+	
+	/**
+	 * 恢复教师
+	 * @param id
+	 * @return
+	 */
+	@PostMapping(value = "/undoTeacher/{id}")
+    public ResponseEntity<Response> undoTeacher(@PathVariable("id") Long id, Model model) {
+		try {
+			if(teacherService.getTeacherById(id)!=null){
+				
+				Teacher teacher = teacherService.getTeacherById(id);
+				teacher.setStatusInt(0);
+				teacherService.saveTeacher(teacher);
+				String s = String.valueOf(id);
+				User  user = (User)userDetailsService.loadUserByUsername(s);
+				List<Authority> authorities = new ArrayList<>();
+				if(teacher.getIsAuthority() == 1) {
+					authorities.add(authorityService.getAuthorityById((long) 5));
+				}
+				authorities.add(authorityService.getAuthorityById((long) 3));
+				user.setAuthorities(authorities);
+				userService.saveUser(user);
+			}
+		}catch (Exception e) {
+			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+		}
+		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
+	}
 	 
 }

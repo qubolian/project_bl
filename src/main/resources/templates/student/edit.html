@@ -2,6 +2,8 @@
  
 <form th:action="@{/super/}" method="post" th:object="${studentModel.student}" id="studentForm">
 
+	<input type="hidden" name="statusInt" th:value="*{statusInt}">
+
 	<div class="form-group ">
 		<label for="id" class="col-form-label">学号</label>
 		<input type="text" class="form-control" id="id" name="id"  th:value="*{id}" maxlength="32"  readonly title="学号不能更改">
@@ -53,7 +55,13 @@
 	
 	<div class="form-group ">
 		<label for="status" class="col-form-label">学籍状态</label>
-		<input type="text" class="form-control" id="status" name="status" th:value="*{status}" maxlength="10" placeholder="请输学籍状态，例：注册学籍">	
+	 	  <br>
+		<select id="sex" name="sex" class="form-control">  
+			<option value ="注册学籍">注册学籍</option>
+			<option value ="休学">休学</option>  
+			<option value ="退学">退学</option>
+			<option value ="保留学籍">保留学籍</option> 
+        </select>
     </div> 
 	
 	<div class="form-group ">

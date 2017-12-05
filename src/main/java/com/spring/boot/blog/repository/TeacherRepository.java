@@ -12,7 +12,7 @@ import com.spring.boot.blog.domain.Teacher;
 
 public interface TeacherRepository extends JpaRepository<Teacher, Long>{
 	
-	Page<Teacher> findByTeacherNameLike(String TeacherName,Pageable pageable);
+	Page<Teacher> findByTeacherNameLikeOrderByStatusIntAsc(String TeacherName,Pageable pageable);
 	
 	List<Teacher> findByDepartment(DepartmentList Department);
 

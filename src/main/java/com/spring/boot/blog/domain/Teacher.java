@@ -89,7 +89,19 @@ public class Teacher implements Serializable {
 	@NotEmpty(message = "履历表保存名不能为空")
 	private String resumeSaveName;	//履历表保存名，默认为0
 	
+	//0、在职
+	//1、离职
+	@NotNull(message = "工作状态不能为空")
+	private int statusInt;
 	
+	public int getStatusInt() {
+		return statusInt;
+	}
+
+	public void setStatusInt(int statusInt) {
+		this.statusInt = statusInt;
+	}
+
 	public String getResumeSaveName() {
 		return resumeSaveName;
 	}

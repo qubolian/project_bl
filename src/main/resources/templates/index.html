@@ -31,7 +31,10 @@
 
             <!-- 最新消息 -->
             <div class="card mb-4">
+            	<div style="position:relative">
             	<h3 class="card-header"  style="text-align:center"><i class="fa fa-newspaper-o"></i>&nbsp;最新消息</h3>
+	            <a href="javascript:;" style="float:right;font-size:16px;position:absolute;right:5px;bottom:5px;">所有消息</a>
+	            </div>
 	            <table class="table table-striped">
 					<tr th:each="whatsNew : ${Model.whatsNewList}">
 						<div class="card mb-4">
@@ -47,7 +50,7 @@
 					</tr>
 				</table>
 				<!-- 分页 -->
-            	<div th:replace="~{fragments/page :: page}">...</div>
+            	<!-- <div th:replace="~{fragments/page :: page}">...</div> -->
             </div>
 
         </div>

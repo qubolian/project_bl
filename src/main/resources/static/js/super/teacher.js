@@ -174,4 +174,33 @@ $(function() {
 		
 	});
 	
+	
+	$("#undoTeacher").on("click",function(){
+		$("input[name='boxs']:checked").each(function(){
+			// 获取 CSRF Token 
+			var csrfToken = $("meta[name='_csrf']").attr("content");
+			var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+			$.ajax({ 
+				 url: "/super/undoTeacher/" + $(this).val() , 
+				 type: 'POST', 
+				 async:false,
+				 beforeSend: function(request) {
+	                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
+	             },
+				 success: function(data){
+					 if (data.success) {
+						 // 从新刷新主界面
+						 getTeacherByTeacherName(0, _pageSize);
+					 } else {
+						 toastr.error(data.message);
+					 }
+			     },
+			     error : function() {
+			    	 toastr.error("error!");
+			     }
+			 });
+		});
+	});
+	
+	
 });

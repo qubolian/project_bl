@@ -67,7 +67,7 @@ public class TeacherServiceImpl implements TeacherService {
 	public Page<Teacher> listTeacherByTeacherNameLike(String teacherName, Pageable pageable) {
 		// TODO Auto-generated method stub
 		teacherName= "%"+teacherName+"%";
-		Page<Teacher> teacher = TeacherRepository.findByTeacherNameLike(teacherName, pageable);
+		Page<Teacher> teacher = TeacherRepository.findByTeacherNameLikeOrderByStatusIntAsc(teacherName, pageable);
 		return teacher;
 	}
 	

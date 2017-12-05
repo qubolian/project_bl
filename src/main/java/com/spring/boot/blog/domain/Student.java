@@ -88,6 +88,21 @@ public class Student implements Serializable {
 	@Size(min=2, max=10, message="班级长度必须在2到10之间")
 	@Column(nullable = false, length = 10) // 映射为字段，值不能为空
 	private String classes;
+	
+	//0、注册学籍：正常在校，并经过了每年一次（一般在每年的9月份进行）的注册。
+	//1、休学：在休学状态
+	//2、退学：曾经在该校读书，现已退学
+	//3、保留学籍：当兵入伍在部队
+	@NotNull(message = "学籍状态不能为空")
+	private int statusInt;
+	
+	public int getStatusInt() {
+		return statusInt;
+	}
+
+	public void setStatusInt(int statusInt) {
+		this.statusInt = statusInt;
+	}
 
 	public Long getId() {
 		return id;
