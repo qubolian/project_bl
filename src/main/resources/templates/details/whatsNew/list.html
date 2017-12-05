@@ -1,0 +1,23 @@
+
+
+
+<div id="mainContainer" class="container">
+	<div class="card ">
+        <h3 class="card-header"  style="text-align:center"><i class="fa fa-newspaper-o"></i>&nbsp;最新消息</h3>
+		<ul class="list-group" th:each="whatsNew :${model.whatsNewList}">
+			<a href="/details/whatsNewDetails/" class="list-group-item active" title="magic" th:title="${whatsNew.events}" th:text="${whatsNew.events}">用户管理</a>       
+			<!-- startTime -->
+		</ul>
+		<div th:replace="~{fragments/page :: page}">...</div>
+	</div>
+
+
+</div>
+
+
+
+<!-- JavaScript -->
+
+<!--  <!-- 配置文件 -->
+<!-- <script src="../../js/super/whatsNewDetails.js" th:src="@{/js/super/whatsNewDetails.js}"></script> -->
+

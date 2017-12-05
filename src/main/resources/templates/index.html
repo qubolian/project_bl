@@ -13,9 +13,10 @@
 
     <div class="row">
 
-        <!-- Blog Entries Column -->
-        <div class="col-md-8">
-
+        <!--左侧栏目-->
+        <div class="col-md-8"  >
+        
+			<div id="rightContainer">
             <!-- 宗旨 -->
             <div class="card mb-4">
             	
@@ -33,7 +34,7 @@
             <div class="card mb-4">
             	<div style="position:relative">
             	<h3 class="card-header"  style="text-align:center"><i class="fa fa-newspaper-o"></i>&nbsp;最新消息</h3>
-	            <a href="javascript:;" style="float:right;font-size:16px;position:absolute;right:5px;bottom:5px;">所有消息</a>
+	            <a href="/details/whatsNewList" style="float:right;font-size:16px;position:absolute;right:5px;bottom:5px;">所有消息</a>
 	            </div>
 	            <table class="table table-striped">
 					<tr th:each="whatsNew : ${Model.whatsNewList}">
@@ -52,7 +53,7 @@
 				<!-- 分页 -->
             	<!-- <div th:replace="~{fragments/page :: page}">...</div> -->
             </div>
-
+			</div>
         </div>
 
         <!-- 右侧栏目 -->
