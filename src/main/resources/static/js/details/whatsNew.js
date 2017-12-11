@@ -12,7 +12,7 @@ function more() {
 		 url: "/details/whatsNewList", 
 		 contentType : 'application/json',
 		 data:{
-			 "async":true, 
+			 "async":true
 		 },
 		 success: function(data){
 			 
@@ -23,6 +23,25 @@ function more() {
 	     }
 	 });
 }
+
+function teaherDetail(id) {
+	
+	 $.ajax({ 
+		 url: "/details/teaherDetail", 
+		 contentType : 'application/json',
+		 data:{
+			 "id":id
+		 },
+		 success: function(data){
+			 
+			 $("#rightContainer").html(data);
+	     },
+	     error : function() {
+	    	 toastr.error("error!");
+	     }
+	 });
+}
+
 // DOM 加载完再执行
 $(function() {
 	var _pageSize; // 存储用于搜索

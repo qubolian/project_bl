@@ -128,7 +128,21 @@ public class DetailsController {
 		return new ModelAndView("details/whatsNew/detail", "Model", model);
 	}
 	
+	/**
+	 * 获取教师详细记录
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/teaherDetail")
+	public ModelAndView teaherDetail(
+			@RequestParam(value="id",required=false,defaultValue="") String id,
+			Model model) {
 	
+		
+		
+		return null;
+	}
 	
 	
 	
