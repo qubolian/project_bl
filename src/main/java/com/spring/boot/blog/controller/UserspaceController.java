@@ -62,7 +62,7 @@ public class UserspaceController {
 	@PreAuthorize("authentication.name.equals(#username)")
 	public ModelAndView profile(@PathVariable("username") String username, Model model) {
 		User user = (User) userDetailsService.loadUserByUsername(username);
-		if (user.getAvatar() != null || !"".equals(user.getAvatar())) {
+		if (user.getAvatar() != null && !"".equals(user.getAvatar())) {
 			user.setAvatar(fileServerUrl + user.getAvatar());
 		}
 

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{fragments/header :: header}">
+</head>
+
+
+
+<body>
+<!-- Page Content -->
+<div class="container blog-content-container">
+
+    <div class="row">
+
+        <!--左侧栏目-->
+        <div class="col-md-8"  >
+        
+			<div id="rightContainer">
+
+            	<!-- 最新消息 -->
+            	<div class="card mb-4">
+            		<div class="card-header">
+            		<a style="float:left" href="javascript:void(0);" title="返回消息列表" onclick="more()">
+						<i class="fa fa-mail-reply"></i>
+					</a>
+	            	<h4 style="text-align:center" th:text="${Model.whatsNew.events}">最新消息</h4>
+	            	</div>
+	                <div class="card-block">
+						<div class="card-text" style="text-align:center">
+						<p th:utext="${Model.whatsNew.note}" >
+						</p>
+							发表于 <span th:text="${whatsNew.startTime}"></span>
+						</div>
+	                </div>
+           		</div>
+            
+			</div>
+        </div>
+
+        <!-- 右侧栏目 -->
+        <div class="col-md-4">
+            <div>
+            
+                <!-- 热门课程 -->
+                <div class="card my-4">
+                    <h5 class="card-header"><i class="fa fa-fire" aria-hidden="true"></i> 热门课程</h5>
+
+                    <ul class="list-group" th:each="course : ${Model.courseList}">
+                    	
+                        <a href="javascript:;" class="list-group-item" th:utext="'<i class=\'fa fa-book\'></i>&nbsp;'+${course.name}"></a>
+                    </ul>
+
+                </div>
+                <!-- 热门教师 -->
+                <div class="card my-4">
+                    <h5 class="card-header"><i class="fa fa-users" aria-hidden="true"></i> 热门教师</h5>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-lg-12">
+					            <table th:each="teacher : ${Model.teacher}">
+					            <tr  class="list-group">
+						            <td>
+						            <span>
+					                  <a href="javascript:;">
+ 										<img th:if="${teacher.avatar}==null" th:src="@{../../images/avatar-defualt.jpg}" class="blog-avatar-50">
+					                  	<img th:if="${teacher.avatar}!=null" th:src="@{'http://127.0.0.1/'+${teacher.avatar}}" class="blog-avatar-50">
+					                  </a>
+					                  &nbsp;
+					                  <a href="javascript:;" th:text="${teacher.name}"></a>
+					                </span>
+						            </td>
+						            <td>
+						            </td>
+					            </tr>
+					            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- 组长责任 -->
+                <div class="card my-4">
+                    <h5 class="card-header"><i class="fa fa-address-book-o" aria-hidden="true"></i> 组长责任</h5>
+                    <div class="card-block">
+                        <p th:utext="${Model.lmr.LeaderResponsibility}" >
+					</p>
+                    </div>
+
+                </div>
+                
+                <!-- 组员责任 -->
+                <div class="card my-4">
+                    <h5 class="card-header"><i class="fa fa-address-book" aria-hidden="true"></i> 组员责任</h5>
+                    <div class="card-block">
+                        <p th:utext="${Model.lmr.MemberResponsibility}" >
+					</p>
+                    </div>
+
+                </div>
+                
+                <!-- 最新小队 -->
+<!--                 <div class="card my-4">
+                    <h5 class="card-header"><i class="fa fa-address-card" aria-hidden="true"></i> 最新小队</h5>
+                    <div class="card-block">
+                        <p th:utext="" >
+					</p>
+                    </div>
+
+                </div> -->
+                
+                
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+<div th:replace="~{fragments/footer :: footer}">...</div>
+</body>
+<!-- JavaScript -->
+<script src="../../js/details/whatsNew.js" th:src="@{/js/details/whatsNew.js}"></script>
+</html>

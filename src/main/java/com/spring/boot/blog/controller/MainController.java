@@ -36,6 +36,7 @@ import com.spring.boot.blog.service.TeacherService;
 import com.spring.boot.blog.service.UserService;
 import com.spring.boot.blog.service.WhatsNewService;
 import com.spring.boot.blog.util.ConstraintViolationExceptionHandler;
+import com.spring.boot.blog.util.HomePage;
 import com.spring.boot.blog.vo.Response;
 
 @Controller
@@ -79,44 +80,26 @@ private static final Long ROLE_USER_AUTHORITY_ID = 2L;
 	@GetMapping("/index")
 	public ModelAndView index(Model model) {
 		
+		HomePage HomePage = new HomePage();
+		
 		//宗旨
-		ProjectMission pm = projectMissionService.getProjectMissionById(1L);
+		ProjectMission pm = HomePage.ListProjectMission(projectMissionService);
 		model.addAttribute("pm", pm);
 		
-		//分页
-		int pageIndex = 0;
-		int pageSize =5;
-		Pageable pageable = new PageRequest(pageIndex, pageSize);
-		
 		//最新消息
-		Page<WhatsNew> page = whatsNewService.listWhatsNewsByEventsLike("", pageable);
-		List<WhatsNew> list = page.getContent();	// 当前所在页面数据列表
-		model.addAttribute("page", page);
+		List<WhatsNew> list =HomePage.ListWhatsNew(whatsNewService);
 		model.addAttribute("whatsNewList", list);
 		
 		//课程
-		Page<Course> Cpage = courseService.listCoursesByNameLike("", "2", pageable);
-		List<Course> courseList = Cpage.getContent();	// 当前所在页面数据列表
+		List<Course> courseList = HomePage.ListCourse(courseService);
 		model.addAttribute("courseList", courseList);
 		
 		//教师
-		Page<Teacher> Tpage = teacherService.listTeacherByTeacherNameLike("", pageable);
-		List<Teacher> teacherList = Tpage.getContent();	// 当前所在页面数据列表
-		List<User> teacher = new ArrayList<User>();
-		for (Teacher t : teacherList) {
-			String s = String.valueOf(t.getId());
-			User  user = (User)userDetailsService.loadUserByUsername(s);
-			if(user.getAvatar()!=null) {
-				user.setAvatar("http://127.0.0.1/"+user.getAvatar());
-			}else {
-				user.setAvatar("../images/avatar-defualt.jpg");
-			}
-			teacher.add(user);
-		}
+		List<User> teacher = HomePage.ListTeacher(teacherService,userDetailsService);
 		model.addAttribute("teacher", teacher);
 		
 		//组长组员责任
-		LeaderMemberResponsibility lmr = leaderMemberResponsibilityService.getLeaderMemberResponsibilityById(1L);
+		LeaderMemberResponsibility lmr = HomePage.ListLeaderMemberResponsibility(leaderMemberResponsibilityService);
 		model.addAttribute("lmr", lmr);
 		
 		//最新小队...

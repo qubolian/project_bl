@@ -32,6 +32,12 @@ INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type
 INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('5', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
 INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('6', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
 INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('7', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
+INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('8', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
+INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('9', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
+INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('10', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
+INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('11', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
+INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('12', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
+INSERT INTO WHATS_NEW(id,end_time,events,note,start_time,department_id,news_type_id,dr) VALUES ('13', '2014-12-01', '我院14级软件工程1班荣获2016年全国高校“活力团支部”称号', 'note', '2014-11-01', '3', '2', 0);
 
 
 INSERT INTO Howto_Team_Up(id,Grade_ID,Team_Up_Stage,Seek_Advisor_Stage,Project_Conduction_Stage,dr)  VALUES('1', '大一上', '开学前2 Weeks', '开学前3 Weeks', '整学期', 0);

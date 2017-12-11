@@ -25,7 +25,7 @@
 </div>
 
 <div id="mainContainer" class="container">
-	<div id="mainContainerRepleace" class="row">
+	<div id="mainContainerRepleace" class="row" th:unless="${courseModel.courseList.isEmpty()}">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -92,6 +92,10 @@
 		</table>
 		<div th:replace="~{fragments/page :: page}">...</div>
 
+	</div>
+	<div th:if="${courseModel.courseList.isEmpty()}" width="250px" align="center" style="height:300px">
+		<br><br><br><br><br>
+		<H2 style="color:grey">没有未发布课程，请先添加课程</H2>
 	</div>
 </div>
 

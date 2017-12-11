@@ -1,23 +1,35 @@
 
+        
+			<div id="rightContainer">
 
+            	<!-- 最新消息 -->
+				<div id="mainContainer" class="container">
+					<div class="card ">
+				        <h3 class="card-header"  style="text-align:center"><i class="fa fa-newspaper-o"></i>&nbsp;最新消息</h3>
+						
+						<table class="table table-striped">
+							<tr th:each="whatsNew : ${Model.whatsNewList}">
+								<div class="card mb-4">
+					                <div class="card-block">
+					                    <h4 class="card-title">
+					                        <a th:href="@{'/details/whatsNew/'+${whatsNew.id}}" class="card-link" th:text="${whatsNew.events}" style="display:block; width:95%; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;"></a>
+					                    </h4>
+					                    <div class="card-text">
+					                        	发表于 <span th:text="${whatsNew.startTime}"></span>
+					                    </div>
+					                </div>
+					            </div>
+							</tr>
+						</table>
 
-<div id="mainContainer" class="container">
-	<div class="card ">
-        <h3 class="card-header"  style="text-align:center"><i class="fa fa-newspaper-o"></i>&nbsp;最新消息</h3>
-		<ul class="list-group" th:each="whatsNew :${model.whatsNewList}">
-			<a href="/details/whatsNewDetails/" class="list-group-item active" title="magic" th:title="${whatsNew.events}" th:text="${whatsNew.events}">用户管理</a>       
-			<!-- startTime -->
-		</ul>
-		<div th:replace="~{fragments/page :: page}">...</div>
-	</div>
-
-
-</div>
-
-
+						<div th:replace="~{fragments/whatsNewpage :: page}">...</div>
+					</div>
+				
+				
+				</div>
+            
+			</div>
 
 <!-- JavaScript -->
-
-<!--  <!-- 配置文件 -->
-<!-- <script src="../../js/super/whatsNewDetails.js" th:src="@{/js/super/whatsNewDetails.js}"></script> -->
+<script src="../../js/details/whatsNew.js" th:src="@{/js/details/whatsNew.js}"></script>
 
