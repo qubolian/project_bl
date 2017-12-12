@@ -12,8 +12,8 @@
 	                  	<img width="200px" height="200px" th:if="${Model.user.avatar}!=null" th:src="@{'http://127.0.0.1/'+${Model.user.avatar}}">
 					</td>
 					<td>
-						<h1 th:text="${Model.teacher.teacherName}">教师</h1>
-						<p th:text="${Model.teacher.id}" style="colour:grey"></p>
+						<h1 th:text="${Model.course.courseName}">教师</h1>
+						<p th:text="${Model.course.id}" style="colour:grey"></p>
 					</td> 
 				</tr>
 			</table>
@@ -21,22 +21,22 @@
 				<tr width="100%" height="60px" >
 					<td width="50%">
 					<strong>性别：</strong>
-					<span th:text="${Model.teacher.sex}"></span>
+					<span th:text="${Model.course.sex}"></span>
 					</td>
 					<td width="50%">
 					<strong>教师类型：</strong>
-					<span th:text="${Model.teacher.teacherType}"></span>
+					<span th:text="${Model.course.courseType}"></span>
 					</td>
 				</tr>
 				
 				<tr width="100%" height="60px">
 					<td width="50%">
 					<strong>所属学院：</strong>
-					<span th:text="${Model.teacher.college}"></span>
+					<span th:text="${Model.course.college}"></span>
 					</td>
 					<td width="50%">
 					<strong>所属系部：</strong>
-					<span th:text="${Model.teacher.department.department}"></span>
+					<span th:text="${Model.course.department.department}"></span>
 					</td>
 				</tr>
 				
@@ -44,7 +44,7 @@
 					<td colspan="2" width="100%" height="60px">
 					<strong>专长：</strong>
 					<br><br>
-					<span th:utext="${Model.teacher.expert}" readonly></span>
+					<span th:utext="${Model.course.expert}" readonly></span>
 					</td>
 				</tr>
 				
@@ -52,7 +52,7 @@
 					<td colspan="2" width="100%" height="60px">
 					<strong>对学生的期待：</strong>
 					<br><br>
-					<span th:utext="${Model.teacher.expectStudent}" readonly></span>
+					<span th:utext="${Model.course.expectStudent}" readonly></span>
 					</td>
 				</tr>
 			</table>

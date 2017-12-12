@@ -107,12 +107,12 @@
 					            <tr  class="list-group">
 						            <td>
 						            <span>
-					                  <a href="javascript:;" >
+					                  <a href="javascript:;" th:onclick="'javascript:teaherDetail('+${teacher.userName}+');'">
 					                    <img th:if="${teacher.avatar}==null" th:src="@{../images/avatar-defualt.jpg}" class="blog-avatar-50">
 					                  	<img th:if="${teacher.avatar}!=null" th:src="@{'http://127.0.0.1/'+${teacher.avatar}}" class="blog-avatar-50">
 					                  	&nbsp;
 					                  <span href="javascript:;" th:text="${teacher.name}"></span>
-					                  </a onclick="teaherDetail(${teacher.userName})">
+					                  </a>
 					                </span>
 						            </td>
 						            <td>

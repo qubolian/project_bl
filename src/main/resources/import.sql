@@ -50,8 +50,8 @@ insert into leader_member_responsibility(Leader_Responsibility,Member_Responsibi
 
 INSERT INTO Teacher (Id, Teacher_Name, department_Id, Sex, Teacher_Type, College, is_Authority, resume, resume_Save_Name, status_Int)  VALUES (111, '111', '2', '女', '教辅人员', '信息技术学院', 0, '0', '0', '0');
 
-INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (1, '1124', '2', '计科B17-1', '专业领域课程组', '英语', '2017-2018-1', '2050587', '考试', '32', '2', '4', '1');
-INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (2, '2124', '4', '计科B17-1', '必修', '数学', '2017-2018-1', '2050588', '考查', '32', '2', '5', '1');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (1, '1124', '2', '计科B17-1', '专业领域课程组', '英语', '2017-2018-1', '2050587', '考试', '32', '0', '4', '1');
+INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (2, '2124', '4', '计科B17-1', '必修', '数学', '2017-2018-1', '2050588', '考查', '32', '1', '5', '1');
 INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (3, '3142', '3', '计科B17-1', '集中实践', '软件开发', '2017-2018-1', '2050589', '考查', '32', '2', '6', '1');
 INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (4, '4124', '1', '计科B17-1', '专业限选课', '界面制作', '2017-2018-1', '2050590', '考查', '32', '2', '3', '1');
 INSERT INTO Course(id, course_Id, credit, classes, course_Type, name, term, course_Number, exam_Methods, period, status, upper_Limit, lower_Limit) VALUES (5, '5123', '2', '计科B17-1', '选修', '语文', '2017-2018-1', '2050591', '考查', '32', '2', '5', '1');

@@ -25,6 +25,7 @@ import com.spring.boot.blog.domain.Course;
 import com.spring.boot.blog.domain.LeaderMemberResponsibility;
 import com.spring.boot.blog.domain.NewsType;
 import com.spring.boot.blog.domain.ProjectMission;
+import com.spring.boot.blog.domain.Teacher;
 import com.spring.boot.blog.domain.User;
 import com.spring.boot.blog.domain.WhatsNew;
 import com.spring.boot.blog.service.CourseService;
@@ -138,10 +139,12 @@ public class DetailsController {
 	public ModelAndView teaherDetail(
 			@RequestParam(value="id",required=false,defaultValue="") String id,
 			Model model) {
-	
-		
-		
-		return null;
+		Long tid = Long.valueOf(id);
+		Teacher teacher =teacherService.getTeacherById(tid);
+		User user = (User)userDetailsService.loadUserByUsername(id);
+		model.addAttribute("user", user);
+		model.addAttribute("teacher", teacher);
+		return new ModelAndView("details/teacher/teacher", "Model", model);
 	}
 	
 	
